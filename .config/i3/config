@@ -26,6 +26,7 @@ font pango:Noto Sans 9
 # font, it doesn’t scale on retina/hidpi displays.
 
 #exec --no-startup-id xrandr --dpi 155
+exec compton -CGb
 exec --no-startup-id ~/.screenlayout/2-hor-ver.sh
 exec --no-startup-id setxkbmap -layout us -variant altgr-intl -option ctrl:nocaps
 exec --no-startup-id xset r rate 200 40
@@ -136,8 +137,6 @@ bindsym $mod+Shift+V split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen
-
-
 
 # change container layout (stacked, tabbed, toggle split)
 # bindsym $mod+s layout stacking
