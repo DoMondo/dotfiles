@@ -27,6 +27,7 @@ font pango:Noto Sans 9
 
 #exec --no-startup-id xrandr --dpi 155
 exec compton -CGb
+exec xrandr --dpi 96
 exec --no-startup-id ~/.screenlayout/2-hor-ver.sh
 exec --no-startup-id setxkbmap -layout us -variant altgr-intl -option ctrl:nocaps
 exec --no-startup-id xset r rate 200 40
