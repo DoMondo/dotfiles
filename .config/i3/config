@@ -155,9 +155,12 @@ bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
-
-set $ML DVI-D-0
-set $MR VGA-0 
+# HOME
+#set $ML DVI-D-0
+#set $MR VGA-0 
+# WORK
+set $ML HDMI1 
+set $MR HDMI2 
 # workspace bindings to monitors
 workspace 1 output $ML
 workspace 2 output $MR
