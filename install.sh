@@ -8,6 +8,8 @@ ln -sfv $DIR/.config/i3/config ~/.config/i3/
 ln -sfv $DIR/.config/i3/i3status.conf ~/.config/i3/
 ln -sfv $DIR/.config/konsolerc ~/.config/konsolerc
 ln -sfv $DIR/DoMo.profile ~/.local/share/konsole/DoMo.profile
+ln -sfv $DIR/DarkPastels.colorscheme ~/.local/share/konsole/DarkPastels.colorscheme
+
 mkdir ~/lock-i3-desktop/
 ln -sfv $DIR/i3-exit ~/lock-i3-desktop/i3-exit
 git config --global core.excludesfile ~/.gitignore_global
