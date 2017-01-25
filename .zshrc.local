@@ -47,6 +47,7 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias vim='echo -ne "\e]50;CursorShape=0;BlinkingCursorEnabled=0\\x7"; vim' 
 alias v='vim' 
 # source ~/.bash_profile
 
@@ -56,9 +57,7 @@ export PATH="/home/oscar/Android/Sdk/platform-tools:$PATH"
 
 zle-keymap-select () {
   case $KEYMAP in
-#    vicmd) print -rn -- $terminfo[cvvis];; # block cursor
     vicmd) echo -ne "\e]50;CursorShape=0;BlinkingCursorEnabled=0\\x7";; # block cursor
-#    viins|main) print -rn -- $terminfo[cnorm];; # less visible cursor
     viins|main) echo -ne "\e]50;CursorShape=1;BlinkingCursorEnabled=1\\x7";; # less visible cursor
   esac
 }
