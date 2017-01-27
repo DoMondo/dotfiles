@@ -6,13 +6,16 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
-Plugin 'L9'
-Plugin 'git://git.wincent.com/command-t.git'
+"Plugin 'L9'
+"Plugin 'git://git.wincent.com/command-t.git'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-Plugin 'ascenator/L9', {'name': 'newL9'}
+"Plugin 'ascenator/L9', {'name': 'newL9'}
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'morhetz/gruvbox'
+Plugin 'nblock/vim-dokuwiki'
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -175,3 +178,4 @@ endif
 let &t_SI = "\e]50;CursorShape=1;BlikingCursorEnabled=1\x7"
 let &t_SR = "\e]50;CursorShape=2;BlinkingCursorEnabled=0\x7"
 let &t_EI = "\e]50;CursorShape=0;BlinkingCursorEnabled=0\x7"
+let g:vundle_default_git_proto = 'https'

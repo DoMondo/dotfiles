@@ -98,5 +98,6 @@ ix() {
 }
 curl $opts -F f:1='<-' $* ix.io/$id
         }
-   source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zshrc.local.extra
 
