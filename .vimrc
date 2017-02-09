@@ -4,12 +4,13 @@ filetype off                  " required
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+let g:ycm_confirm_extra_conf = 0
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
-"Plugin 'L9'
-"Plugin 'git://git.wincent.com/command-t.git'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'rhysd/vim-clang-format'
+"Plugin 'git://git.wincent.com/command-t.git 
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-"Plugin 'ascenator/L9', {'name': 'newL9'}
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'scrooloose/nerdcommenter'
@@ -18,18 +19,11 @@ Plugin 'morhetz/gruvbox'
 Plugin 'nblock/vim-dokuwiki'
 call vundle#end()            " required
 filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
 " Brief help
 " :PluginList       - lists configured plugins
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-" When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
   finish
 endif
@@ -93,6 +87,7 @@ nnoremap <Leader>w :w<CR>
 nnoremap <Leader>W :w!<CR>
 nnoremap <Leader>n :nohl<CR>
 nnoremap <Leader>l :exec &rnu? "se nornu!" : "se rnu!"<CR>
+map <C-f> :ClangFormat<CR>
 
 " NERDTree
 map <Leader>t :NERDTreeToggle<CR>
@@ -179,3 +174,4 @@ let &t_SI = "\e]50;CursorShape=1;BlikingCursorEnabled=1\x7"
 let &t_SR = "\e]50;CursorShape=2;BlinkingCursorEnabled=0\x7"
 let &t_EI = "\e]50;CursorShape=0;BlinkingCursorEnabled=0\x7"
 let g:vundle_default_git_proto = 'https'
+autocmd BufNewFile,BufRead *.cl   set syntax=c     
