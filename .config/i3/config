@@ -27,7 +27,7 @@ font pango:Noto Sans 9
 
 #exec --no-startup-id xrandr --dpi 155
 exec compton -CGb
-exec xrandr --dpi 96
+exec xrandr --dpi 110
 exec --no-startup-id ~/.screenlayout/2-hor-ver.sh
 exec --no-startup-id setxkbmap -layout us -variant altgr-intl -option ctrl:nocaps
 exec --no-startup-id xset r rate 200 40
@@ -35,16 +35,15 @@ exec --no-startup-id xset +fp /usr/share/fonts/local
 exec --no-startup-id xset fp rehash
 exec --no-startup-id xcape -t 200 -e 'Control_L=Escape'
 exec --no-startup-id parcellite
-#exec --no-startup-id volumeicon
-exec --no-startup-id pidgin
-#exec --no-startup-id autokey-gtk
-exec --no-startup-id spotify
-#exec --no-startup-id nvdock
-exec --no-startup-id exec thunderbird
-# exec --no-startup-id "i3-msg 'workspace 2; append_layout ~/.config/i3/workspace-2.json'"
-# exec --no-startup-id "i3-msg 'workspace 1'"
 
+exec --no-startup-id "i3-msg 'workspace 1; append_layout ~/.config/i3/workspace-1.json'"
+exec --no-startup-id "i3-msg 'workspace 2; append_layout ~/.config/i3/workspace-2.json'"
+exec --no-startup-id google-chrome "gmail.com" 
+exec --no-startup-id thunderbird
+exec --no-startup-id pidgin
+exec --no-startup-id pidgin
 exec --no-startup-id redshift -O 5000 
+exec --no-startup-id spotify
 # Background
 exec --no-startup-id feh --bg-fill ~/Downloads/desktop_bkgrnd.jpg
 
@@ -95,16 +94,16 @@ for_window [window_role="pop-up"] floating enable
 
 
 # start dmenu (a program launcher)H
-# bindsym $mod+d exec dmenu_run
+#bindsym $mod+d exec --no-startup-id dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # focus marks
-bindsym $mod+m exec i3-input -F 'mark %s' -P 'Mark name: '
+#bindsym $mod+m exec i3-input -F 'mark %s' -P 'Mark name: '
 #bindsym $mod+Shift+m exec i3-input -F '[con_mark=%s] focus' -P 'Go to mark: '
-bindsym $mod+grave exec i3-input -F '[con_mark=%s] focus' -P 'Go to mark: '
+#bindsym $mod+grave exec i3-input -F '[con_mark=%s] focus' -P 'Go to mark: '
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -290,7 +289,7 @@ for_window [class="qjackctl" instance="qjackctl"] floating enable
 bar {
     status_command i3status
     # font           pango:Terminus 10
-    font pango: Ubuntu Mono 10.5
+    font pango: Ubuntu Mono 10
 	colors {
 		# Whole color settings
 		# background #000000

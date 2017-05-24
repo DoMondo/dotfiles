@@ -9,16 +9,20 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'rhysd/vim-clang-format'
-"Plugin 'git://git.wincent.com/command-t.git 
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'scrooloose/nerdcommenter'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'morhetz/gruvbox'
+Plugin 'sheerun/vim-wombat-scheme'
 Plugin 'nblock/vim-dokuwiki'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'petRUShka/vim-opencl'
+Plugin 'godlygeek/csapprox'
+Plugin 'airblade/vim-gitgutter'
+"Git Gutter info 
+"Plugin 'airblade/vim-gitgutter'
 call vundle#end()            " required
-filetype plugin indent on    " required
+"filetype plugin indent on    " required
+" Nerdcommenter
+filetype plugin on   
 " Brief help
 " :PluginList       - lists configured plugins
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
@@ -96,6 +100,10 @@ map <Leader>t :NERDTreeToggle<CR>
 map  <Leader>f <Plug>(easymotion-bd-w)
 "nmap <Leader>f <Plug>(easymotion-overwin-w)
 
+" Git blame
+map <Leader>b :Gblame<CR>
+map <Leader>g :GitGutterToggle<CR>
+
 " Move to word
 "map  <Leader>w <Plug>(easymotion-bd-w)
 "nmap <Leader>w <Plug>(easymotion-overwin-w)
@@ -122,7 +130,7 @@ if &t_Co > 2 || has("gui_running")
   syntax on
   set background=dark
   " let g:solarized_termcolors=256
-  colorscheme gruvbox
+  colorscheme wombat_oscar
   set hlsearch
 endif
 
@@ -143,6 +151,7 @@ if has("autocmd")
   autocmd FileType text setlocal textwidth=78
   autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
+  au FileType python          setlocal omnifunc=python3complete#Complete
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
   " (happens when dropping a file on gvim).
@@ -174,4 +183,36 @@ let &t_SI = "\e]50;CursorShape=1;BlikingCursorEnabled=1\x7"
 let &t_SR = "\e]50;CursorShape=2;BlinkingCursorEnabled=0\x7"
 let &t_EI = "\e]50;CursorShape=0;BlinkingCursorEnabled=0\x7"
 let g:vundle_default_git_proto = 'https'
-autocmd BufNewFile,BufRead *.cl   set syntax=c     
+"autocmd BufNewFile,BufRead *.cl   set syntax=cl     
+"au! BufRead,BufNewFile *.cl set filetype=cpp
+
+" Highlight variabless
+let g:no_highlight_group_for_current_word=["Statement", "Comment", "Type", "PreProc"]
+function s:HighlightWordUnderCursor()
+    let l:syntaxgroup = synIDattr(synIDtrans(synID(line("."), stridx(getline("."), expand('<cword>')) + 1, 1)), "name")
+
+    if (index(g:no_highlight_group_for_current_word, l:syntaxgroup) == -1)
+        exe printf('match Occurrence /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+    else
+        exe 'match Occurrence /\V\<\>/'
+    endif
+endfunction
+
+autocmd CursorMoved * call s:HighlightWordUnderCursor()
+let g:ycm_server_python_interpreter = '/usr/bin/python2'
+" Don't show YCM errors
+let g:ycm_enable_diagnostic_signs = 0
+let g:ycm_enable_diagnostic_highlighting = 0
+let g:ycm_echo_current_diagnostic = 0
+
+let g:NERDCustomDelimiters = {
+         \ 'opencl' : { 'left' : '//', 'leftAlt': '/*', 'rightAlt': '*/'}
+         \ }
+
+let g:SuperTabClosePreviewOnPopupClose = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
+
+let g:gitgutter_enabled = 0
+let g:gitgutter_highlight_lines = 1
+let g:gitgutter_map_keys = 0

@@ -2,7 +2,7 @@
 AntiAliasFonts=true
 BoldIntense=true
 ColorScheme=DarkPastels
-Font=Monospace,10,-1,5,50,0,0,0,0,0
+Font=DejaVu Sans Mono,9.3,-1,5,50,0,0,0,0,0
 
 [Cursor Options]
 CursorShape=2

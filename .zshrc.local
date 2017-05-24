@@ -44,16 +44,22 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
-alias ll='ls -alF'
+#alias ll='ls -alF'
+alias ll='ls++ --ptsf -tr'
 alias la='ls -A'
 alias l='ls -CF'
-alias vim='echo -ne "\e]50;CursorShape=0;BlinkingCursorEnabled=0\\x7"; vim' 
+alias vim='echo -ne "\e]50;CursorShape=0;BlinkingCursorEnabled=0\\x7"; vim -c "highlight Comment cterm=italic"' 
 alias v='vim' 
+alias pwdc='pwd | xclip'
 # source ~/.bash_profile
+alias ffind='f() { grep -Hri $1 . };f'
 
 zstyle ':prompt:grml:*:items:percent' '$'
 export KEYTIMEOUT=1
-export PATH="/home/oscar/Android/Sdk/platform-tools:$PATH"
+#export PATH="/home/oscar/Android/Sdk/platform-tools:$PATH"
+#export PATH="/usr/local/cuda-8.0/bin:$PATH"
+#export LD_LIBRARY_PATH="/usr/local/cuda-8.0/lib64:$LD_LIBRARY_PATH"
+export NDK_ROOT="~/Android/Sdk/ndk-bundle"
 
 zle-keymap-select () {
   case $KEYMAP in
@@ -100,4 +106,9 @@ curl $opts -F f:1='<-' $* ix.io/$id
         }
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.zshrc.local.extra
-
+# For ls++
+PATH="/home/oscar/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/oscar/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/oscar/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/oscar/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/oscar/perl5"; export PERL_MM_OPT;
