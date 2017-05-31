@@ -59,7 +59,7 @@ hi String guifg=#95e454 gui=none
 hi Comment guifg=#808080 gui=italic
 hi Todo guifg=#857b6f gui=none
 
-hi Occurrence ctermbg=0 
+hi Occurrence guibg=#303030 
 
 " Links
 hi! link FoldColumn Folded

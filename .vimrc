@@ -17,8 +17,8 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'petRUShka/vim-opencl'
 Plugin 'godlygeek/csapprox'
 Plugin 'airblade/vim-gitgutter'
-"Git Gutter info 
-"Plugin 'airblade/vim-gitgutter'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 call vundle#end()            " required
 "filetype plugin indent on    " required
 " Nerdcommenter
@@ -186,7 +186,7 @@ let g:vundle_default_git_proto = 'https'
 "autocmd BufNewFile,BufRead *.cl   set syntax=cl     
 "au! BufRead,BufNewFile *.cl set filetype=cpp
 
-" Highlight variabless
+" Highlight variables
 let g:no_highlight_group_for_current_word=["Statement", "Comment", "Type", "PreProc"]
 function s:HighlightWordUnderCursor()
     let l:syntaxgroup = synIDattr(synIDtrans(synID(line("."), stridx(getline("."), expand('<cword>')) + 1, 1)), "name")
@@ -216,3 +216,5 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:gitgutter_enabled = 0
 let g:gitgutter_highlight_lines = 1
 let g:gitgutter_map_keys = 0
+
+set viminfo='100,f1
