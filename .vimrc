@@ -22,7 +22,7 @@ Plugin 'vim-airline/vim-airline-themes'
 call vundle#end()            " required
 "filetype plugin indent on    " required
 " Nerdcommenter
-filetype plugin on   
+filetype plugin on
 " Brief help
 " :PluginList       - lists configured plugins
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
@@ -70,7 +70,7 @@ set incsearch		" do incremental searching
 set ignorecase      " ignore case in search patterns.
 set smartcase       " override the 'ignorecase' option if the search pattern
                     " contains upper case characters.
-" Don't wait to go normal 
+" Don't wait to go normal
 set timeoutlen=1000 ttimeoutlen=0
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
 " let &guioptions = substitute(&guioptions, "t", "", "g")
@@ -79,9 +79,9 @@ set timeoutlen=1000 ttimeoutlen=0
 map Q gq
 " Add line break below without entering insert mode
 
-nmap <Enter> i<ENTER><Esc> 
+nmap <Enter> i<ENTER><Esc>
 " Be careful with this one, console-dependant
-nmap OM o<Esc> 
+nmap OM o<Esc>
 let mapleader=' '
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>Q :q!<CR>
@@ -93,7 +93,7 @@ nnoremap <Leader>n :nohl<CR>
 nnoremap <Leader>l :exec &rnu? "se nornu!" : "se rnu!"<CR>
 map <C-f> :ClangFormat<CR>
 
-" NERDTree
+" NERDTreeP
 map <Leader>t :NERDTreeToggle<CR>
 
 " Move to word
@@ -112,7 +112,7 @@ map <Leader>g :GitGutterToggle<CR>
 let g:airline_powerline_fonts = 1
 
 " Set Airline theme (https://github.com/vim-airline/vim-airline/wiki/Screenshots)
-let g:airline_theme='luna'
+let g:airline_theme='minimalist'
 
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
@@ -174,16 +174,15 @@ endif " has("autocmd")
 " file it was loaded from, thus the changes you made.
 " Only define it when not defined already.
 if !exists(":DiffOrig")
-  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
+  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
 endif
 
-"cursor shape (for konsole) 
+"cursor shape (for konsole)
 let &t_SI = "\e]50;CursorShape=1;BlikingCursorEnabled=1\x7"
 let &t_SR = "\e]50;CursorShape=2;BlinkingCursorEnabled=0\x7"
 let &t_EI = "\e]50;CursorShape=0;BlinkingCursorEnabled=0\x7"
 let g:vundle_default_git_proto = 'https'
-"autocmd BufNewFile,BufRead *.cl   set syntax=cl     
+"autocmd BufNewFile,BufRead *.cl   set syntax=cl
 "au! BufRead,BufNewFile *.cl set filetype=cpp
 
 " Highlight variables
