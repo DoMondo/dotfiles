@@ -46,7 +46,9 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 #alias ll='ls -alF'
-alias ll='ls++ --ptsf -tralF'
+#alias ll='ls++ --ptsf -tralF'
+alias ll='ls++ --ptsf -al --ignore="*~"'
+#alias ll='ls++ --ptsf -lF'
 alias la='ls -A'
 alias l='ls -CF'
 alias vz='v ~/.zshrc.local'
