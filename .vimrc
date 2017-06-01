@@ -31,7 +31,7 @@ filetype plugin on
 if v:progname =~? "evim"
   finish
 endif
-
+set encoding=utf-8
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
@@ -110,9 +110,8 @@ map <Leader>g :GitGutterToggle<CR>
 
 " Draw airline glyphs
 let g:airline_powerline_fonts = 1
-
 " Set Airline theme (https://github.com/vim-airline/vim-airline/wiki/Screenshots)
-let g:airline_theme='minimalist'
+let g:airline_theme='minimalist_domondo'
 
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
@@ -217,3 +216,39 @@ let g:gitgutter_highlight_lines = 1
 let g:gitgutter_map_keys = 0
 
 set viminfo='100,f1
+
+if !exists('g:airline_symbols')
+ let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.crypt = '🔒'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.maxlinenr = '☰'
+let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.spell = 'Ꞩ'
+let g:airline_symbols.notexists = '∄'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" powerline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+"let g:airline_symbols.branch = ''
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
+" Don't show git info
+let g:airline_extensions = []
+let g:airline_section_c = '%<%F%m %#__accent_red#%{airline#util#wrap(airline#parts#readonly(),0)}%#__restore__#'
