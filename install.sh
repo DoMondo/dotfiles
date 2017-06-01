@@ -11,7 +11,10 @@ ln -sfv $DIR/DoMo.profile ~/.local/share/konsole/DoMo.profile
 ln -sfv $DIR/DarkPastels.colorscheme ~/.local/share/konsole/DarkPastels.colorscheme
 ln -sfv $DIR/wombat_oscar.vim ~/.vim/colors/wombat_oscar.vim
 
+mkdir  $HOME/.local/share/fonts
 cp $DIR/fonts/* $HOME/.local/share/fonts
+
+fc-cache -f $HOME/.local/share/fonts
 
 mkdir ~/lock-i3-desktop/
 ln -sfv $DIR/i3-exit ~/lock-i3-desktop/i3-exit
