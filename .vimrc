@@ -19,6 +19,7 @@ Plugin 'godlygeek/csapprox'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'tell-k/vim-autopep8' 
 call vundle#end()            " required
 "filetype plugin indent on    " required
 " Nerdcommenter
@@ -91,7 +92,16 @@ nnoremap <Leader>w :w<CR>
 nnoremap <Leader>W :w!<CR>
 nnoremap <Leader>n :nohl<CR>
 nnoremap <Leader>l :exec &rnu? "se nornu!" : "se rnu!"<CR>
-map <C-f> :ClangFormat<CR>
+function CallFormatter()
+    if (&ft=='python')
+       :Autopep8
+    else
+       :ClangFormat
+   endif
+endfunction
+let g:autopep8_disable_show_diff=1
+"map <C-f> :ClangFormat<CR>
+map <C-f> :call CallFormatter()<CR>
 
 " NERDTreeP
 map <Leader>t :NERDTreeToggle<CR>
