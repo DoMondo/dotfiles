@@ -14,3 +14,6 @@ Parent=FALLBACK/
 
 [Scrolling]
 ScrollBarPosition=2
+
+[Terminal Features]
+FlowControlEnabled=false

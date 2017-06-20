@@ -98,8 +98,11 @@ function CallFormatter()
     else
        :ClangFormat
    endif
+   :normal zz
 endfunction
 let g:autopep8_disable_show_diff=1
+"let g:autopep8_aggressive=2
+autocmd FileType python set equalprg=autopep8\ -
 "map <C-f> :ClangFormat<CR>
 map <C-f> :call CallFormatter()<CR>
 
@@ -217,14 +220,15 @@ let g:NERDCustomDelimiters = {
          \ 'opencl' : { 'left' : '//', 'leftAlt': '/*', 'rightAlt': '*/'}
          \ }
 
-let g:SuperTabClosePreviewOnPopupClose = 1
+set completeopt-=preview
+"let g:SuperTabClosePreviewOnPopupClose = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 
 let g:gitgutter_enabled = 0
 let g:gitgutter_highlight_lines = 1
 let g:gitgutter_map_keys = 0
-
+let g:ycm_add_preview_to_completeopt = 0
 set viminfo='100,f1
 
 if !exists('g:airline_symbols')
