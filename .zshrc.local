@@ -48,16 +48,19 @@ fi
 #alias ll='ls -alF'
 #alias ll='ls++ --ptsf -tralF'
 alias ll='ls++ --ptsf -al --ignore="*~"'
+alias lt='ls++ --ptsf -tral --ignore="*~"'
 #alias ll='ls++ --ptsf -lF'
 alias la='ls -A'
 alias l='ls -CF'
 alias vz='v ~/.zshrc.local'
 alias vv='v ~/.vimrc'
+alias vi3='v ~/.config/i3/config'
 alias sz='source ~/.zshrc'
 alias ffun='f() { vim $(grep -lR $1 . | peco) }; f' 
 alias vim='echo -ne "\e]50;CursorShape=0;BlinkingCursorEnabled=0\\x7"; vim -c "highlight Comment cterm=italic"' 
 alias v='vim' 
-alias pwdc='pwd | xclip'
+alias pwdc='pwd | tr -d "\n" | xclip'
+alias g='git'
 # source ~/.bash_profile
 alias ffind='f() { grep -Hri $1 . };f'
 
@@ -66,7 +69,7 @@ export KEYTIMEOUT=1
 #export PATH="/home/oscar/Android/Sdk/platform-tools:$PATH"
 #export PATH="/usr/local/cuda-8.0/bin:$PATH"
 #export LD_LIBRARY_PATH="/usr/local/cuda-8.0/lib64:$LD_LIBRARY_PATH"
-export NDK_ROOT="~/Android/Sdk/ndk-bundle"
+export NDK_ROOT="/home/oscar/Android/Sdk/ndk-bundle"
 
 zle-keymap-select () {
   case $KEYMAP in
@@ -136,3 +139,57 @@ cf () {
 }
 
 source ~/repos_ajenos/z/z.sh
+
+autoload bashcompinit
+bashcompinit
+eval "$(register-python-argcomplete wgin)"
+source /etc/bash_completion.d/python-argcomplete.sh
+
+export LD_LIBRARY_PATH="/usr/local/lib/:$LD_LIBRARY_PATH"
+dcleanup(){
+    local containers
+    containers=( $(docker ps -aq 2>/dev/null) )
+    docker rm "${containers[@]}" 2>/dev/null
+    local volumes
+    volumes=( $(docker ps --filter status=exited -q 2>/dev/null) )
+    docker rm -v "${volumes[@]}" 2>/dev/null
+    local images
+    images=( $(docker images --filter dangling=true -q 2>/dev/null) )
+    docker rmi "${images[@]}" 2>/dev/null
+}
+unset DBUS_SESSION_BUS_ADDRESS
+export DBUS_SESSION_BUS_ADDRESS
+
+eval $(thefuck --alias)
+
+alias diff="colordiff"
+# Git stuff
+alias gitCleanMergedFeatures="git branch -r --merged \
+    | grep /feature/  \
+    | cut -d '/' -f 2-  \
+    #| xargs -rn1 git push origin --delete"
+
+alias gitRenameBranch='f() {git checkout feature/$1 && \
+   git branch -m feature/$1 $1 && \
+   git push origin :feature/$1 && \
+   git push --set-upstream origin $1 && \
+   git checkout develop && \
+   git branch -d $1 };f'
+
+# archives branch as a tag
+alias gitArchiveBranch='f() { \
+   git tag archive/$1 origin/$1 && \
+   git push --tags && \
+   git push origin --delete $1;
+};f'
+
+alias gitDeleteLocalBranches='git branch | xargs git branch -d'
+
+# gitChangeTagName <old> <new>
+alias gitChangeTagName='f() { \
+   git tag $2 $1 && \
+   git tag -d $1 && \
+   git push origin :refs/tags/$1 && \
+   git push --tags 
+};f'
+

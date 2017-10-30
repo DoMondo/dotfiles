@@ -12,6 +12,8 @@ ln -sfv $DIR/DarkPastels.colorscheme ~/.local/share/konsole/DarkPastels.colorsch
 ln -sfv $DIR/wombat_oscar.vim ~/.vim/colors/wombat_oscar.vim
 ln -sfv $DIR/airline_theme/minimalist_domondo.vim ~/.vim/bundle/vim-airline-themes/autoload/airline/themes/minimalist_domondo.vim
 ln -sfv $DIR/.clang-format ~/.clang-format
+mkdir ~/.config/yapf
+ln -sfv $DIR/.style.yapf ~/.config/yapf/.style.yapf
 
 mkdir  $HOME/.local/share/fonts
 cp $DIR/fonts/* $HOME/.local/share/fonts

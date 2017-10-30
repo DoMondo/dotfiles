@@ -94,13 +94,19 @@ nnoremap <Leader>n :nohl<CR>
 nnoremap <Leader>l :exec &rnu? "se nornu!" : "se rnu!"<CR>
 function CallFormatter()
     if (&ft=='python')
-       :Autopep8
+       " Save linenumber
+       :let lineNumber=line('.')
+       ":Autopep8
+       :0,$!yapf --style="/home/oscar/.config/yapf/.style.yapf"
+       ":normal gg
+       :execute "normal!".lineNumber."gg"
     else
        :ClangFormat
    endif
    :normal zz
 endfunction
 let g:autopep8_disable_show_diff=1
+let g:autopep8_max_line_length=79
 "let g:autopep8_aggressive=2
 autocmd FileType python set equalprg=autopep8\ -
 "map <C-f> :ClangFormat<CR>
@@ -222,7 +228,7 @@ let g:NERDCustomDelimiters = {
 
 set completeopt-=preview
 "let g:SuperTabClosePreviewOnPopupClose = 1
-let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1 
 let g:ycm_autoclose_preview_window_after_completion = 1
 
 let g:gitgutter_enabled = 0
@@ -266,3 +272,7 @@ let g:airline_symbols.linenr = ''
 " Don't show git info
 let g:airline_extensions = []
 let g:airline_section_c = '%<%F%m %#__accent_red#%{airline#util#wrap(airline#parts#readonly(),0)}%#__restore__#'
+" tell it to use an undo file
+set undofile
+" set a directory to store the undo history
+set undodir=/home/oscar/.vimundo/

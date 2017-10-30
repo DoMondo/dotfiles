@@ -20,7 +20,7 @@ Color=220,163,163
 Color=127,239,183
 
 [Color2Intense]
-Color=0,255,42
+Color=85,170,127
 
 [Color3]
 Color=223,175,143
@@ -50,7 +50,7 @@ Color=52,255,222
 Color=220,220,204
 
 [Color7Intense]
-Color=39,255,6
+Color=18,52,51
 
 [Foreground]
 Color=221,221,221
