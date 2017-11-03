@@ -2,7 +2,7 @@
 
 autoload -Uz promptinit
 promptinit
-prompt grml
+prompt pure
 
 setopt histignorealldups sharehistory
 
@@ -47,8 +47,8 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 #alias ll='ls -alF'
 #alias ll='ls++ --ptsf -tralF'
-alias ll='ls++ --ptsf -al --ignore="*~"'
-alias lt='ls++ --ptsf -tral --ignore="*~"'
+alias ll='ls++ --ptsf -al'
+alias lt='ls++ --ptsf -tral'
 #alias ll='ls++ --ptsf -lF'
 alias la='ls -A'
 alias l='ls -CF'
@@ -64,7 +64,7 @@ alias g='git'
 # source ~/.bash_profile
 alias ffind='f() { grep -Hri $1 . };f'
 
-zstyle ':prompt:grml:*:items:percent' '$'
+#zstyle ':prompt:grml:*:items:percent' '$'
 export KEYTIMEOUT=1
 #export PATH="/home/oscar/Android/Sdk/platform-tools:$PATH"
 #export PATH="/usr/local/cuda-8.0/bin:$PATH"
@@ -167,7 +167,7 @@ alias diff="colordiff"
 alias gitCleanMergedFeatures="git branch -r --merged \
     | grep /feature/  \
     | cut -d '/' -f 2-  \
-    #| xargs -rn1 git push origin --delete"
+    | xargs -rn1 git push origin --delete"
 
 alias gitRenameBranch='f() {git checkout feature/$1 && \
    git branch -m feature/$1 $1 && \

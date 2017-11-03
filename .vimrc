@@ -44,11 +44,11 @@ set clipboard=unnamedplus
 set backspace=indent,eol,start
 
 if has("vms")
-  set nobackup		" do not keep a backup file, use versions instead
+  set nobackup        " do not keep a backup file, use versions instead
 else
-  set backup		" keep a backup file
-  set backupdir=~/.vim/backup,./.backup,.,/tmp
-  set directory=~/.vim/backup,./.backup,.,/tmp
+  set backup        " keep a backup file
+  set backupdir=~/.vim/backup,/tmp
+  set directory=~/.vim/swapfiles,/tmp
 endif
 set history=50		" keep 50 lines of command line history
 set ruler		    " show the cursor position all the time
