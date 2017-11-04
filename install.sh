@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 DIR=$(pwd)
 ln -sfv $DIR/.vimrc ~
 ln -sfv $DIR/.zshrc.local ~
@@ -23,3 +23,8 @@ fc-cache -f $HOME/.local/share/fonts
 mkdir ~/lock-i3-desktop/
 ln -sfv $DIR/i3-exit ~/lock-i3-desktop/i3-exit
 git config --global core.excludesfile ~/.gitignore_global
+sudo pip install thefuck
+mkdir $HOME/.zfunctions
+
+ln -sfv $DIR/pure.zsh $HOME/.zfunctions/prompt_pure_setup
+ln -sfv $DIR/async.zsh $HOME/.zfunctions/async
