@@ -196,3 +196,5 @@ alias gitChangeTagName='f() { \
    git push --tags 
 };f'
 
+alias jupyter='jt -t chesterish && jupyter notebook &> /dev/null &!'
+alias quitjupyter='kill "$(pgrep jupyter)"'

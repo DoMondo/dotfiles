@@ -97,7 +97,7 @@ function CallFormatter()
        " Save linenumber
        :let lineNumber=line('.')
        ":Autopep8
-       :0,$!yapf --style="/home/oscar/.config/yapf/.style.yapf"
+       :0,$!yapf --style="$HOME/.config/yapf/.style.yapf"
        ":normal gg
        :execute "normal!".lineNumber."gg"
     else
