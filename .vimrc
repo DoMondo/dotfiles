@@ -20,6 +20,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tell-k/vim-autopep8' 
+Plugin 'kopischke/vim-fetch'
 call vundle#end()            " required
 "filetype plugin indent on    " required
 " Nerdcommenter
