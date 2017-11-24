@@ -18,7 +18,7 @@ hi Normal guifg=#EEEEEE guibg=#212121 gui=none
 hi Cursor guifg=#242424 guibg=#eae788 gui=none
 hi Visual guifg=#c3c6ca guibg=#554d4b gui=none
 hi VisualNOS guifg=#c3c6ca guibg=#303030 gui=none
-hi Search guifg=#d787ff guibg=#636066 gui=none
+hi Search guifg=#FFFFFF guibg=#660000 gui=none
 hi Folded guifg=#a0a8b0 guibg=#3a4046 gui=none
 hi Title guifg=#ffffd7 gui=bold
 hi StatusLine guifg=#ffffd7 guibg=#444444 gui=none
@@ -57,9 +57,9 @@ hi Type guifg=#8AC6F2 gui=none
 hi Special guifg=#eadead gui=none
 hi String guifg=#95e454 gui=none
 hi Comment guifg=#808080 gui=italic
-hi Todo guifg=#857b6f gui=none
+hi Todo guifg=#857b6f guibg=#101000
 
-hi Occurrence guibg=#303030 
+hi Occurrence guifg=#009000 guibg=#212121 
 
 " Links
 hi! link FoldColumn Folded

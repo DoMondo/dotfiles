@@ -277,3 +277,5 @@ let g:airline_section_c = '%<%F%m %#__accent_red#%{airline#util#wrap(airline#par
 set undofile
 " set a directory to store the undo history
 set undodir=/home/oscar/.vimundo/
+" Deactivate man search
+map <S-K> <Nop>
