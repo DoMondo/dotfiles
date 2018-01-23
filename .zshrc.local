@@ -52,6 +52,8 @@ fi
 #alias ll='ls++ --ptsf -tralF'
 alias ll='ls++ --ptsf -al'
 alias lt='ls++ --ptsf -tral'
+alias ldt='lt -d */'
+alias ldl='ll -d */'
 #alias ll='ls++ --ptsf -lF'
 alias la='ls -A'
 alias l='ls -CF'
@@ -199,6 +201,17 @@ alias gitChangeTagName='f() { \
 alias quitjupyter='kill $(pgrep jupyter)'
 alias jupyter='quitjupyter; jt -t chesterish && jupyter notebook --NotebookApp.iopub_data_rate_limit=10000000 &> /dev/null &!'
 
+alias quittensorboard="kill $(ps aux | grep 'tensorboard.py' | awk '{print $2;}')"
+
+killName() {
+   kill $(ps aux | grep "$1" | awk '{print $2;}')
+}
+
+runTensorboard() {
+   quittensorboard ||
+   tensorboard --logdir $1 &> /dev/null &!
+}
+
 getSymbols() { 
    readelf -s --wide $1 | awk '{print $NF }'
 }
@@ -215,3 +228,12 @@ sf() {
 }
 eval $(thefuck --alias)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+alias imshow='f() { xnview $1 &> /dev/null & };f'
+
+alias asciicast2gif='docker run --rm -v $PWD:/data asciinema/asciicast2gif'
+export SHELL='/usr/bin/zsh'
+
+shoot() {
+    kill -9 $(xprop _NET_WM_PID | awk '{ print $3 }')
+}
