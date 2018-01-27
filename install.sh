@@ -14,6 +14,7 @@ ln -sfv $DIR/airline_theme/minimalist_domondo.vim ~/.vim/bundle/vim-airline-them
 ln -sfv $DIR/.clang-format ~/.clang-format
 mkdir ~/.config/yapf
 ln -sfv $DIR/.style.yapf ~/.config/yapf/.style.yapf
+ln -sfv $DIR/.fzf.zsh ~/.fzf.zsh
 
 mkdir  $HOME/.local/share/fonts
 cp $DIR/fonts/* $HOME/.local/share/fonts
