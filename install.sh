@@ -17,6 +17,14 @@ ln -sfv $DIR/.style.yapf ~/.config/yapf/.style.yapf
 ln -sfv $DIR/.fzf.zsh ~/.fzf.zsh
 
 mkdir  $HOME/.local/share/fonts
+
+# vim stuff
+mkdir $HOME/.vim
+mkdir $HOME/.vim/undo
+mkdir $HOME/.vim/backup
+mkdir $HOME/.vim/swapfiles
+
+mkdir  $HOME/.local/share/fonts
 cp $DIR/fonts/* $HOME/.local/share/fonts
 
 fc-cache -f $HOME/.local/share/fonts

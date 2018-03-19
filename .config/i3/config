@@ -15,7 +15,7 @@ set $mod Mod4
 # is used in the bar {} block below.
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:Noto Sans 9
+font pango:Noto Sans 8
 # font pango: Ubuntu Mono 10
 # font xft:  Ubuntu Mono 10
 # Before i3 v4.8, we used to recommend this one as the default:

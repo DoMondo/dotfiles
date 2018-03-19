@@ -8,13 +8,15 @@ Favorites=DoMo.profile
 ShowMenuBarByDefault=false
 
 [MainWindow]
-Height 1080=1055
+Height 1080=1053
 Height 1920=629
+Height 900=873
 MenuBar=Disabled
-State=AAAA/wAAAAD9AAAAAAAAAnwAAAQfAAAABAAAAAQAAAAIAAAACPwAAAAA
+State=AAAA/wAAAAD9AAAAAAAAAnwAAAQdAAAABAAAAAQAAAAIAAAACPwAAAAA
 ToolBarsMovable=Disabled
 Width 1080=1076
-Width 1920=956
+Width 1440=716
+Width 1920=1916
 
 [TabBar]
 TabBarVisibility=AlwaysHideTabBar
