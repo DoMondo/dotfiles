@@ -220,7 +220,7 @@ getSymbols() {
 sf() {
   if [ "$#" -lt 1 ]; then echo "Supply string to search for!"; return 1; fi
   search=`printf "%q" "$*"`
-  include="yml,js,json,php,md,styl,pug,jade,html,config,py,cpp,c,cl,go,hs,rb,conf,fa,lst"
+  include="yml,js,json,php,md,styl,pug,jade,html,config,py,cpp,h,c,cl,java,go,hs,rb,conf,fa,lst,txt"
   exclude=".d,.o,.config,.git,node_modules,vendor,build,yarn.lock,*.sty,*.bst,*.coffee,dist"
   rg_command='rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always" -g "*.{'$include'}" -g "!{'$exclude'}/*"'
   files=`eval $rg_command $search | fzf --ansi --multi --reverse | awk -F ':' '{print $1":"$2":"$3}'`
@@ -237,3 +237,5 @@ export SHELL='/usr/bin/zsh'
 shoot() {
     kill -9 $(xprop _NET_WM_PID | awk '{ print $3 }')
 }
+
+alias adblock="adb shell input keyevent 26"

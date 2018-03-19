@@ -38,16 +38,11 @@ exec --no-startup-id parcellite
 
 #for_window [class="(?i)^mattermost*"] move container to workspace 2
 exec --no-startup-id i3-msg 'workspace 1; append_layout ~/.config/i3/workspace-1.json'
-exec --no-startup-id i3-msg 'workspace 2; append_layout ~/.config/i3/workspace-2.json'
-exec --no-startup-id i3-msg 'workspace 2; exec mattermost-desktop'
 exec --no-startup-id i3-msg 'workspace 1; exec google-chrome "gmail.com"'
 exec --no-startup-id i3-msg 'workspace 1; exec spotify'
 exec --no-startup-id i3-msg 'workspace 2; exec thunderbird'
-#exec --no-startup-id i3-msg 'workspace 9; exec gitkraken'
+exec --no-startup-id i3-msg 'workspace 2; exec mattermost-desktop'
 exec --no-startup-id redshift -O 5000 
-
-# Background
-exec --no-startup-id feh --bg-fill ~/Downloads/desktop_bkgrnd.jpg
 
 # Screensaver
 exec --no-startup-id xautolock -time 5 -locker "i3lock -c 002B36"
@@ -80,7 +75,7 @@ bindsym Mod1+F4 kill
 # shortcuts
 bindsym $mod+w exec google-chrome
 # Capture screen crop
-bindsym --release $mod+p exec "cd ~/Pictures/; scrot -s"
+bindsym --release $mod+p exec "cd ~/Pictures/ && scrot -s && feh $(ls -hrt | tail -n 1)"
 #bindsym $mod+Shift+f exec "/usr/bin/firefox"
 bindsym $mod+Shift+n exec "nautilus --no-desktop&"
 #bindsym $mod+q exec "/usr/bin/pavucontrol"
@@ -258,13 +253,17 @@ client.urgent           #C10004 #900000 #ffffff #900000
 bindsym $mod+r mode "resize"
 focus_follows_mouse no
 # Pavucontrol always floating
+for_window [class="feh"] floating enable
 for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
 for_window [class="qjackctl" instance="qjackctl"] floating enable
 for_window [class="FaceFill.py"] floating enable, move container to workspace 3, fullscreen enable, workspace 4
 #for_window [title="imshow_python"] floating enable, move container to workspace 3
 for_window [title="python_temp"] move container to workspace 4, split v
 for_window [title="imshow_python"] move container to workspace 4, split v
+for_window [title="imshow_*"] move container to workspace 4
+for_window [title="Figure*"] move container to workspace 4
 for_window [title="Rotated"]  move container to workspace 4
+for_window [title="plotline*"]  move container to workspace 4
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 # bar {
@@ -326,4 +325,7 @@ bindsym Control+Mod1+Down exec amixer sset 'Master' 5%-
 # Play-Pause
 bindsym Control+Mod1+period exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
 
+
+# Background
+exec --no-startup-id feh --bg-fill ~/Downloads/Dark-Background-61.jpg
 

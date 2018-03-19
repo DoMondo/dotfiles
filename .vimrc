@@ -21,6 +21,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tell-k/vim-autopep8' 
 Plugin 'kopischke/vim-fetch'
+Plugin 'vim-scripts/vimgdb'
 call vundle#end()            " required
 "filetype plugin indent on    " required
 " Nerdcommenter
@@ -202,7 +203,7 @@ let &t_SR = "\e]50;CursorShape=2;BlinkingCursorEnabled=0\x7"
 let &t_EI = "\e]50;CursorShape=0;BlinkingCursorEnabled=0\x7"
 let g:vundle_default_git_proto = 'https'
 "autocmd BufNewFile,BufRead *.cl   set syntax=cl
-"au! BufRead,BufNewFile *.cl set filetype=cpp
+au! BufRead,BufNewFile *.strace set filetype=strace
 
 " Highlight variables
 let g:no_highlight_group_for_current_word=["Statement", "Comment", "Type", "PreProc"]
