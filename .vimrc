@@ -22,6 +22,8 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tell-k/vim-autopep8' 
 Plugin 'kopischke/vim-fetch'
 Plugin 'vim-scripts/vimgdb'
+Plugin 'keith/swift.vim'
+
 call vundle#end()            " required
 "filetype plugin indent on    " required
 " Nerdcommenter
