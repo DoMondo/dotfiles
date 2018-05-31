@@ -276,6 +276,14 @@ let g:airline_symbols.linenr = ''
 " Don't show git info
 let g:airline_extensions = []
 let g:airline_section_c = '%<%F%m %#__accent_red#%{airline#util#wrap(airline#parts#readonly(),0)}%#__restore__#'
+
+if !isdirectory($HOME."/.vim")
+    call mkdir($HOME."/.vim", "", 0770)
+endif
+if !isdirectory($HOME."/.vim/undo")
+    call mkdir($HOME."/.vim/undo", "", 0700)
+endif
+
 " tell it to use an undo file
 set undofile
 " set a directory to store the undo history

@@ -75,7 +75,7 @@ bindsym Mod1+F4 kill
 # shortcuts
 bindsym $mod+w exec google-chrome
 # Capture screen crop
-bindsym --release $mod+p exec "cd ~/Pictures/ && scrot -s && feh $(ls -hrt | tail -n 1)"
+bindsym --release $mod+p exec "cd ~/Pictures/ && scrot -s && feh $(ls -hrt | tail -n 1) && ls -hrt -d $PWD/* | tail -n 1 | xclip"
 #bindsym $mod+Shift+f exec "/usr/bin/firefox"
 bindsym $mod+Shift+n exec "nautilus --no-desktop&"
 #bindsym $mod+q exec "/usr/bin/pavucontrol"
