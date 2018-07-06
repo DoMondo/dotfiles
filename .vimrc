@@ -292,3 +292,8 @@ set undofile
 set undodir=~/.vim/undo/
 " Deactivate man search
 map <S-K> <Nop>
+map <Leader>1 :make -C .. <CR> :cw <CR>
+map <Leader>2 :cp<CR>
+map <Leader>3 :cn<CR>
+map <Leader>4 :cl<CR>
+

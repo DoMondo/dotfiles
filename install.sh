@@ -15,6 +15,7 @@ ln -sfv $DIR/.clang-format ~/.clang-format
 mkdir ~/.config/yapf
 ln -sfv $DIR/.style.yapf ~/.config/yapf/.style.yapf
 ln -sfv $DIR/.fzf.zsh ~/.fzf.zsh
+ln -sfv $DIR/.ls++.conf ~/.ls++.conf
 
 mkdir  $HOME/.local/share/fonts
 
