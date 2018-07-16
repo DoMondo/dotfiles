@@ -171,6 +171,7 @@ if has("autocmd")
 
   " For all text files set 'textwidth' to 78 characters.
   autocmd FileType text setlocal textwidth=78
+  autocmd FileType tex setlocal textwidth=86
   autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
   au FileType python          setlocal omnifunc=python3complete#Complete
