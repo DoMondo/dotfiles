@@ -60,7 +60,7 @@ alias l='ls -CF'
 alias vz='v ~/.zshrc.local'
 alias vv='v ~/.vimrc'
 alias vi3='v ~/.config/i3/config'
-alias sz='source ~/.zshrc'
+alias sz='source ~/.zshrc && source ~/.zshrc.local'
 alias ffun='f() { vim $(grep -lR $1 . | peco) }; f' 
 alias vim='echo -ne "\e]50;CursorShape=0;BlinkingCursorEnabled=0\\x7"; vim -c "highlight Comment cterm=italic"' 
 alias v='vim' 
@@ -214,6 +214,57 @@ runTensorboard() {
 
 getSymbols() { 
    readelf -s --wide $1 | awk '{print $NF }'
+}
+
+# Recursively show dependencies of dynamic libs (in the same folder)
+wdep2() {
+   if [ -z "$1" ]; then
+      return
+   fi
+   if [ ! -f $1 ]; then
+       echo "File $1 not found!"
+       return
+   fi
+   echo "WDEP2 is looking for deps of $1"
+   toVisit=""
+   visited=""
+   #echo $1 >> toVisit
+   toVisit="${toVisit}$1"
+   # While there's more to visit
+   while [ ! -z "$toVisit" ]; do
+      # Get first line and remove it
+      line=$(echo $toVisit | head -n 1)
+      #echo "line is $line "
+      toVisit=`echo $toVisit | sed -n '1!p' `
+      if [ -z "$line" ]; then
+         continue
+      fi
+      #echo "visiting = $line"
+      # Put it in visited
+      echo $line >> visited
+      visited="${visited}\n$line"
+      if [ ! -f $line ]; then
+         echo "FILE $line is missing!!"
+      else
+         deps=`readelf -d $line | grep "NEEDED" | sed -r 's/.*\[//' | sed -r 's/\]//'`
+         while read -r line; do
+           # Check if any of the dependencies is not on the list already
+           if [[ $visited = *"$line"* ]]; then
+             #echo "It's there!"
+           else
+              if [[ $toVisit = *"$line"* ]]; then
+                 #echo "It's already there to visit"
+              else
+                 #echo "adding $line"
+                 toVisit="${toVisit}\n$line"
+              fi
+           fi
+         done <<< "$deps"
+      fi
+   done
+   echo "Libs that are PRESENT already"
+   echo $visited
+   echo "Finished!"
 }
 
 # taken from http://owen.cymru/sf-a-quick-way-to-search-for-some-thing-in-bash-and-edit-it-with-vim-2/
