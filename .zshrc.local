@@ -64,10 +64,14 @@ alias sz='source ~/.zshrc && source ~/.zshrc.local'
 alias ffun='f() { vim $(grep -lR $1 . | peco) }; f' 
 alias vim='echo -ne "\e]50;CursorShape=0;BlinkingCursorEnabled=0\\x7"; vim -c "highlight Comment cterm=italic"' 
 alias v='vim' 
+alias vl='v $(ls -t . | head -1)'
+alias sv='sudo vim' 
 alias pwdc='pwd | tr -d "\n" | xclip'
 alias g='git'
 # source ~/.bash_profile
-alias ffind='f() { grep -Hri $1 . };f'
+ffind() {
+   find . -name "*$1*"
+};
 
 #zstyle ':prompt:grml:*:items:percent' '$'
 export KEYTIMEOUT=1
@@ -271,7 +275,7 @@ wdep2() {
 sf() {
   if [ "$#" -lt 1 ]; then echo "Supply string to search for!"; return 1; fi
   search=`printf "%q" "$*"`
-  include="yml,js,json,php,md,styl,pug,jade,html,config,py,cpp,h,hpp,c,cl,java,go,hs,rb,conf,fa,lst,txt,mm,m,swift,txt,gradle,tex"
+  include="yml,js,json,php,md,styl,pug,jade,html,config,py,cpp,h,hpp,c,cl,java,go,hs,rb,conf,fa,lst,txt,mm,m,swift,txt,gradle,tex,sh"
   exclude=".d,.o,.config,.git,node_modules,vendor,build,yarn.lock,*.sty,*.bst,*.coffee,dist"
   rg_command='rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always" -g "*.{'$include'}" -g "!{'$exclude'}/*"'
   files=`eval $rg_command $search | fzf --ansi --multi --reverse | awk -F ':' '{print $1":"$2":"$3}'`
@@ -280,7 +284,15 @@ sf() {
 eval $(thefuck --alias)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-alias imshow='f() { xnview $1 &> /dev/null & };f'
+imshow() { 
+   if [ "$#" -eq 0 ]; then
+      xnview $PWD &> /dev/null & 
+   else
+      xnview $1 &> /dev/null & 
+   fi
+};
+
+alias gimp='f() { gimp $1 &> /dev/null & };f'
 
 alias asciicast2gif='docker run --rm -v $PWD:/data asciinema/asciicast2gif'
 export SHELL='/usr/bin/zsh'
@@ -294,3 +306,4 @@ alias adblock="adb shell input keyevent 26"
 alias ipython="ipython --TerminalInteractiveShell.editing_mode=vi"
 export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig/" 
 alias mkthesis="latexmk -pdf -f main.tex && evince main.pdf 2> /dev/null &"
+

@@ -330,5 +330,5 @@ bindsym Control+Mod1+period exec dbus-send --print-reply --dest=org.mpris.MediaP
 
 
 # Background
-exec --no-startup-id feh --bg-fill ~/Downloads/Dark-Background-61.jpg
-
+exec_always --no-startup-id feh --bg-fill ~/Downloads/Dark-Background-61.jpg
+mouse_warping none

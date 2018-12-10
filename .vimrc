@@ -23,6 +23,8 @@ Plugin 'tell-k/vim-autopep8'
 Plugin 'kopischke/vim-fetch'
 Plugin 'vim-scripts/vimgdb'
 Plugin 'keith/swift.vim'
+Plugin 'tikhomirov/vim-glsl'
+Plugin 'matze/vim-meson'
 
 call vundle#end()            " required
 "filetype plugin indent on    " required
@@ -125,7 +127,8 @@ map  <Leader>f <Plug>(easymotion-bd-w)
 
 " Git blame
 map <Leader>b :Gblame<CR>
-map <Leader>g :GitGutterToggle<CR>
+" Git log for a file
+map <Leader>g :Glog<CR>
 
 " Move to word
 "map  <Leader>w <Plug>(easymotion-bd-w)
@@ -171,7 +174,8 @@ if has("autocmd")
 
   " For all text files set 'textwidth' to 78 characters.
   autocmd FileType text setlocal textwidth=78
-  autocmd FileType tex setlocal textwidth=86
+  autocmd FileType tex setlocal textwidth=83
+  autocmd FileType dokuwiki setlocal textwidth=83
   autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
   au FileType python          setlocal omnifunc=python3complete#Complete
@@ -293,7 +297,8 @@ set undofile
 set undodir=~/.vim/undo/
 " Deactivate man search
 map <S-K> <Nop>
-map <Leader>1 :make -C .. <CR> :cw <CR>
+"map <Leader>1 :make -C .. <CR> :cw <CR>
+map <Leader>1 :make <CR> :cw <CR>
 map <Leader>2 :cp<CR>
 map <Leader>3 :cn<CR>
 map <Leader>4 :cl<CR>
