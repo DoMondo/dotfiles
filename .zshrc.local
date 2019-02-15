@@ -8,6 +8,7 @@ promptinit
 prompt pure
 
 setopt histignorealldups sharehistory
+setopt autocd
 
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
 HISTSIZE=1000
@@ -166,8 +167,7 @@ dcleanup(){
     images=( $(docker images --filter dangling=true -q 2>/dev/null) )
     docker rmi "${images[@]}" 2>/dev/null
 }
-unset DBUS_SESSION_BUS_ADDRESS
-export DBUS_SESSION_BUS_ADDRESS
+export $(dbus-launch)
 
 eval $(thefuck --alias)
 
