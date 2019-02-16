@@ -25,6 +25,7 @@ Plugin 'vim-scripts/vimgdb'
 Plugin 'keith/swift.vim'
 Plugin 'tikhomirov/vim-glsl'
 Plugin 'matze/vim-meson'
+"Plugin 'vim-latex/vim-latex'
 
 call vundle#end()            " required
 "filetype plugin indent on    " required
@@ -106,6 +107,8 @@ function CallFormatter()
        :0,$!yapf --style="$HOME/.config/yapf/.style.yapf"
        ":normal gg
        :execute "normal!".lineNumber."gg"
+    elseif (&ft=='tex')
+       :0,$!latexindentvim
     else
        :ClangFormat
    endif

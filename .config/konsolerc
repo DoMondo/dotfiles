@@ -5,18 +5,19 @@ DefaultProfile=DoMo.profile
 Favorites=DoMo.profile
 
 [KonsoleWindow]
+SaveGeometryOnExit=false
 ShowMenuBarByDefault=false
 
 [MainWindow]
-Height 1080=1053
-Height 1920=629
-Height 900=873
+Height 1080[$d]
+Height 1920[$d]
+Height 900[$d]
 MenuBar=Disabled
-State=AAAA/wAAAAD9AAAAAAAAAnwAAAQdAAAABAAAAAQAAAAIAAAACPwAAAAA
+State=AAAA/wAAAAD9AAAAAAAAA7wAAAQEAAAABAAAAAQAAAAIAAAACPwAAAAA
 ToolBarsMovable=Disabled
-Width 1080=1076
-Width 1440=716
-Width 1920=1916
+Width 1080[$d]
+Width 1440[$d]
+Width 1920[$d]
 
 [TabBar]
 TabBarVisibility=AlwaysHideTabBar
