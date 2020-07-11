@@ -307,3 +307,15 @@ export HALIDE_ROOT=/home/ogomez/repos_ajenos/Halide
 export PATH=$PATH:/usr/local/bin
 export JAVA_HOME=/opt/android-studio/jre/
 
+alias pikaurRemoveOrphans="pikaur -Rns $(pikaur -Qtdq | tr '\n' ' ')"
+alias pikaurListBySize="LC_ALL=C pikaur -Qi | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -h"
+pikaurListByNumberOfDependencies() {
+   output=''
+   packages=`pikaur -Q | awk '{print $1}'`
+   while IFS= read -r package; do
+       line="$package `pactree -l $package | wc -l`"
+       output="$output\n$line"
+   done <<< "$packages"
+   echo $output | sort -k2 -n
+}
+
