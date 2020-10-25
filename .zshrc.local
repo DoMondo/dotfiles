@@ -67,7 +67,7 @@ alias vim='echo -ne "\e]50;CursorShape=0;BlinkingCursorEnabled=0\\x7"; vim -c "h
 alias v='vim' 
 alias vl='v $(ls -t . | head -1)'
 alias sv='sudo vim' 
-alias pwdc='pwd | tr -d "\n" | xclip'
+alias pwdc='pwd | tr -d "\n" | xclip -selection clipbloard'
 alias g='git'
 # source ~/.bash_profile
 ffind() {
@@ -81,20 +81,21 @@ export KEYTIMEOUT=1
 #export LD_LIBRARY_PATH="/usr/local/cuda-8.0/lib64:$LD_LIBRARY_PATH"
 export NDK_ROOT="/home/oscar/Android/Sdk/ndk-bundle"
 
-zle-keymap-select () {
+function zle-keymap-select zle-line-init zle-line-finish {
   case $KEYMAP in
-    vicmd) echo -ne "\e]50;CursorShape=0;BlinkingCursorEnabled=0\\x7";; # block cursor
-    viins|main) echo -ne "\e]50;CursorShape=1;BlinkingCursorEnabled=1\\x7";; # less visible cursor
+      vicmd)      print -n '\033[1 q';; # block cursor
+      viins|main) print -n '\033[5 q';; # line cursor
   esac
 }
 
+zle -N zle-line-init
+zle -N zle-line-finish
 zle -N zle-keymap-select
 
 zle-line-init () {
     zle -K viins
 }
 
-zle -N zle-line-init
 
 bindkey -v
 alias rekeys="setxkbmap -layout us -variant altgr-intl -option ctrl:nocaps && xset r rate 200 40 && killall xcape && xcape -t 200 -e 'Control_L=Escape'"
@@ -319,3 +320,4 @@ pikaurListByNumberOfDependencies() {
    echo $output | sort -k2 -n
 }
 
+alias icat="kitty +kitten icat"

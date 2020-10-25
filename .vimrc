@@ -7,7 +7,7 @@ call vundle#begin()
 let g:ycm_confirm_extra_conf = 0
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Valloric/YouCompleteMe'
 Plugin 'rhysd/vim-clang-format'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'morhetz/gruvbox'
@@ -25,6 +25,7 @@ Plugin 'vim-scripts/vimgdb'
 Plugin 'keith/swift.vim'
 Plugin 'tikhomirov/vim-glsl'
 Plugin 'matze/vim-meson'
+Plugin 'peterhoeg/vim-qml'
 "Plugin 'vim-latex/vim-latex'
 
 call vundle#end()            " required
@@ -207,10 +208,10 @@ if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
 endif
 
-"cursor shape (for konsole)
-let &t_SI = "\e]50;CursorShape=1;BlikingCursorEnabled=1\x7"
-let &t_SR = "\e]50;CursorShape=2;BlinkingCursorEnabled=0\x7"
-let &t_EI = "\e]50;CursorShape=0;BlinkingCursorEnabled=0\x7"
+"cursor shape (for kitty)
+let &t_SI = "\033[5 q" " Line cursor
+let &t_SR = "\033[5 q" " Line cursor
+let &t_EI = "\033[1 q" " Block cursor
 let g:vundle_default_git_proto = 'https'
 "autocmd BufNewFile,BufRead *.cl   set syntax=cl
 au! BufRead,BufNewFile *.strace set filetype=strace
@@ -228,7 +229,7 @@ function s:HighlightWordUnderCursor()
 endfunction
 
 autocmd CursorMoved * call s:HighlightWordUnderCursor()
-let g:ycm_server_python_interpreter = '/usr/bin/python2'
+let g:ycm_server_python_interpreter = '/usr/bin/python'
 " Don't show YCM errors
 let g:ycm_enable_diagnostic_signs = 0
 let g:ycm_enable_diagnostic_highlighting = 0
