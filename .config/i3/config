@@ -23,7 +23,7 @@ bindsym Mod1+F4 kill
 # shortcuts
 bindsym $mod+w exec google-chrome
 # Capture screen crop
-bindsym --release $mod+p exec "cd ~/Pictures/ && scrot -s && feh $(ls -hrt | tail -n 1) && ls -hrt -d $PWD/* | tail -n 1 | xclip && xclip -selection clipboard -t image/png -i `ls -hrt -d $PWD/* | tail -n 1`"
+bindsym --release $mod+p exec "cd ~/Pictures/ && scrot -s && feh $(ls -hrt | tail -n 1) && ls -hrt -d $PWD/* | tail -n 1 | xclip -selection clipbloard && xclip -selection clipboard -t image/png -i `ls -hrt -d $PWD/* | tail -n 1`"
 bindsym --release $mod+Shift+k exec "kill -9 $(xprop _NET_WM_PID | awk '{ print $3 }')"
 bindsym $mod+Shift+n exec "nautilus --no-desktop&"
 bindsym $mod+e exec "/usr/bin/pcmanfm"
