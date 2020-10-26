@@ -1,3 +1,5 @@
+# i3 config file (v4)
+
 set $mod Mod4
 font pango:Noto Sans 8
 exec --no-startup-id xset r rate 200 40
