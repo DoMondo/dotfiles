@@ -26,6 +26,7 @@ Plugin 'keith/swift.vim'
 Plugin 'tikhomirov/vim-glsl'
 Plugin 'matze/vim-meson'
 Plugin 'peterhoeg/vim-qml'
+Plugin 'suan/vim-instant-markdown', {'rtp': 'after'}
 "Plugin 'vim-latex/vim-latex'
 
 call vundle#end()            " required

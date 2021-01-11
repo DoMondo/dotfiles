@@ -1,5 +1,6 @@
 START=`date +%s%N | cut -b1-13`
 # add user functions
+START=$(date +%s.%N)
 fpath=( ~/.zfunctions "${fpath[@]}" )
 
 # Set up the prompt
@@ -100,32 +101,32 @@ zle-line-init () {
 
 bindkey -v
 alias rekeys="setxkbmap -layout us -variant altgr-intl -option ctrl:nocaps && xset r rate 200 40 && killall xcape && xcape -t 200 -e 'Control_L=Escape'"
-transfer() { if [ $# -eq 0 ]; then echo "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi 
-   tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; } 
-ix() {
-      local opts
-      local OPTIND
-      [ -f "$HOME/.netrc" ] && opts='-n'
-      while getopts ":hd:i:n:" x; do
-         case $x in
-            h) echo "ix [-d ID] [-i ID] [-n N] [opts]"; return;;
-            d) $echo curl $opts -X DELETE ix.io/$OPTARG; return;;
-            i) opts="$opts -X PUT"; local id="$OPTARG";;
-            n) opts="$opts -F read:1=$OPTARG";;
-         esac
-      done
-      shift $(($OPTIND - 1))
-      [ -t 0 ] && {
-      local filename="$1"
-      shift
-      [ "$filename" ] && {
-      curl $opts -F f:1=@"$filename" $* ix.io/$id
-      return
-   }
-   echo "^C to cancel, ^D to send."
-}
-curl $opts -F f:1='<-' $* ix.io/$id
-        }
+#transfer() { if [ $# -eq 0 ]; then echo "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi 
+   #tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; } 
+#ix() {
+      #local opts
+      #local OPTIND
+      #[ -f "$HOME/.netrc" ] && opts='-n'
+      #while getopts ":hd:i:n:" x; do
+         #case $x in
+            #h) echo "ix [-d ID] [-i ID] [-n N] [opts]"; return;;
+            #d) $echo curl $opts -X DELETE ix.io/$OPTARG; return;;
+            #i) opts="$opts -X PUT"; local id="$OPTARG";;
+            #n) opts="$opts -F read:1=$OPTARG";;
+         #esac
+      #done
+      #shift $(($OPTIND - 1))
+      #[ -t 0 ] && {
+      #local filename="$1"
+      #shift
+      #[ "$filename" ] && {
+      #curl $opts -F f:1=@"$filename" $* ix.io/$id
+      #return
+   #}
+   #echo "^C to cancel, ^D to send."
+#}
+#curl $opts -F f:1='<-' $* ix.io/$id
+        #}
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.zshrc.local.extra
 # For ls++
@@ -135,12 +136,12 @@ PERL_LOCAL_LIB_ROOT="/home/oscar/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_R
 PERL_MB_OPT="--install_base \"/home/oscar/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/oscar/perl5"; export PERL_MM_OPT;
 
-## Find by file-name and edit
+# Find by file-name and edit
 #vf () {
     #find . -type f -name "$1" -exec vim {} \+
 #}
 
-## Find by file-name and change dir
+# Find by file-name and change dir
 #cf () {
     #if [[ -d "$1" ]]; then
         #cd -- "$(find . -name "$1" -type d -print -quit 2>/dev/null)"
@@ -154,11 +155,22 @@ source ~/repos_ajenos/z/z.sh
 
 autoload bashcompinit
 bashcompinit
-eval "$(register-python-argcomplete wgin)"
-export $(dbus-launch)
-source /etc/bash_completion.d/python-argcomplete.sh
+#eval "$(register-python-argcomplete wgin)"
+#source /etc/bash_completion.d/python-argcomplete.sh
 
 export LD_LIBRARY_PATH="/usr/local/lib/:$LD_LIBRARY_PATH"
+#dcleanup(){
+    #local containers
+    #containers=( $(docker ps -aq 2>/dev/null) )
+    #docker rm "${containers[@]}" 2>/dev/null
+    #local volumes
+    #volumes=( $(docker ps --filter status=exited -q 2>/dev/null) )
+    #docker rm -v "${volumes[@]}" 2>/dev/null
+    #local images
+    #images=( $(docker images --filter dangling=true -q 2>/dev/null) )
+    #docker rmi "${images[@]}" 2>/dev/null
+#}
+export $(dbus-launch)
 
 #dcleanup(){
     #local containers
@@ -173,7 +185,7 @@ export LD_LIBRARY_PATH="/usr/local/lib/:$LD_LIBRARY_PATH"
 #}
 
 alias diff="colordiff"
-## Git stuff
+# Git stuff
 #alias gitCleanMergedFeatures="git branch -r --merged \
     #| grep /feature/  \
     #| cut -d '/' -f 2-  \
@@ -186,7 +198,7 @@ alias diff="colordiff"
    #git checkout develop && \
    #git branch -d $1 };f'
 
-# archives branch as a tag
+## archives branch as a tag
 #alias gitArchiveBranch='f() { \
    #git tag archive/$1 origin/$1 && \
    #git push --tags && \
@@ -206,11 +218,11 @@ alias diff="colordiff"
 #alias quitjupyter='kill $(pgrep jupyter)'
 #alias jupyter='quitjupyter; jt -t chesterish && jupyter notebook --NotebookApp.iopub_data_rate_limit=10000000 &> /dev/null &!'
 
-alias quittensorboard="kill $(ps aux | grep 'tensorboard.py' | awk '{print $2;}')"
+#alias quittensorboard="kill $(ps aux | grep 'tensorboard.py' | awk '{print $2;}')"
 
-killName() {
-   kill $(ps aux | grep "$1" | awk '{print $2;}')
-}
+#killName() {
+   #kill $(ps aux | grep "$1" | awk '{print $2;}')
+#}
 
 #runTensorboard() {
    #quittensorboard ||
@@ -221,7 +233,7 @@ killName() {
    #readelf -s --wide $1 | awk '{print $NF }'
 #}
 
-## Recursively show dependencies of dynamic libs (in the same folder)
+# Recursively show dependencies of dynamic libs (in the same folder)
 #wdep2() {
    #if [ -z "$1" ]; then
       #return
@@ -300,10 +312,6 @@ gimp() {
    fi
 };
 
-evince() { 
-      nohup evince $1 &> /dev/null & 
-};
-
 #alias asciicast2gif='docker run --rm -v $PWD:/data asciinema/asciicast2gif'
 export SHELL='/usr/bin/zsh'
 
@@ -311,14 +319,14 @@ export SHELL='/usr/bin/zsh'
     #kill -9 $(xprop _NET_WM_PID | awk '{ print $3 }')
 #}
 
-alias adblock="adb shell input keyevent 26"
+#alias adblock="adb shell input keyevent 26"
 
 alias ipython="ipython --TerminalInteractiveShell.editing_mode=vi"
 export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig/" 
 #alias mkthesis="latexmk -pdf -f main.tex && evince main.pdf 2> /dev/null &"
-#export HALIDE_ROOT=/home/oscar/repos_ajenos/Halide
-#export PATH=$PATH:/usr/local/bin
-#export JAVA_HOME=/opt/android-studio/jre/
+export HALIDE_ROOT=/home/ogomez/repos_ajenos/Halide_prebuilt/halide
+export PATH=$PATH:/usr/local/bin
+export JAVA_HOME=/opt/android-studio/jre/
 
 #alias pikaurRemoveOrphans="pikaur -Rns $(pikaur -Qtdq | tr '\n' ' ')"
 #alias pikaurListBySize="LC_ALL=C pikaur -Qi | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -h"
@@ -333,7 +341,9 @@ export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig/"
 #}
 
 alias icat="kitty +kitten icat"
-export nproc='16'
+END=$(date +%s.%N)
+DIFF=$(echo "$END - $START" | bc)
+#echo $DIFF
 
 END=`date +%s%N | cut -b1-13`
 #echo "Time elapsed: $((END - START)) milliseconds"
