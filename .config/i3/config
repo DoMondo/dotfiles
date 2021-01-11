@@ -145,7 +145,7 @@ bindsym --whole-window button10 workspace back_and_forth
 # no titlebars, please
 new_window pixel 2
 
-client.focused          #3F8AC2 #0099ff #00BAA7 #00DA8E
+client.focused          #3F8AC2 #1c7a4b #ffffff #00DA8E
 client.focused_inactive #333333 #5F676A #ffffff #484e50
 client.unfocused        #333333 #424242 #888888 #292d2e
 client.urgent           #C10004 #900000 #ffffff #900000

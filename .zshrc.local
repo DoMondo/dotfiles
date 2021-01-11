@@ -1,3 +1,4 @@
+START=`date +%s%N | cut -b1-13`
 # add user functions
 fpath=( ~/.zfunctions "${fpath[@]}" )
 
@@ -61,10 +62,10 @@ alias l='ls -CF'
 alias vz='v ~/.zshrc.local'
 alias vv='v ~/.vimrc'
 alias vi3='v ~/.config/i3/config'
-alias sz='source ~/.zshrc && source ~/.zshrc.local'
+alias sz='source ~/.zshrc'
 alias ffun='f() { vim $(grep -lR $1 . | peco) }; f' 
 alias vim='echo -ne "\e]50;CursorShape=0;BlinkingCursorEnabled=0\\x7"; vim -c "highlight Comment cterm=italic"' 
-alias v='vim' 
+#alias v='vim' 
 alias vl='v $(ls -t . | head -1)'
 alias sv='sudo vim' 
 alias pwdc='pwd | tr -d "\n" | xclip -selection clipbloard'
@@ -134,75 +135,76 @@ PERL_LOCAL_LIB_ROOT="/home/oscar/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_R
 PERL_MB_OPT="--install_base \"/home/oscar/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/oscar/perl5"; export PERL_MM_OPT;
 
-# Find by file-name and edit
-vf () {
-    find . -type f -name "$1" -exec vim {} \+
-}
+## Find by file-name and edit
+#vf () {
+    #find . -type f -name "$1" -exec vim {} \+
+#}
 
-# Find by file-name and change dir
-cf () {
-    if [[ -d "$1" ]]; then
-        cd -- "$(find . -name "$1" -type d -print -quit 2>/dev/null)"
-    else  # file, symbolic link, etc...
-        local file_abs_path="$(find . -name "$1" -print -quit 2>/dev/null)"
-        cd -- "$(dirname $file_abs_path)"
-    fi
-}
+## Find by file-name and change dir
+#cf () {
+    #if [[ -d "$1" ]]; then
+        #cd -- "$(find . -name "$1" -type d -print -quit 2>/dev/null)"
+    #else  # file, symbolic link, etc...
+        #local file_abs_path="$(find . -name "$1" -print -quit 2>/dev/null)"
+        #cd -- "$(dirname $file_abs_path)"
+    #fi
+#}
 
 source ~/repos_ajenos/z/z.sh
 
 autoload bashcompinit
 bashcompinit
 eval "$(register-python-argcomplete wgin)"
+export $(dbus-launch)
 source /etc/bash_completion.d/python-argcomplete.sh
 
 export LD_LIBRARY_PATH="/usr/local/lib/:$LD_LIBRARY_PATH"
-dcleanup(){
-    local containers
-    containers=( $(docker ps -aq 2>/dev/null) )
-    docker rm "${containers[@]}" 2>/dev/null
-    local volumes
-    volumes=( $(docker ps --filter status=exited -q 2>/dev/null) )
-    docker rm -v "${volumes[@]}" 2>/dev/null
-    local images
-    images=( $(docker images --filter dangling=true -q 2>/dev/null) )
-    docker rmi "${images[@]}" 2>/dev/null
-}
-export $(dbus-launch)
+
+#dcleanup(){
+    #local containers
+    #containers=( $(docker ps -aq 2>/dev/null) )
+    #docker rm "${containers[@]}" 2>/dev/null
+    #local volumes
+    #volumes=( $(docker ps --filter status=exited -q 2>/dev/null) )
+    #docker rm -v "${volumes[@]}" 2>/dev/null
+    #local images
+    #images=( $(docker images --filter dangling=true -q 2>/dev/null) )
+    #docker rmi "${images[@]}" 2>/dev/null
+#}
 
 alias diff="colordiff"
-# Git stuff
-alias gitCleanMergedFeatures="git branch -r --merged \
-    | grep /feature/  \
-    | cut -d '/' -f 2-  \
-    | xargs -rn1 git push origin --delete"
+## Git stuff
+#alias gitCleanMergedFeatures="git branch -r --merged \
+    #| grep /feature/  \
+    #| cut -d '/' -f 2-  \
+    #| xargs -rn1 git push origin --delete"
 
-alias gitRenameBranch='f() {git checkout feature/$1 && \
-   git branch -m feature/$1 $1 && \
-   git push origin :feature/$1 && \
-   git push --set-upstream origin $1 && \
-   git checkout develop && \
-   git branch -d $1 };f'
+#alias gitRenameBranch='f() {git checkout feature/$1 && \
+   #git branch -m feature/$1 $1 && \
+   #git push origin :feature/$1 && \
+   #git push --set-upstream origin $1 && \
+   #git checkout develop && \
+   #git branch -d $1 };f'
 
 # archives branch as a tag
-alias gitArchiveBranch='f() { \
-   git tag archive/$1 origin/$1 && \
-   git push --tags && \
-   git push origin --delete $1;
-};f'
+#alias gitArchiveBranch='f() { \
+   #git tag archive/$1 origin/$1 && \
+   #git push --tags && \
+   #git push origin --delete $1;
+#};f'
 
-alias gitDeleteLocalBranches='git branch | xargs git branch -d'
+#alias gitDeleteLocalBranches='git branch | xargs git branch -d'
 
-# gitChangeTagName <old> <new>
-alias gitChangeTagName='f() { \
-   git tag $2 $1 && \
-   git tag -d $1 && \
-   git push origin :refs/tags/$1 && \
-   git push --tags 
-};f'
+## gitChangeTagName <old> <new>
+#alias gitChangeTagName='f() { \
+   #git tag $2 $1 && \
+   #git tag -d $1 && \
+   #git push origin :refs/tags/$1 && \
+   #git push --tags 
+#};f'
 
-alias quitjupyter='kill $(pgrep jupyter)'
-alias jupyter='quitjupyter; jt -t chesterish && jupyter notebook --NotebookApp.iopub_data_rate_limit=10000000 &> /dev/null &!'
+#alias quitjupyter='kill $(pgrep jupyter)'
+#alias jupyter='quitjupyter; jt -t chesterish && jupyter notebook --NotebookApp.iopub_data_rate_limit=10000000 &> /dev/null &!'
 
 alias quittensorboard="kill $(ps aux | grep 'tensorboard.py' | awk '{print $2;}')"
 
@@ -210,72 +212,72 @@ killName() {
    kill $(ps aux | grep "$1" | awk '{print $2;}')
 }
 
-runTensorboard() {
-   quittensorboard ||
-   tensorboard --logdir $1 &> /dev/null &!
-}
+#runTensorboard() {
+   #quittensorboard ||
+   #tensorboard --logdir $1 &> /dev/null &!
+#}
 
-getSymbols() { 
-   readelf -s --wide $1 | awk '{print $NF }'
-}
+#getSymbols() { 
+   #readelf -s --wide $1 | awk '{print $NF }'
+#}
 
-# Recursively show dependencies of dynamic libs (in the same folder)
-wdep2() {
-   if [ -z "$1" ]; then
-      return
-   fi
-   if [ ! -f $1 ]; then
-       echo "File $1 not found!"
-       return
-   fi
-   echo "WDEP2 is looking for deps of $1"
-   toVisit=""
-   visited=""
-   #echo $1 >> toVisit
-   toVisit="${toVisit}$1"
-   # While there's more to visit
-   while [ ! -z "$toVisit" ]; do
-      # Get first line and remove it
-      line=$(echo $toVisit | head -n 1)
-      #echo "line is $line "
-      toVisit=`echo $toVisit | sed -n '1!p' `
-      if [ -z "$line" ]; then
-         continue
-      fi
-      #echo "visiting = $line"
-      # Put it in visited
-      echo $line >> visited
-      visited="${visited}\n$line"
-      if [ ! -f $line ]; then
-         echo "FILE $line is missing!!"
-      else
-         deps=`readelf -d $line | grep "NEEDED" | sed -r 's/.*\[//' | sed -r 's/\]//'`
-         while read -r line; do
-           # Check if any of the dependencies is not on the list already
-           if [[ $visited = *"$line"* ]]; then
-             #echo "It's there!"
-           else
-              if [[ $toVisit = *"$line"* ]]; then
-                 #echo "It's already there to visit"
-              else
-                 #echo "adding $line"
-                 toVisit="${toVisit}\n$line"
-              fi
-           fi
-         done <<< "$deps"
-      fi
-   done
-   echo "Libs that are PRESENT already"
-   echo $visited
-   echo "Finished!"
-}
+## Recursively show dependencies of dynamic libs (in the same folder)
+#wdep2() {
+   #if [ -z "$1" ]; then
+      #return
+   #fi
+   #if [ ! -f $1 ]; then
+       #echo "File $1 not found!"
+       #return
+   #fi
+   #echo "WDEP2 is looking for deps of $1"
+   #toVisit=""
+   #visited=""
+   ##echo $1 >> toVisit
+   #toVisit="${toVisit}$1"
+   ## While there's more to visit
+   #while [ ! -z "$toVisit" ]; do
+      ## Get first line and remove it
+      #line=$(echo $toVisit | head -n 1)
+      ##echo "line is $line "
+      #toVisit=`echo $toVisit | sed -n '1!p' `
+      #if [ -z "$line" ]; then
+         #continue
+      #fi
+      ##echo "visiting = $line"
+      ## Put it in visited
+      #echo $line >> visited
+      #visited="${visited}\n$line"
+      #if [ ! -f $line ]; then
+         #echo "FILE $line is missing!!"
+      #else
+         #deps=`readelf -d $line | grep "NEEDED" | sed -r 's/.*\[//' | sed -r 's/\]//'`
+         #while read -r line; do
+           ## Check if any of the dependencies is not on the list already
+           #if [[ $visited = *"$line"* ]]; then
+             ##echo "It's there!"
+           #else
+              #if [[ $toVisit = *"$line"* ]]; then
+                 ##echo "It's already there to visit"
+              #else
+                 ##echo "adding $line"
+                 #toVisit="${toVisit}\n$line"
+              #fi
+           #fi
+         #done <<< "$deps"
+      #fi
+   #done
+   #echo "Libs that are PRESENT already"
+   #echo $visited
+   #echo "Finished!"
+#}
 
 # taken from http://owen.cymru/sf-a-quick-way-to-search-for-some-thing-in-bash-and-edit-it-with-vim-2/
 sf() {
   if [ "$#" -lt 1 ]; then echo "Supply string to search for!"; return 1; fi
   search=`printf "%q" "$*"`
-  include="yml,js,json,php,md,styl,pug,jade,html,config,py,cpp,h,hpp,c,cl,java,go,hs,rb,conf,fa,lst,txt,mm,m,swift,txt,gradle,tex,sh"
-  exclude=".d,.o,.config,.git,node_modules,vendor,build,yarn.lock,*.sty,*.bst,*.coffee,dist"
+  include="yml,js,json,php,md,styl,pug,jade,html,config,py,cpp,h,hpp,c,cl,java,go,hs,rb,conf,fa,lst,txt,mm,m,swift,txt,gradle,tex,sh,Makefile,cc"
+  exclude=".d,.o,.config,.git,node_modules,vendor,build,yarn.lock,*.sty,*.bst,*.coffee,dist,pdf"
   rg_command='rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always" -g "*.{'$include'}" -g "!{'$exclude'}/*"'
   files=`eval $rg_command $search | fzf --ansi --multi --reverse | awk -F ':' '{print $1":"$2":"$3}'`
   [[ -n "$files" ]] && ${EDITOR:-vim} $files
@@ -284,40 +286,54 @@ sf() {
 
 imshow() { 
    if [ "$#" -eq 0 ]; then
-      xnview $PWD &> /dev/null & 
+      nohup xnviewmp $PWD &> /dev/null & 
    else
-      xnview $1 &> /dev/null & 
+      nohup xnviewmp $1 &> /dev/null & 
    fi
 };
 
-alias gimp='f() { gimp $1 &> /dev/null & };f'
+gimp() { 
+   if [ "$#" -eq 0 ]; then
+      nohup gimp &> /dev/null & 
+   else
+      nohup gimp $1 &> /dev/null & 
+   fi
+};
 
-alias asciicast2gif='docker run --rm -v $PWD:/data asciinema/asciicast2gif'
+evince() { 
+      nohup evince $1 &> /dev/null & 
+};
+
+#alias asciicast2gif='docker run --rm -v $PWD:/data asciinema/asciicast2gif'
 export SHELL='/usr/bin/zsh'
 
-shoot() {
-    kill -9 $(xprop _NET_WM_PID | awk '{ print $3 }')
-}
+#shoot() {
+    #kill -9 $(xprop _NET_WM_PID | awk '{ print $3 }')
+#}
 
 alias adblock="adb shell input keyevent 26"
 
 alias ipython="ipython --TerminalInteractiveShell.editing_mode=vi"
 export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig/" 
-alias mkthesis="latexmk -pdf -f main.tex && evince main.pdf 2> /dev/null &"
-export HALIDE_ROOT=/home/ogomez/repos_ajenos/Halide
-export PATH=$PATH:/usr/local/bin
-export JAVA_HOME=/opt/android-studio/jre/
+#alias mkthesis="latexmk -pdf -f main.tex && evince main.pdf 2> /dev/null &"
+#export HALIDE_ROOT=/home/oscar/repos_ajenos/Halide
+#export PATH=$PATH:/usr/local/bin
+#export JAVA_HOME=/opt/android-studio/jre/
 
-alias pikaurRemoveOrphans="pikaur -Rns $(pikaur -Qtdq | tr '\n' ' ')"
-alias pikaurListBySize="LC_ALL=C pikaur -Qi | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -h"
-pikaurListByNumberOfDependencies() {
-   output=''
-   packages=`pikaur -Q | awk '{print $1}'`
-   while IFS= read -r package; do
-       line="$package `pactree -l $package | wc -l`"
-       output="$output\n$line"
-   done <<< "$packages"
-   echo $output | sort -k2 -n
-}
+#alias pikaurRemoveOrphans="pikaur -Rns $(pikaur -Qtdq | tr '\n' ' ')"
+#alias pikaurListBySize="LC_ALL=C pikaur -Qi | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -h"
+#pikaurListByNumberOfDependencies() {
+   #output=''
+   #packages=`pikaur -Q | awk '{print $1}'`
+   #while IFS= read -r package; do
+       #line="$package `pactree -l $package | wc -l`"
+       #output="$output\n$line"
+   #done <<< "$packages"
+   #echo $output | sort -k2 -n
+#}
 
 alias icat="kitty +kitten icat"
+export nproc='16'
+
+END=`date +%s%N | cut -b1-13`
+#echo "Time elapsed: $((END - START)) milliseconds"
