@@ -16,7 +16,8 @@ exec --no-startup-id xautolock -time 5 -locker "i3lock -c 002B36"
 # i3lock w/ Control+Alt+L
 bindsym Control+Mod1+L exec "i3lock -c 002B36"
 # Power options dialog
-bindsym Mod4+F4 exec ~/lock-i3-desktop/i3-exit
+bindsym Mod4+F4 exec systemctl poweroff
+bindsym Mod4+Shift+F4 exec systemctl reboot
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 #bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 1 toggle # mute sound
@@ -26,9 +27,10 @@ bindsym $mod+Return exec dbus-launch kitty
 # kill focused window
 bindsym Mod1+F4 kill
 # shortcuts
-bindsym $mod+w exec google-chrome
+bindsym $mod+w exec google-chrome-stable
 # Capture screen crop
-bindsym --release $mod+p exec "cd ~/Pictures/ && scrot -s && feh $(ls -hrt | tail -n 1) && ls -hrt -d $PWD/* | tail -n 1 | xclip -selection clipbloard && xclip -selection clipboard -t image/png -i `ls -hrt -d $PWD/* | tail -n 1`"
+bindsym --release $mod+p exec "cd ~/Pictures/ && scrot -s && feh $(ls -hrt | tail -n 1) && ls -hrt -d $PWD/* | tail -n 1 | xclip -selection clipboard && xclip -selection clipboard -t image/png -i `ls -hrt -d $PWD/* | tail -n 1`"
+#bindsym --release $mod+p exec "cd ~/Pictures/ && scrot -s && filename=`ls -hrt -d $PWD/* | tail -n 1` && tesseract $filename ocr -l spa && cat ocr.txt | xclip -rmlastnl"
 bindsym --release $mod+Shift+k exec "kill -9 $(xprop _NET_WM_PID | awk '{ print $3 }')"
 bindsym $mod+Shift+n exec "nautilus --no-desktop&"
 bindsym $mod+e exec "/usr/bin/pcmanfm"
@@ -159,8 +161,8 @@ for_window [class="qjackctl" instance="qjackctl"] floating enable
 for_window [class="FaceFill.py"] floating enable, move container to workspace 3, fullscreen enable, workspace 4
 #for_window [title="imshow_python"] floating enable, move container to workspace 3
 for_window [title="python_temp"] move container to workspace 4, split v
-for_window [title="imshow_python"] move container to workspace 4, split v
-for_window [title="imshow_*"] move container to workspace 4
+for_window [title="imshow_python"] move container to workspace 4, floating disable
+#for_window [title="imshow_*"] move container to workspace 4
 for_window [title="Figure*"] move container to workspace 4
 for_window [title="Rotated"]  move container to workspace 4
 for_window [title="plotline*"]  move container to workspace 4
@@ -189,10 +191,10 @@ bindsym Control+Mod1+Left exec dbus-send --print-reply --dest=org.mpris.MediaPla
 bindsym Control+Mod1+Right exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next  
 # Vol-Up
 # bindsym Control+Mod1+Up exec pactl set-sink-volume alsa_output.pci-0000_00_1f.3.analog-stereo +5% 
-bindsym Control+Mod1+Up exec amixer sset 'Master' 5%+
+bindsym Control+Mod1+Up exec amixer sset 'Master' 1%+ && killall -USR1 i3status
 # Vol-Down
 # bindsym Control+Mod1+Down exec pactl set-sink-volume alsa_output.pci-0000_00_1f.3.analog-stereo -5% 
-bindsym Control+Mod1+Down exec amixer sset 'Master' 5%- 
+bindsym Control+Mod1+Down exec amixer sset 'Master' 1%-  && killall -USR1 i3status
 # Play-Pause
 bindsym Control+Mod1+period exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
 

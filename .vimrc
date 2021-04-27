@@ -4,9 +4,9 @@ filetype off                  " required
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-let g:ycm_confirm_extra_conf = 0
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-unimpaired'
 "Plugin 'Valloric/YouCompleteMe'
 Plugin 'rhysd/vim-clang-format'
 Plugin 'easymotion/vim-easymotion'
@@ -230,6 +230,7 @@ function s:HighlightWordUnderCursor()
 endfunction
 
 autocmd CursorMoved * call s:HighlightWordUnderCursor()
+let g:ycm_confirm_extra_conf = 0
 let g:ycm_server_python_interpreter = '/usr/bin/python'
 " Don't show YCM errors
 let g:ycm_enable_diagnostic_signs = 0
