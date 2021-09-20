@@ -1,7 +1,6 @@
 START=`date +%s%N | cut -b1-13`
 # add user functions
 START=$(date +%s.%N)
-cd ~
 fpath=( ~/.zfunctions "${fpath[@]}" )
 
 # Set up the prompt
