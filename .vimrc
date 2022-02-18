@@ -131,9 +131,9 @@ map  <Leader>f <Plug>(easymotion-bd-w)
 "nmap <Leader>f <Plug>(easymotion-overwin-w)
 
 " Git blame
-map <Leader>b :Gblame<CR>
+map <Leader>b :Git blame<CR>
 " Git log for a file
-map <Leader>g :Glog<CR>
+"map <Leader>g :Glog<CR>
 
 " Move to word
 "map  <Leader>w <Plug>(easymotion-bd-w)
@@ -251,6 +251,7 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:gitgutter_enabled = 0
 let g:gitgutter_highlight_lines = 1
 let g:gitgutter_map_keys = 0
+map <Leader>g :GitGutterToggle<CR>
 let g:ycm_add_preview_to_completeopt = 0
 set viminfo='100,f1
 
