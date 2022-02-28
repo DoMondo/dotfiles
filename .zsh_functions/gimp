@@ -1,0 +1,8 @@
+#!/bin/sh
+gimp() { 
+   if [ "$#" -eq 0 ]; then
+      nohup gimp &> /dev/null & 
+   else
+      nohup gimp $1 &> /dev/null & 
+   fi
+};

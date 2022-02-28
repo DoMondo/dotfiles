@@ -20,7 +20,6 @@ bindsym Mod4+F4 exec systemctl poweroff
 bindsym Mod4+Shift+F4 exec systemctl reboot
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
-#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 1 toggle # mute sound
 bindsym XF86Sleep exec --no-startup-id systemctl suspend
 # Terminal
 bindsym $mod+Return exec dbus-launch kitty 
@@ -29,10 +28,9 @@ bindsym Mod1+F4 kill
 # shortcuts
 bindsym $mod+w exec google-chrome-stable
 # Capture screen crop
-bindsym --release $mod+p exec "cd ~/Pictures/ && scrot -s && feh $(ls -hrt | tail -n 1) && ls -hrt -d $PWD/* | tail -n 1 | xclip -selection clipboard && xclip -selection clipboard -t image/png -i `ls -hrt -d $PWD/* | tail -n 1`"
+bindsym --release $mod+p exec "cd ~/Pictures/ && scrot -s && feh $(ls -hrt | tail -n 1) && xclip -selection clipboard -t image/png -i `ls -hrt -d $PWD/* | tail -n 1`"
 #bindsym --release $mod+p exec "cd ~/Pictures/ && scrot -s && filename=`ls -hrt -d $PWD/* | tail -n 1` && tesseract $filename ocr -l spa && cat ocr.txt | xclip -rmlastnl"
 bindsym --release $mod+Shift+k exec "kill -9 $(xprop _NET_WM_PID | awk '{ print $3 }')"
-bindsym $mod+Shift+n exec "nautilus --no-desktop&"
 bindsym $mod+e exec "/usr/bin/pcmanfm"
 # Dmenu
 bindsym $mod+d exec --no-startup-id LC_ALL=C j4-dmenu-desktop
@@ -70,8 +68,8 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 #
 # HOME
-set $ML DVI-D-0
-set $MR HDMI-0 
+set $MR DisplayPort-2
+set $ML HDMI-A-0 
 # WORK
 #set $ML HDMI1 
 #set $MR HDMI2 
@@ -177,6 +175,7 @@ for_window [title="imshow*"] move container to workspace 4, floating disable
 for_window [title="Figure*"] move container to workspace 4
 for_window [title="Rotated"]  move container to workspace 4
 for_window [title="plotline*"]  move container to workspace 4
+for_window [title="pygame*"]  move container to workspace 4, floating enable
 
 bar {
     status_command i3status
@@ -202,13 +201,17 @@ bindsym Control+Mod1+Left exec dbus-send --print-reply --dest=org.mpris.MediaPla
 bindsym Control+Mod1+Right exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next  
 # Vol-Up
 # bindsym Control+Mod1+Up exec pactl set-sink-volume alsa_output.pci-0000_00_1f.3.analog-stereo +5% 
-bindsym Control+Mod1+Up exec amixer sset 'Master' 1%+ && killall -USR1 i3status
+bindsym Control+Mod1+Up exec amixer -c 1 sset 'Master' 1%+ && killall -USR1 i3status
 # Vol-Down
 # bindsym Control+Mod1+Down exec pactl set-sink-volume alsa_output.pci-0000_00_1f.3.analog-stereo -5% 
-bindsym Control+Mod1+Down exec amixer sset 'Master' 1%-  && killall -USR1 i3status
+bindsym Control+Mod1+Down exec exec amixer -c 1 sset 'Master' 1%-  && killall -USR1 i3status
 # Play-Pause
 bindsym Control+Mod1+period exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
 
 # Background
 exec_always --no-startup-id  feh --bg-fill ~/Downloads/bkgrnd.jpg --bg-fill  ~/Downloads/background_right.jpg 
 mouse_warping none
+
+# Cycle through audio outputs
+bindsym Control+$mod+b exec zsh ~/.zsh_functions/change_audio_output
+

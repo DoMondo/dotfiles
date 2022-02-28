@@ -1,0 +1,16 @@
+#!/bin/bash
+#change_audio_output() {
+   # Get a list of available sinks
+   sinklist=`pacmd list-sinks | grep index`
+   number_of_sinks=`echo $sinklist | wc -l`
+   #echo "Sink List:"
+   #echo $sinklist
+   #echo "Count: " $number_of_sinks
+   # Get index of selected
+   selected_index=`echo $sinklist | grep '*' | sed 's/.*:\ //'`
+   #echo "Selected index = $selected_index"
+   new_index=$(((selected_index+1)%number_of_sinks))
+   #echo "Selecting $new_index"
+   pacmd set-default-sink $new_index
+#};
+
