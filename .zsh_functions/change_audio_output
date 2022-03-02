@@ -1,16 +1,17 @@
-#!/bin/bash
-#change_audio_output() {
-   # Get a list of available sinks
-   sinklist=`pacmd list-sinks | grep index`
-   number_of_sinks=`echo $sinklist | wc -l`
-   #echo "Sink List:"
-   #echo $sinklist
-   #echo "Count: " $number_of_sinks
-   # Get index of selected
-   selected_index=`echo $sinklist | grep '*' | sed 's/.*:\ //'`
-   #echo "Selected index = $selected_index"
-   new_index=$(((selected_index+1)%number_of_sinks))
-   #echo "Selecting $new_index"
-   pacmd set-default-sink $new_index
-#};
+#!/bin/env zsh
+# Get a list of available sinks
+sinklist=`pacmd list-sinks | grep index`
+number_of_sinks=`echo $sinklist | wc -l`
+echo "Sink List:"
+echo $sinklist
+echo "Count: " $number_of_sinks
+# Get index of selected
+selected_index=$((`echo $sinklist | awk '/*/{ print NR; exit }'` - 1))
+sink_names=`echo $sinklist | sed 's/.*:\ //'`
+echo "Sink names: " $sink_names
+echo "Selected index = $selected_index"
+new_index=$(((selected_index+1)%number_of_sinks))
+echo "Selecting" `echo $sink_names | sed -n $((new_index+1))p`
+pacmd set-default-sink `echo $sink_names | sed -n $((new_index+1))p`
+
 
