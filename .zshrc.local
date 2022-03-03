@@ -17,6 +17,7 @@ HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
+
 # Use modern completion system
 autoload -Uz compinit
 compinit
@@ -165,6 +166,7 @@ imshow() {
 };
 fpath=(~/.zsh_functions $fpath);
 autoload -U $fpath[1]/*(.:t)
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 END=$(date +%s.%N)
 DIFF=$(echo "$END - $START" | bc)
