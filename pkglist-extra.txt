@@ -1,0 +1,9 @@
+texlive-bin
+texlive-core
+scrcpy
+pycharm-community-edition
+gimp
+spotify
+autofirma-bin
+gitkraken
+downgrade

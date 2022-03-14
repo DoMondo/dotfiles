@@ -27,9 +27,6 @@ bindsym $mod+Return exec dbus-launch kitty
 bindsym Mod1+F4 kill
 # shortcuts
 bindsym $mod+w exec google-chrome-stable
-# Capture screen crop
-bindsym --release $mod+p exec "cd ~/Pictures/ && scrot -s && feh $(ls -hrt | tail -n 1) && xclip -selection clipboard -t image/png -i `ls -hrt -d $PWD/* | tail -n 1`"
-#bindsym --release $mod+p exec "cd ~/Pictures/ && scrot -s && filename=`ls -hrt -d $PWD/* | tail -n 1` && tesseract $filename ocr -l spa && cat ocr.txt | xclip -rmlastnl"
 bindsym --release $mod+Shift+k exec "kill -9 $(xprop _NET_WM_PID | awk '{ print $3 }')"
 bindsym $mod+e exec "/usr/bin/pcmanfm"
 # Dmenu
@@ -215,3 +212,5 @@ mouse_warping none
 # Cycle through audio outputs
 bindsym Control+$mod+b exec zsh ~/.zsh_functions/change_audio_output
 
+# Capture screen crop
+bindsym --release $mod+p exec  zsh ~/.zsh_functions/make_screenshot

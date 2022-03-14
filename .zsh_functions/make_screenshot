@@ -1,0 +1,21 @@
+#!/bin/env zsh
+cd ~/Pictures/ 
+
+# Get a screenshot of the area selected by mouse
+scrot -s
+
+# Display it onscreen
+# feh $(ls -hrt | tail -n 1)
+
+# Get path of this image
+image_path=`ls -hrt -d $PWD/* | tail -n 1`
+
+# Convert it to JPEG
+#convert $image_path $image_path.jpg
+#rm $image_path
+
+# Put it in the clipboard
+xclip -selection clipboard -t image/png -i $image_path
+
+# Scan letters and copy them to clipboard
+#tesseract $image_path ocr -l spa && cat ocr.txt | xclip -rmlastnl

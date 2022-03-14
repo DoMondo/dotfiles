@@ -89,10 +89,6 @@ dcleanup(){
 
 #alias quittensorboard="kill $(ps aux | grep 'tensorboard.py' | awk '{print $2;}')"
 
-#killName() {
-   #kill $(ps aux | grep "$1" | awk '{print $2;}')
-#}
-
 #runTensorboard() {
    #quittensorboard ||
    #tensorboard --logdir $1 &> /dev/null &!
