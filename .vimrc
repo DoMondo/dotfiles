@@ -1,5 +1,6 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
+set shell=/bin/bash
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -7,9 +8,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-unimpaired'
-"Plugin 'Valloric/YouCompleteMe'
 Plugin 'rhysd/vim-clang-format'
-Plugin 'easymotion/vim-easymotion'
 Plugin 'morhetz/gruvbox'
 Plugin 'sheerun/vim-wombat-scheme'
 Plugin 'nblock/vim-dokuwiki'
@@ -27,8 +26,6 @@ Plugin 'tikhomirov/vim-glsl'
 Plugin 'matze/vim-meson'
 Plugin 'peterhoeg/vim-qml'
 Plugin 'suan/vim-instant-markdown', {'rtp': 'after'}
-"Plugin 'vim-latex/vim-latex'
-
 call vundle#end()            " required
 "filetype plugin indent on    " required
 " Nerdcommenter
