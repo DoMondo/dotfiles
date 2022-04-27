@@ -7,3 +7,4 @@ spotify
 autofirma-bin
 gitkraken
 downgrade
+android-studio

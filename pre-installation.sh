@@ -4,7 +4,7 @@ set -e
 
 ln -sf /usr/share/zoneinfo/Atlantic/Canary /etc/localtime
 hwclock --systohc
-echo en_US.UTF-8 UTF-8 > /etc/locale
+echo en_US.UTF-8 UTF-8 > /etc/locale.gen
 locale-gen
 echo LANG=en_US.UTF-8 > /etc/locale.conf
 read -p '******* Set host name: ' hostname

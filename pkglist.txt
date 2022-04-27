@@ -37,3 +37,6 @@ glew
 glu
 freeglut
 i3status
+gvim
+i3lock
+openssh
