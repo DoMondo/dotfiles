@@ -40,3 +40,4 @@ i3status
 gvim
 i3lock
 openssh
+fzf
