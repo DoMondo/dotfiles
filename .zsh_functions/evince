@@ -1,0 +1,8 @@
+#!/bin/sh
+evince() { 
+   if [ "$#" -eq 0 ]; then
+      nohup evince &> /dev/null & 
+   else
+      nohup evince $1 &> /dev/null & 
+   fi
+};

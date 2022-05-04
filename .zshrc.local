@@ -146,7 +146,7 @@ export SHELL='/usr/bin/zsh'
 
 alias ipython="ipython --TerminalInteractiveShell.editing_mode=vi"
 export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig/" 
-#alias mkthesis="latexmk -pdf -f main.tex && evince main.pdf 2> /dev/null &"
+alias mklatex="latexmk -pdf -f main.tex && evince main.pdf 2> /dev/null &"
 export HALIDE_ROOT=/home/ogomez/repos_ajenos/halide10/
 export PATH=$PATH:/usr/local/bin
 export PATH=$PATH:/home/ogomez/.local/bin
