@@ -41,3 +41,7 @@ gvim
 i3lock
 openssh
 fzf
+ncdu
+tree
+htop
+pamixer

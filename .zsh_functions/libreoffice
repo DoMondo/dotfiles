@@ -1,0 +1,8 @@
+#!/bin/sh
+libreoffice() { 
+   if [ "$#" -eq 0 ]; then
+      nohup libreoffice &> /dev/null & 
+   else
+      nohup libreoffice $1 &> /dev/null & 
+   fi
+};

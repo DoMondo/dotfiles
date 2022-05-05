@@ -200,10 +200,10 @@ bindsym Control+Mod1+Left exec dbus-send --print-reply --dest=org.mpris.MediaPla
 bindsym Control+Mod1+Right exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next  
 # Vol-Up
 # bindsym Control+Mod1+Up exec pactl set-sink-volume alsa_output.pci-0000_00_1f.3.analog-stereo +5% 
-bindsym Control+Mod1+Up exec amixer -c 1 sset 'Master' 1%+ && killall -USR1 i3status
+bindsym Control+Mod1+Up exec pamixer -i 3 && killall -USR1 i3status
 # Vol-Down
 # bindsym Control+Mod1+Down exec pactl set-sink-volume alsa_output.pci-0000_00_1f.3.analog-stereo -5% 
-bindsym Control+Mod1+Down exec exec amixer -c 1 sset 'Master' 1%-  && killall -USR1 i3status
+bindsym Control+Mod1+Down exec exec pamixer -d 3 && killall -USR1 i3status
 # Play-Pause
 bindsym Control+Mod1+period exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
 
