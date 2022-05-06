@@ -10,6 +10,7 @@ exec --no-startup-id xset fp rehash
 exec --no-startup-id xcape -t 200 -e 'Control_L=Escape'
 exec --no-startup-id parcellite
 exec --no-startup-id xrandr --output DP1 --set "Broadcast RGB" "Full" 
+exec --no-startup-id insync start
 #exec --no-startup-id redshift -O 5000 
 # Screensaver
 exec --no-startup-id xautolock -time 5 -locker "i3lock -c 002B36"
