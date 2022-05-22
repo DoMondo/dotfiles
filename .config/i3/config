@@ -11,6 +11,7 @@ exec --no-startup-id xcape -t 200 -e 'Control_L=Escape'
 exec --no-startup-id parcellite
 exec --no-startup-id xrandr --output DP1 --set "Broadcast RGB" "Full" 
 exec --no-startup-id insync start
+exec --no-startup-id dunst
 #exec --no-startup-id redshift -O 5000 
 # Screensaver
 exec --no-startup-id xautolock -time 5 -locker "i3lock -c 002B36"
@@ -27,7 +28,7 @@ bindsym $mod+Return exec dbus-launch kitty
 # kill focused window
 bindsym Mod1+F4 kill
 # shortcuts
-bindsym $mod+w exec google-chrome-stable
+bindsym $mod+w exec ~/repo/dotfiles/.i3_functions/chrome.sh
 bindsym --release $mod+Shift+k exec "kill -9 $(xprop _NET_WM_PID | awk '{ print $3 }')"
 bindsym $mod+e exec "/usr/bin/pcmanfm"
 # Dmenu
