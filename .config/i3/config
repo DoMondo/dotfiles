@@ -11,7 +11,7 @@ exec --no-startup-id xcape -t 200 -e 'Control_L=Escape'
 exec --no-startup-id parcellite
 exec --no-startup-id xrandr --output DP1 --set "Broadcast RGB" "Full" 
 exec --no-startup-id insync start
-exec --no-startup-id dunst
+exec_always --no-startup-id dunst
 #exec --no-startup-id redshift -O 5000 
 # Screensaver
 exec --no-startup-id xautolock -time 5 -locker "i3lock -c 002B36"
@@ -119,8 +119,6 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart && exec ~/.screenlayout/2-hor-ver.sh
 # Reload screen configuration
 bindsym $mod+Shift+s exec ~/.screenlayout/2-hor-ver.sh
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 set $Locker i3lock && sleep 1
 

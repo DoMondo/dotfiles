@@ -43,6 +43,8 @@ ln -sfv $DIR/.config/kitty/kitty.conf ~/.config/kitty/kitty.conf
 mkdir -p ~/.config/ranger
 ln -sfv $DIR/.config/ranger/rc.conf ~/.config/ranger/rc.conf
 ln -sfv $DIR/.zsh_functions ~/.zsh_functions
+mkdir -p ~/.config/dunst
+ln -sfv $DIR/.config/dunst/dunstrc ~/.config/dunst/dunstrc
 mkdir -p ~/.local/share/fonts
 # vim stuff
 mkdir -p ~/.vim
