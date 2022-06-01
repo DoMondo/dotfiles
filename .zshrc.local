@@ -70,7 +70,7 @@ alias vim='echo -ne "\e]50;CursorShape=0;BlinkingCursorEnabled=0\\x7"; vim -c "h
 #alias v='vim' 
 alias vl='v $(ls -t . | head -1)'
 alias sv='sudo vim' 
-alias pwdc='pwd | tr -d "\n" | xclip -selection clipbloard'
+alias pwdc='dirpath=`pwd | tr -d "\n"` && echo "\""$dirpath"\"" | xclip -selection clipbloard'
 alias g='git'
 # source ~/.bash_profile
 ffind() {
