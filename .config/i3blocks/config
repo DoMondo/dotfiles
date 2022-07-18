@@ -1,0 +1,36 @@
+command=~/.config/i3blocks/$BLOCK_NAME
+separator_block_width=20
+markup=none
+
+[iface]
+color=#00FF00
+interval=10
+
+[volume]
+label=♪ 
+interval=once
+signal=10
+STEP=5%
+
+[cpu_usage]
+label=cpu 
+command=~/.config/i3blocks/cpu_usage -d 0
+interval=5
+min_width=cpu 95%
+align=center
+
+[memory]
+label=mem 
+interval=5
+min_width=mem 95%
+align=center
+
+[disk]
+label=disk 
+interval=30
+min_width=disk 95G
+align=center
+
+[time]
+command=date '+%d/%m/%Y %H:%M'
+interval=5

@@ -45,3 +45,6 @@ ncdu
 tree
 htop
 pamixer
+sysstat
+i3blocks
+nabi-git

@@ -1,0 +1,6 @@
+#!/bin/env bash
+sinklist=`pacmd list-sinks | grep index`
+selected_index=$((`echo "$sinklist" | awk '/*/{ print NR; exit }'`))
+card_names=`pacmd list-sinks | grep alsa.card_name`
+card_names=`echo "$card_names" | sed 's/.*"\(.*\)".*/\1/'`
+echo "$card_names" | sed -n "$selected_index"p

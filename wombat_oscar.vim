@@ -14,7 +14,7 @@ endif
 let colors_name = "wombat"
 
 " General colors
-hi Normal guifg=#EEEEEE guibg=#212121 gui=none
+hi Normal guifg=#EEEEEE guibg=#131313 gui=none
 hi Cursor guifg=#242424 guibg=#eae788 gui=none
 hi Visual guifg=#c3c6ca guibg=#554d4b gui=none
 hi VisualNOS guifg=#c3c6ca guibg=#303030 gui=none
@@ -68,4 +68,4 @@ hi! link NonText LineNr
 
 " Awesome 80 characters delemiter
 execute "set colorcolumn=" . join(range(81,335), ',')
-hi ColorColumn guibg=#262626 
+hi ColorColumn guibg=#1a1a1a

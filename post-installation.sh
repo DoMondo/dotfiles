@@ -46,6 +46,7 @@ ln -sfv $DIR/.zsh_functions ~/.zsh_functions
 mkdir -p ~/.config/dunst
 ln -sfv $DIR/.config/dunst/dunstrc ~/.config/dunst/dunstrc
 mkdir -p ~/.local/share/fonts
+ln -sfv $DIR/.config/i3blocks ~/.config
 # vim stuff
 mkdir -p ~/.vim
 mkdir -p ~/.vim/undo
