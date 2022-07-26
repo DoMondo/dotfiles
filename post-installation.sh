@@ -48,6 +48,7 @@ mkdir -p ~/.config/dunst
 ln -sfv $DIR/.config/dunst/dunstrc ~/.config/dunst/dunstrc
 mkdir -p ~/.local/share/fonts
 ln -sfv $DIR/.config/i3blocks ~/.config
+ln -sfv $DIR/.config/rofi ~/.config
 # vim stuff
 mkdir -p ~/.vim
 mkdir -p ~/.vim/undo

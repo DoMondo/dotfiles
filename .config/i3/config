@@ -12,7 +12,7 @@ exec --no-startup-id parcellite
 exec --no-startup-id xrandr --output DP1 --set "Broadcast RGB" "Full" 
 exec --no-startup-id nabi
 exec --no-startup-id insync start
-exec_always --no-startup-id dunst
+exec --no-startup-id dunst
 #exec --no-startup-id redshift -O 5000 
 # Screensaver
 exec --no-startup-id xautolock -time 5 -locker "i3lock -c 002B36"
@@ -33,8 +33,7 @@ bindsym $mod+w exec ~/repo/dotfiles/.i3_functions/chrome.sh
 bindsym --release $mod+Shift+k exec "kill -9 $(xprop _NET_WM_PID | awk '{ print $3 }')"
 bindsym $mod+e exec "/usr/bin/pcmanfm"
 # Dmenu
-bindsym $mod+d exec --no-startup-id LC_ALL=C j4-dmenu-desktop
-
+bindsym $mod+d exec --no-startup-id rofi -i -show drun 
 # Navigation
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
@@ -143,7 +142,7 @@ bindsym $mod+Tab workspace back_and_forth
 bindsym --whole-window button10 workspace back_and_forth
 
 # no titlebars, please
-new_window pixel 2
+default_border pixel 2
 
 client.focused          #3F8AC2 #1c7a4b #ffffff #00DA8E
 client.focused_inactive #333333 #5F676A #ffffff #484e50
@@ -215,3 +214,5 @@ bindsym Control+$mod+b exec zsh ~/.zsh_functions/change_audio_output && pkill -R
 
 # Capture screen crop
 bindsym --release $mod+p exec  zsh ~/.zsh_functions/make_screenshot
+
+exec --no-startup-id pkill -RTMIN+10 i3blocks
