@@ -21,6 +21,7 @@ pikaur -S --needed - < pkglist.txt
 chsh -s $(which zsh)
 
 echo ------------------------------- Linking config files
+ln -sfv $DIR/.xinitrc ~
 ln -sfv $DIR/.vimrc ~
 ln -sfv $DIR/.zshrc ~
 ln -sfv $DIR/.zshrc.local ~
