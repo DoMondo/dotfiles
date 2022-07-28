@@ -1,0 +1,15 @@
+#!/bin/env bash
+
+cd ~/Pictures/
+
+# Capture
+grim -g "$(slurp)"
+
+# Get path of this image
+image_path=`ls -hrt -d $PWD/* | tail -n 1`
+
+# Put it in the clipboard
+wl-copy -t image/png < $image_path
+
+# Scan letters and copy them to clipboard
+#tesseract $image_path ocr -l spa && cat ocr.txt | xclip -rmlastnl

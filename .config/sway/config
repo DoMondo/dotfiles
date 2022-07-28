@@ -2,25 +2,36 @@
 
 set $mod Mod4
 font pango:Noto Sans 12
-exec --no-startup-id ~/.screenlayout/2-hor-ver.sh
-exec --no-startup-id setxkbmap -layout us -variant altgr-intl -option ctrl:nocaps
-exec --no-startup-id xset r rate 200 40
+
+# Screen config
+output DP-2 pos 0 0 res 3840x2160 scale 1.32
+output DP-3 pos 2909 100 res 1920x1080 transform 270 
+
+output * bg #000000 solid_color
+
+input type:keyboard {
+   xkb_layout us
+   xkb_variant altgr-intl
+   xkb_options ctrl:nocaps
+   repeat_delay 200
+   repeat_rate 40
+}
+
 exec --no-startup-id xset +fp /usr/share/fonts/local
 exec --no-startup-id xset fp rehash
-exec --no-startup-id xcape -t 200 -e 'Control_L=Escape'
-exec --no-startup-id parcellite
-exec --no-startup-id xrandr --output DP1 --set "Broadcast RGB" "Full" 
-exec --no-startup-id nabi
+exec --no-startup-id fcitx5 -d
 exec --no-startup-id insync start
 exec --no-startup-id dunst
-#exec --no-startup-id redshift -O 5000 
-# Screensaver
-exec --no-startup-id xautolock -time 5 -locker "i3lock -c 002B36"
-# i3lock w/ Control+Alt+L
-bindsym Control+Mod1+L exec "i3lock -c 002B36"
-# Power options dialog
+
+# Clipboard manager
+exec_always wl-paste -t text --watch clipman store
+bindsym Control+Alt+a exec clipman pick -t wofi
+
+bindsym Control+Mod1+L exec "swaylock -c 002B36"
+
 bindsym Mod4+F4 exec systemctl poweroff
 bindsym Mod4+Shift+F4 exec systemctl reboot
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 bindsym XF86Sleep exec --no-startup-id systemctl suspend
@@ -33,7 +44,7 @@ bindsym $mod+w exec ~/repo/dotfiles/.i3_functions/chrome.sh
 bindsym --release $mod+Shift+k exec "kill -9 $(xprop _NET_WM_PID | awk '{ print $3 }')"
 bindsym $mod+e exec "/usr/bin/pcmanfm"
 # Dmenu
-bindsym $mod+d exec --no-startup-id rofi -i -show drun 
+bindsym $mod+d exec --no-startup-id wofi -i --show drun --allow-images
 # Navigation
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
@@ -60,15 +71,14 @@ bindsym $mod+Shift+V split v
 bindsym $mod+f fullscreen
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
-bindsym --whole-window button13 floating toggle
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 # focus the parent container
 bindsym $mod+a focus parent
 #
 # HOME
-set $MR DisplayPort-2
-set $ML HDMI-A-0 
+set $ML DP-2
+set $MR DP-3
 # WORK
 #set $ML HDMI1 
 #set $MR HDMI2 
@@ -109,18 +119,12 @@ bindsym $mod+Shift+8 move container to workspace 8; workspace 7; workspace 8
 bindsym $mod+Shift+9 move container to workspace 9; workspace 10; workspace 9
 bindsym $mod+Shift+0 move container to workspace 10; workspace 9; workspace 10
 
-# invert colors https://github.com/zoltanp/xrandr-invert-colors
-bindsym $mod+Control+I exec xrandr-invert-colors -s 0
-bindsym $mod+Shift+I exec xrandr-invert-colors -s 1
-
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart && exec ~/.screenlayout/2-hor-ver.sh
-# Reload screen configuration
-bindsym $mod+Shift+s exec ~/.screenlayout/2-hor-ver.sh
+bindsym $mod+Shift+r restart
 
-set $Locker i3lock && sleep 1
+set $Locker swaylock && sleep 1
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
@@ -139,7 +143,6 @@ bindsym $mod+Pause mode "$mode_system"
 # Switch to last focused workspace
 bindsym $mod+Tab workspace back_and_forth
 #bindsym --whole-window Control+Mod1+Tab workspace back_and_forth
-bindsym --whole-window button10 workspace back_and_forth
 
 # no titlebars, please
 default_border pixel 2
@@ -188,7 +191,7 @@ bar {
       #urgent_workspace   #aa0000 #990000 #ffffff
    }
    position top
-   tray_output primary
+   #tray_output primary
 }
 
 ######### SPOTIFY ######### 
@@ -205,14 +208,13 @@ bindsym Control+Mod1+Down exec pamixer -d 3 && pkill -RTMIN+10 i3blocks
 # Play-Pause
 bindsym Control+Mod1+period exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
 
-# Background
-exec_always --no-startup-id  feh --bg-fill ~/Downloads/bkgrnd.jpg --bg-fill  ~/Downloads/background_right.jpg 
 mouse_warping none
 
 # Cycle through audio outputs
 bindsym Control+$mod+b exec zsh ~/.zsh_functions/change_audio_output && pkill -RTMIN+10 i3blocks
 
 # Capture screen crop
-bindsym --release $mod+p exec  zsh ~/.zsh_functions/make_screenshot
+bindsym --release $mod+p exec zsh ~/.zsh_functions/make_screenshot_selection
+bindsym --release $mod+Alt+p exec zsh ~/.zsh_functions/make_screenshot_window
 
 exec --no-startup-id pkill -RTMIN+10 i3blocks

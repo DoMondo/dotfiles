@@ -21,17 +21,15 @@ pikaur -S --needed - < pkglist.txt
 chsh -s $(which zsh)
 
 echo ------------------------------- Linking config files
-ln -sfv $DIR/.xinitrc ~
 ln -sfv $DIR/.vimrc ~
+ln -sfv $DIR/.zprofile ~
 ln -sfv $DIR/.zshrc ~
 ln -sfv $DIR/.zshrc.local ~
 touch ~/.zshrc.local.extra
 ln -sfv $DIR/.gtkrc-2.0 ~
 ln -sfv $DIR/.gitignore_global ~
 ln -sfv $DIR/.config/pikaur.conf ~/.config/pikaur.conf
-mkdir -p ~/.config/i3
-ln -sfv $DIR/.config/i3/config ~/.config/i3/
-ln -sfv $DIR/.config/i3/i3status.conf ~/.config/i3/
+ln -sfv $DIR/.config/sway ~/.config
 mkdir -p ~/.config/parcellite
 ln -sfv $DIR/.config/parcellite ~/.config/parcellite/parcelliterc
 ln -sfv $DIR/.clang-format ~/.clang-format
@@ -43,13 +41,15 @@ mkdir -p ~/.config/kitty
 ln -sfv $DIR/.config/kitty/kitty.conf ~/.config/kitty/kitty.conf
 mkdir -p ~/.config/ranger
 ln -sfv $DIR/.config/ranger/rc.conf ~/.config/ranger/rc.conf
-ln -sfv $DIR/.zsh_functions ~/.zsh_functions
+ln -sfv $DIR/.zsh_functions ~
 mkdir -p ~/.config/dunst
 ln -sfv $DIR/.config/dunst/dunstrc ~/.config/dunst/dunstrc
 mkdir -p ~/.local/share/fonts
 ln -sfv $DIR/.config/i3blocks ~/.config
-ln -sfv $DIR/.config/rofi ~/.config
+ln -sfv $DIR/.config/wofi ~/.config
+ln -sfv $DIR/.config/fcitx5 ~/.config
 # vim stuff
+ln -sfv $DIR/.config/nvim ~/.config
 mkdir -p ~/.vim
 mkdir -p ~/.vim/undo
 mkdir -p ~/.vim/backup
@@ -60,7 +60,7 @@ mkdir -p ~/.vim/bundle/vim-airline-themes
 mkdir -p ~/.vim/bundle/autoload
 mkdir -p ~/.vim/bundle/autoload/airline
 mkdir -p ~/.vim/bundle/autoload/airline/themes
-vim -c ":PluginInstall"
+nvim -c ":PluginInstall"
 ln -sfv $DIR/wombat_oscar.vim ~/.vim/colors/wombat_oscar.vim
 ln -sfv \
    $DIR/airline_theme/minimalist_domondo.vim \
@@ -82,4 +82,6 @@ git clone https://github.com/rupa/z || true
 git clone https://github.com/rupa/v || true
 cd ~/repos_ajenos/v
 sudo cp v /usr/local/bin
+sudo cp $DIR/udevmon.yaml /etc/udevmon.yaml
+sudo cp $DIR/udevmon.service /etc/systemd/system/udevmon.service
 sudo systemctl reboot

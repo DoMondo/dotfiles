@@ -26,6 +26,7 @@ Plugin 'tikhomirov/vim-glsl'
 Plugin 'matze/vim-meson'
 Plugin 'peterhoeg/vim-qml'
 Plugin 'instant-markdown/vim-instant-markdown'
+Plugin 'ycm-core/YouCompleteMe'
 call vundle#end()            " required
 "filetype plugin indent on    " required
 " Nerdcommenter
@@ -306,4 +307,3 @@ map <Leader>1 :make <CR> :cw <CR>
 map <Leader>2 :cp<CR>
 map <Leader>3 :cn<CR>
 map <Leader>4 :cl<CR>
-
