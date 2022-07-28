@@ -48,3 +48,4 @@ i3blocks
 nabi-git
 rofi
 rofi-dmenu
+xorg-xinit
