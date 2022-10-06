@@ -45,7 +45,8 @@ htop
 pamixer
 sysstat
 i3blocks
-nabi-git
 rofi
 rofi-dmenu
 xorg-xinit
+xautolock
+ibus-hangul

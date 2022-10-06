@@ -10,7 +10,6 @@ exec --no-startup-id xset fp rehash
 exec --no-startup-id xcape -t 200 -e 'Control_L=Escape'
 exec --no-startup-id parcellite
 exec --no-startup-id xrandr --output DP1 --set "Broadcast RGB" "Full" 
-exec --no-startup-id nabi
 exec --no-startup-id insync start
 exec --no-startup-id dunst
 #exec --no-startup-id redshift -O 5000 
@@ -19,8 +18,8 @@ exec --no-startup-id xautolock -time 5 -locker "i3lock -c 002B36"
 # i3lock w/ Control+Alt+L
 bindsym Control+Mod1+L exec "i3lock -c 002B36"
 # Power options dialog
-bindsym Mod4+F4 exec systemctl poweroff
-bindsym Mod4+Shift+F4 exec systemctl reboot
+#bindsym Mod4+Alt+F4 exec systemctl poweroff
+#bindsym Mod4+Alt+Shift+F4 exec systemctl reboot
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 bindsym XF86Sleep exec --no-startup-id systemctl suspend
@@ -124,10 +123,10 @@ set $Locker i3lock && sleep 1
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
-    bindsym l exec --no-startup-id $Locker, mode "default"
+    bindsym l exec --no-startup-id mode "default"
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
-    bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
+    bindsym s exec --no-startup-id systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id systemctl hibernate, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
     bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
     # back to normal: Enter or Escape
@@ -149,14 +148,10 @@ client.focused_inactive #333333 #5F676A #ffffff #484e50
 client.unfocused        #333333 #424242 #888888 #292d2e
 client.urgent           #C10004 #900000 #ffffff #900000
 mode "resize" {
-        bindsym h resize shrink width 2 px or 2 ppt
-        bindsym j resize grow height 2 px or 2 ppt
-        bindsym k resize shrink height 2 px or 2 ppt
-        bindsym l resize grow width 2 px or 2 ppt
-        bindsym Left resize shrink width 2 px or 2 ppt
-        bindsym Down resize grow height 2 px or 2 ppt
-        bindsym Up resize shrink height 2 px or 2 ppt
-        bindsym Right resize grow width 2 px or 2 ppt
+        bindsym h resize grow width 2 px or 2 ppt
+        bindsym j resize shrink height 2 px or 2 ppt
+        bindsym k resize grow height 2 px or 2 ppt
+        bindsym l resize shrink width 2 px or 2 ppt
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
@@ -169,12 +164,13 @@ for_window [class="qjackctl" instance="qjackctl"] floating enable
 for_window [class="FaceFill.py"] floating enable, move container to workspace 3, fullscreen enable, workspace 4
 #for_window [title="imshow_python"] floating enable, move container to workspace 3
 for_window [title="python_temp"] move container to workspace 4, split v
-for_window [title="imshow_python"] move container to workspace 4, floating disable
-for_window [title="imshow*"] move container to workspace 4, floating disable
+for_window [title="imshow_python"] move container to workspace 3, floating disable
+for_window [title="imshow*"] move container to workspace 3, floating disable
 for_window [title="Figure*"] move container to workspace 4
 for_window [title="Rotated"]  move container to workspace 4
 for_window [title="plotline*"]  move container to workspace 4
 for_window [title="pygame*"]  move container to workspace 4, floating enable
+for_window [title="Clove*"] floating enable
 
 bar {
    status_command i3blocks

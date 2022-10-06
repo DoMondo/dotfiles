@@ -1,8 +1,7 @@
-export XIM=nabi
-export XIM_ARGS=
-export XIM_PROGRAM="nabi"
-export XMODIFIERS="@im=nabi"
-export GTK_IM_MODULE=xim
-export QT_IM_MODULE=xim
 xrdb -merge ~/.Xresources
+
+export GTK_IM_MODULE=ibus
+export QT_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+
 exec i3
