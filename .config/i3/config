@@ -142,6 +142,7 @@ bindsym --whole-window button10 workspace back_and_forth
 
 # no titlebars, please
 default_border pixel 2
+for_window [class=".*"] border pixel 2
 
 client.focused          #3F8AC2 #1c7a4b #ffffff #00DA8E
 client.focused_inactive #333333 #5F676A #ffffff #484e50
