@@ -1,0 +1,12 @@
+#!/bin/env zsh
+
+# Check that the ibus-daemon is running
+
+program_name="ibus-daemon"
+if pgrep -x $program_name >/dev/null
+then
+   kill `pgrep $program_name`
+   setxkbmap -layout us -variant altgr-intl -option ctrl:nocaps && xset r rate 200 40 && killall xcape && xcape -t 200 -e 'Control_L=Escape'
+else
+   /usr/bin/ibus-daemon -drx
+fi

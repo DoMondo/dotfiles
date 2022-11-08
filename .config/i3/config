@@ -213,3 +213,7 @@ bindsym Control+$mod+b exec zsh ~/.zsh_functions/change_audio_output && pkill -R
 bindsym --release $mod+p exec  zsh ~/.zsh_functions/make_screenshot
 
 exec --no-startup-id pkill -RTMIN+10 i3blocks
+
+# Toggle hangeul
+bindsym --release Control+Shift+space exec bash ~/.zsh_functions/toggle_hangeul
+
