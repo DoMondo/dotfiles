@@ -34,3 +34,8 @@ align=center
 [time]
 command=date '+%d/%m/%Y %H:%M'
 interval=5
+
+[battery2]
+command=~/.config/i3blocks/battery2
+interval=30
+markup=pango

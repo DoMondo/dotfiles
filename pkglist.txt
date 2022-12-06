@@ -25,6 +25,7 @@ arandr
 adwaita-icon-theme
 adobe-source-code-pro-fonts
 adobe-source-han-sans-jp-fonts
+adobe-source-han-sans-kr-fonts 
 kitty
 kitty-terminfo
 google-chrome
@@ -50,3 +51,6 @@ rofi-dmenu
 xorg-xinit
 xautolock
 ibus-hangul
+pkgstats
+alsautils
+ttf-font-awesome
