@@ -54,3 +54,5 @@ ibus-hangul
 pkgstats
 alsautils
 ttf-font-awesome
+evince
+xournalpp

@@ -32,7 +32,7 @@ min_width=disk 95G
 align=center
 
 [time]
-command=date '+%d/%m/%Y %H:%M'
+command=date '+%d/%m/%Y %H:%M' | tr -d '\n' && echo ' ~ ' | tr -d '\n' && TZ='Europe/Canary' date '+%H:%M'
 interval=5
 
 [battery2]
