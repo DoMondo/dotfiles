@@ -47,12 +47,10 @@ pamixer
 sysstat
 i3blocks
 rofi
-rofi-dmenu
 xorg-xinit
 xautolock
 ibus-hangul
 pkgstats
-alsautils
 ttf-font-awesome
 evince
 xournalpp

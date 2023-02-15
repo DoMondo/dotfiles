@@ -2,7 +2,7 @@
 
 set $mod Mod4
 font pango:Noto Sans 12
-exec --no-startup-id ~/.screenlayout/2-hor-ver.sh
+exec --no-startup-id ~/.screenlayout/layout.sh
 exec --no-startup-id setxkbmap -layout us -variant altgr-intl -option ctrl:nocaps
 exec --no-startup-id xset r rate 200 40
 exec --no-startup-id xset +fp /usr/share/fonts/local
@@ -30,7 +30,7 @@ bindsym $mod+Return exec dbus-launch kitty
 # kill focused window
 bindsym Mod1+F4 kill
 # shortcuts
-bindsym $mod+w exec ~/repo/dotfiles/.i3_functions/chrome.sh
+bindsym $mod+w exec brave
 bindsym --release $mod+Shift+k exec "kill -9 $(xprop _NET_WM_PID | awk '{ print $3 }')"
 bindsym $mod+e exec "/usr/bin/pcmanfm"
 # Dmenu

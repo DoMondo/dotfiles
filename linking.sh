@@ -11,7 +11,6 @@ ln -sfv $DIR/.gtkrc-2.0 ~
 ln -sfv $DIR/.gitignore_global ~
 ln -sfv $DIR/.config/pikaur.conf ~/.config/pikaur.conf
 ln -sfv $DIR/.config/i3 ~/.config
-ln -sfv $DIR/.config/i3/i3status.conf ~/.config/i3/
 ln -sfv $DIR/.config/parcellite ~/.config
 ln -sfv $DIR/.clang-format ~/.clang-format
 mkdir -p ~/.config/yapf
