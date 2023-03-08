@@ -54,3 +54,7 @@ pkgstats
 ttf-font-awesome
 evince
 xournalpp
+pulseaudio
+pulseaudio-alsa
+feh
+fd
