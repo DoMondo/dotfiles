@@ -30,7 +30,8 @@ bindsym $mod+Return exec dbus-launch kitty
 # kill focused window
 bindsym Mod1+F4 kill
 # shortcuts
-bindsym $mod+w exec brave
+#bindsym $mod+w exec ~/repo/dotfiles/.i3_functions/chrome.sh
+bindsym $mod+w exec ~/repo/dotfiles/.i3_functions/brave.sh
 bindsym --release $mod+Shift+k exec "kill -9 $(xprop _NET_WM_PID | awk '{ print $3 }')"
 bindsym $mod+e exec "/usr/bin/pcmanfm"
 # Dmenu
