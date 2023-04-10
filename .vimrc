@@ -146,9 +146,9 @@ let g:airline_theme='minimalist_domondo'
 inoremap <C-U> <C-G>u<C-U>
 
 " In many terminal emulators the mouse works just fine, thus enable it.
-if has('mouse')
-  set mouse=a
-endif
+"if has('mouse')
+  "set mouse=a
+"endif
 
 set laststatus=2
 " Switch syntax highlighting on, when the terminal has colors

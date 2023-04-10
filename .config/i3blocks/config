@@ -32,8 +32,13 @@ min_width=disk 95G
 align=center
 
 [time]
-command=date '+%d/%m/%Y %H:%M' | tr -d '\n' && echo ' ~ ' | tr -d '\n' && TZ='Europe/Canary' date '+%H:%M'
+command=date '+%d/%m/%Y %H:%M' | tr -d '\n' && echo ' ~ ' | tr -d '\n' && TZ='Atlantic/Canary' date '+%H:%M'
 interval=5
+
+[brightness]
+command=~/.config/i3blocks/brightness
+interval=once
+signal=10
 
 [battery2]
 command=~/.config/i3blocks/battery2

@@ -58,3 +58,5 @@ pulseaudio
 pulseaudio-alsa
 feh
 fd
+acpi
+blight
