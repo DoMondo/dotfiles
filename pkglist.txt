@@ -60,3 +60,4 @@ feh
 fd
 acpi
 blight
+atuin
