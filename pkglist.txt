@@ -61,4 +61,5 @@ fd
 acpi
 blight
 atuin
+brave-bin
 tk
