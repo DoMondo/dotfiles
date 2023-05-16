@@ -165,5 +165,5 @@ imshow() {
 fpath=(~/.zsh_functions $fpath);
 autoload -U $fpath[1]/*(.:t)
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-eval "$(atuin init zsh)"
+eval "$(atuin init zsh --disable-up-arrow)"
 
