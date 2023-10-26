@@ -3,6 +3,8 @@
 set $mod Mod4
 font pango:Noto Sans 12
 exec --no-startup-id ~/.screenlayout/layout.sh
+exec --no-startup-id ~/repo/dotfiles/.i3_functions/pulseaudio_start_hook.sh
+exec picom &
 exec --no-startup-id setxkbmap -layout us -variant altgr-intl -option ctrl:nocaps
 exec --no-startup-id xset r rate 200 40
 exec --no-startup-id xset +fp /usr/share/fonts/local
@@ -89,15 +91,11 @@ workspace 10 output $MR
 
 # switch to workspace
 bindsym $mod+1 workspace 2; workspace 1
-bindsym $mod+2 workspace 1; workspace 2
-bindsym $mod+3 workspace 4; workspace 3
-bindsym $mod+4 workspace 3; workspace 4
-bindsym $mod+5 workspace 6; workspace 5
-bindsym $mod+6 workspace 5; workspace 6
-bindsym $mod+7 workspace 8; workspace 7
-bindsym $mod+8 workspace 7; workspace 8
-bindsym $mod+9 workspace 10; workspace 9
-bindsym $mod+0 workspace 9; workspace 10
+bindsym $mod+2 workspace 4; workspace 3
+bindsym $mod+3 workspace 6; workspace 5
+bindsym $mod+4 workspace 8; workspace 7
+bindsym $mod+5 workspace 10; workspace 9
+bindsym $mod+6 workspace 9; workspace 10
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1; workspace 2; workspace 1

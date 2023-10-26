@@ -11,6 +11,7 @@ ln -sfv $DIR/.gtkrc-2.0 ~
 ln -sfv $DIR/.gitignore_global ~
 ln -sfv $DIR/.config/pikaur.conf ~/.config/pikaur.conf
 ln -sfv $DIR/.config/i3 ~/.config
+ln -sfv $DIR/.config/picom ~/.config
 ln -sfv $DIR/.config/parcellite ~/.config
 ln -sfv $DIR/.clang-format ~/.clang-format
 mkdir -p ~/.config/yapf
@@ -27,6 +28,7 @@ ln -sfv $DIR/.config/dunst/dunstrc ~/.config/dunst/dunstrc
 mkdir -p ~/.local/share/fonts
 ln -sfv $DIR/.config/i3blocks ~/.config
 ln -sfv $DIR/.config/rofi ~/.config
+mkdir -p ~/.local/share/fonts
 
 # vim stuff
 mkdir -p ~/.vim

@@ -63,3 +63,6 @@ blight
 atuin
 brave-bin
 tk
+noto-fonts-emoji
+xrandr-invert-colors
+picom
