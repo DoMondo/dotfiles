@@ -1,14 +1,3 @@
-gtk-theme-name = "MediterraneanDarkest"
+gtk-theme-name = "Adwaita dark"
 gtk-font-name = "Open Sans 8"
 gtk-icon-theme-name = "Faenza-Dark"
-
-# Wooptix Pidgin
-style "wgin"
-{
-    font_name = "Monospace"
-}
-widget "*pidgin_conv_entry" style "wgin"
-widget "*pidgin_conv_imhtml" style "wgin"
-widget "*pidgin_log_imhtml" style "wgin"
-widget "*pidgin_request_imhtml" style "wgin"
-widget "*pidgin_notify_imhtml" style "wgin"

@@ -2,20 +2,17 @@
 
 set $mod Mod4
 font pango:Noto Sans 12
-exec --no-startup-id ~/.screenlayout/layout.sh
-exec --no-startup-id ~/repo/dotfiles/.i3_functions/pulseaudio_start_hook.sh
 exec picom &
-exec --no-startup-id setxkbmap -layout us -variant altgr-intl -option ctrl:nocaps
-exec --no-startup-id xset r rate 200 40
+exec_always --no-startup-id ~/.screenlayout/layout.sh
 exec --no-startup-id xset +fp /usr/share/fonts/local
 exec --no-startup-id xset fp rehash
-exec --no-startup-id xcape -t 200 -e 'Control_L=Escape'
 exec --no-startup-id parcellite
-exec --no-startup-id xrandr --output DP1 --set "Broadcast RGB" "Full" 
 exec --no-startup-id insync start
 exec --no-startup-id dunst
 exec --no-startup-id blight set 7500
 exec --no-startup-id blueman-applet
+exec --no-startup-id ~/repo/dotfiles/.i3_functions/pulseaudio_start_hook.sh
+exec --no-startup-id ~/repo/dotfiles/.i3_functions/keyboard_start_hook.sh
 #exec --no-startup-id redshift -O 5000 
 # Screensaver
 exec --no-startup-id xautolock -time 5 -locker "i3lock -c 002B36"
@@ -73,6 +70,8 @@ bindsym $mod+a focus parent
 # HOME
 set $MR DisplayPort-2
 set $ML HDMI-A-0 
+exec --no-startup-id xrandr --output $MR --set "Broadcast RGB" "Full" 
+exec --no-startup-id xrandr --output $ML --set "Broadcast RGB" "Full" 
 # WORK
 #set $ML HDMI1 
 #set $MR HDMI2 
