@@ -1,5 +1,15 @@
 texlive-bin
 texlive-core
+texlive-binextra
+texlive-latexrecommended
+texlive-langspanish
+texlive-fontsrecommended
+texlive-latexextra
+texlive-mathscience
+texlive-plaingeneric
+texlive-fontsextra
+vim-spell-en
+vim-spell-es
 scrcpy
 pycharm-community-edition
 gimp
@@ -8,3 +18,4 @@ autofirma-bin
 gitkraken
 downgrade
 android-studio
+simplescreenrecorder-bin

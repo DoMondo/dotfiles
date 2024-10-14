@@ -1,0 +1,10 @@
+#!/bin/env zsh
+name="main"
+
+echo STARTING
+if [ "$#" -ne 0 ]; then
+   echo $1
+   name=${1%.*}
+   echo $name
+fi
+latexmk -pdf -f "$name.tex" --output-directory=/tmp && cp /tmp/"$name.pdf" . && evince "$name.pdf" 2> /dev/null &
