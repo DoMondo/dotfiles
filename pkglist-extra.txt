@@ -13,7 +13,7 @@ vim-spell-es
 scrcpy
 pycharm-community-edition
 gimp
-spotify
+spotify-launcher
 autofirma-bin
 gitkraken
 downgrade
