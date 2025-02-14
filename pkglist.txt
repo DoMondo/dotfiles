@@ -67,3 +67,4 @@ noto-fonts-emoji
 xrandr-invert-colors
 picom
 cameractrls
+playerctl
