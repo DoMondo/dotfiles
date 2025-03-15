@@ -27,13 +27,16 @@ hi StatusLineNC guifg=#857b6f guibg=#444444 gui=none
 hi LineNr guifg=#808080 guibg=#080808 gui=none
 hi SpecialKey guifg=#626262 guibg=#2b2b2b gui=none
 hi WarningMsg guifg=#ff5f55
-hi ErrorMsg guifg=#e3e0d7 guibg=#3a3a3a gui=bold
-hi SpellBad guifg=#e3e0d7 guibg=#3a3a3a gui=bold
-hi SpellCap guifg=#e3e0d7 guibg=#3a3a3a gui=bold
+hi ErrorMsg guifg=#ee5057 guibg=#131313 gui=bold
+hi SpellBad guifg=#ee5057 guibg=#131313 gui=bold
+hi SpellCap guifg=#ee5057 guibg=#131313 gui=bold
+hi CursorLineNR guibg=#32322f gui=none cterm=none
+hi Error guifg=#ee5057 guibg=#131313 gui=none
+hi Search guifg=#EEEEEE guibg=#063304 gui=none
 
 " Vim >= 7.0 specific colors
 if version >= 700
-hi CursorLine guibg=#32322f
+hi CursorLine guibg=#32322f gui=none cterm=none
 hi MatchParen guifg=#eae788 guibg=#857b6f gui=bold
 hi Pmenu guifg=#ffffd7 guibg=#444444
 hi PmenuSel guifg=#080808 guibg=#cae982
