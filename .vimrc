@@ -1,6 +1,5 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
-set shell=/bin/bash
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -25,6 +24,8 @@ Plugin 'keith/swift.vim'
 Plugin 'tikhomirov/vim-glsl'
 Plugin 'matze/vim-meson'
 Plugin 'peterhoeg/vim-qml'
+Plugin 'jasonccox/vim-wayland-clipboard'
+Plugin 'theRealCarneiro/hyprland-vim-syntax'
 "Plugin 'instant-markdown/vim-instant-markdown'
 call vundle#end()            " required
 "filetype plugin indent on    " required
@@ -46,6 +47,8 @@ set t_Co=256
 
 " Use the linux clipboard (I tend to use vim across consoles)
 set clipboard=unnamedplus
+
+
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
@@ -107,7 +110,7 @@ function CallFormatter()
        ":normal gg
        :execute "normal!".lineNumber."gg"
     elseif (&ft=='tex')
-       :0,$!latexindentvim
+       ":0,$!latexindentvim
     else
        :ClangFormat
    endif
@@ -176,7 +179,7 @@ if has("autocmd")
 
   " For all text files set 'textwidth' to 78 characters.
   autocmd FileType text setlocal textwidth=78
-  autocmd FileType tex setlocal textwidth=83
+  autocmd FileType tex setlocal textwidth=83 spell spelllang=es
   autocmd FileType dokuwiki setlocal textwidth=83
   autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 

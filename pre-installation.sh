@@ -43,7 +43,7 @@ read -p '******* Uncomment wheel entry in sudoers file ' unused
 visudo 
 
 # Install i3wm
-pacman -S vim i3-wm xorg xorg-xinit xterm xterm xorg-server xorg-apps noto-fonts xf86-input-libinput xf86-video-amdgpu xf86-video-vesa xf86-video-vmware xf86-video-fbdev xf86-video-intel git
+pacman -S vim noto-fonts xf86-input-libinput xf86-video-amdgpu xf86-video-vesa xf86-video-vmware xf86-video-fbdev xf86-video-intel xf86-video-nouveau git
 wget https://raw.githubusercontent.com/DoMondo/dotfiles/master/pre-installation-user.sh
 chmod +x pre-installation-user.sh
 sudo -u ogomez ./pre-installation-user.sh 

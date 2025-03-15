@@ -8,4 +8,6 @@ echo "if [[ -z \$DISPLAY ]] && [[ \$(tty) = /dev/tty1 ]]; then exec startx; fi" 
 mkdir repo && cd repo
 sudo -u ogomez git clone https://github.com/DoMondo/dotfiles.git
 cd dotfiles
+sudo cp udevmon.yaml /etc/udevvmon.yaml
+sudo systemctl enable udevmon
 sudo -u ogomez ./post-installation.sh

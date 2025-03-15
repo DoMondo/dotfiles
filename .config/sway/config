@@ -1,0 +1,204 @@
+set $mod Mod4
+font pango:Noto Sans 12
+
+output DP-1 pos 0 0 res 3840x2160 scale 1.34
+output DP-3 pos 2909 65 res 1920x1080 transform 270 
+output * bg #000000 solid_color
+
+input type:keyboard {
+   xkb_layout us
+   xkb_variant altgr-intl
+   repeat_delay 200
+   repeat_rate 40
+}
+
+exec --no-startup-id xset +fp /usr/share/fonts/local
+exec --no-startup-id xset fp rehash
+
+# Clipboard manager
+exec_always wl-paste -t text --watch clipman store
+bindsym Control+Alt+a exec clipman pick -t rofi
+
+bindsym Control+Mod1+L exec "swaylock -c 002B36"
+#exec --no-startup-id insync start --qt-qpa-platform=xcb
+exec --no-startup-id dunst
+exec --no-startup-id blight set 7500
+exec --no-startup-id blueman-applet
+exec --no-startup-id ~/repo/dotfiles/.i3_functions/pulseaudio_start_hook.sh
+exec --no-startup-id ~/repo/dotfiles/.i3_functions/keyboard_start_hook.sh
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+bindsym XF86Sleep exec --no-startup-id systemctl suspend
+# Terminal
+bindsym $mod+Return exec dbus-launch kitty 
+# kill focused window
+bindsym Mod1+F4 kill
+# shortcuts
+bindsym $mod+w exec ~/repo/dotfiles/.i3_functions/brave.sh
+bindsym --release $mod+Shift+k exec "kill -9 $(xprop _NET_WM_PID | awk '{ print $3 }')"
+bindsym $mod+e exec "/usr/bin/pcmanfm"
+# Dmenu
+bindsym $mod+d exec --no-startup-id rofi -i -show drun 
+# Navigation
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+h focus left
+bindsym $mod+l focus right
+# move focused window
+bindsym $mod+Control+j move down
+bindsym $mod+Control+k move up
+bindsym $mod+Control+h move left
+bindsym $mod+Control+l move right
+bindsym $mod+Control+Left move left
+bindsym $mod+Control+Down move down
+bindsym $mod+Control+Up move up
+bindsym $mod+Control+Right move right
+# split in horizontal orientation
+bindsym $mod+Shift+H split h
+# split in vertical orientation
+bindsym $mod+Shift+V split v
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+#bindsym --whole-window button13 floating toggle
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+# focus the parent container
+bindsym $mod+a focus parent
+
+set $ML DP-1 
+set $MR HDMI-A-1
+
+# workspace bindings to monitors
+workspace 1 output $ML
+workspace 2 output $MR
+workspace 3 output $ML
+workspace 4 output $MR
+workspace 5 output $ML
+workspace 6 output $MR
+workspace 7 output $ML
+workspace 8 output $MR
+workspace 9 output $ML
+workspace 10 output $MR
+
+# switch to workspace
+bindsym $mod+1 workspace 2; workspace 1
+bindsym $mod+2 workspace 4; workspace 3
+bindsym $mod+3 workspace 6; workspace 5
+bindsym $mod+4 workspace 8; workspace 7
+bindsym $mod+5 workspace 10; workspace 9
+bindsym $mod+6 workspace 9; workspace 10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1; workspace 2; workspace 1
+bindsym $mod+Shift+2 move container to workspace 2; workspace 1; workspace 2
+bindsym $mod+Shift+3 move container to workspace 3; workspace 4; workspace 3
+bindsym $mod+Shift+4 move container to workspace 4; workspace 3; workspace 4
+bindsym $mod+Shift+5 move container to workspace 5; workspace 6; workspace 5
+bindsym $mod+Shift+6 move container to workspace 6; workspace 5; workspace 6
+bindsym $mod+Shift+7 move container to workspace 7; workspace 8; workspace 7
+bindsym $mod+Shift+8 move container to workspace 8; workspace 7; workspace 8
+bindsym $mod+Shift+9 move container to workspace 9; workspace 10; workspace 9
+bindsym $mod+Shift+0 move container to workspace 10; workspace 9; workspace 10
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id mode "default"
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym s exec --no-startup-id systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id systemctl hibernate, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+Delete mode "$mode_system"
+bindsym $mod+Print mode "$mode_system"
+# Switch to last focused workspace
+bindsym $mod+Tab workspace back_and_forth
+#bindsym --whole-window Control+Mod1+Tab workspace back_and_forth
+#bindsym --whole-window button10 workspace back_and_forth
+
+# no titlebars, please
+default_border pixel 2
+for_window [class=".*"] border pixel 2
+
+client.focused          #3F8AC2 #1c7a4b #ffffff #00DA8E
+client.focused_inactive #333333 #5F676A #ffffff #484e50
+client.unfocused        #333333 #424242 #888888 #292d2e
+client.urgent           #C10004 #900000 #ffffff #900000
+mode "resize" {
+        bindsym h resize grow width 2 px or 2 ppt
+        bindsym j resize shrink height 2 px or 2 ppt
+        bindsym k resize grow height 2 px or 2 ppt
+        bindsym l resize shrink width 2 px or 2 ppt
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+focus_follows_mouse no
+# Pavucontrol always floating
+for_window [class="feh"] floating enable
+for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
+for_window [class="qjackctl" instance="qjackctl"] floating enable
+for_window [class="FaceFill.py"] floating enable, move container to workspace 3, fullscreen enable, workspace 4
+#for_window [title="imshow_python"] floating enable, move container to workspace 3
+for_window [title="python_temp"] move container to workspace 4, split v
+for_window [title="imshow_python"] move container to workspace 3, floating disable
+for_window [title="imshow*"] move container to workspace 3, floating disable
+for_window [title="Figure*"] move container to workspace 4
+for_window [title="Rotated"]  move container to workspace 4
+for_window [title="plotline*"]  move container to workspace 4
+for_window [title="pygame*"]  move container to workspace 4, floating enable
+for_window [title="Clove*"] floating enable
+
+bar {
+   status_command i3blocks
+   colors {
+      #separator  #666666
+      background #101015
+      #statusline #DCDCDC
+      #focused_workspace  #008fff #007fff #ffffff
+      #active_workspace   #333333 #5f676a #ffffff
+      #inactive_workspace #333333 #222222 #888888
+      #urgent_workspace   #aa0000 #990000 #ffffff
+   }
+   position top
+   tray_output $ML
+}
+
+######### SPOTIFY ######### 
+# Previous
+bindsym Control+Mod1+Left exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous  
+# Next
+bindsym Control+Mod1+Right exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next  
+# Vol-Up
+bindsym Control+Mod1+Up exec pamixer -i 3 --allow-boost --set-limit 200 && pkill -RTMIN+10 i3blocks
+# Vol-Down
+bindsym Control+Mod1+Down exec pamixer -d 3 --allow-boost --set-limit 200 && pkill -RTMIN+10 i3blocks
+# Play-Pause
+bindsym Control+Mod1+period exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+
+mouse_warping none
+# Cycle through audio outputs
+bindsym Control+$mod+b exec zsh ~/.zsh_functions/change_audio_output && pkill -RTMIN+10 i3blocks
+
+# Capture screen crop
+bindsym --release $mod+p exec  zsh ~/.zsh_functions/make_screenshot
+
+exec --no-startup-id pkill -RTMIN+10 i3blocks
+
+# Back light
+bindsym Control+Shift+Up exec blight set +10% && pkill -RTMIN+10 i3blocks
+bindsym Control+Shift+Down exec blight set -10% && pkill -RTMIN+10 i3blocks
