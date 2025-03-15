@@ -154,7 +154,7 @@ export JAVA_HOME=/opt/android-studio/jre/
 #alias pikaurListBySize="LC_ALL=C pikaur -Qi | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -h"
 
 alias icat="kitty +kitten icat"
-alias ssh="kitty +kitten ssh"
+#alias ssh="kitty +kitten ssh"
 imshow() { 
    if [ "$#" -eq 0 ]; then
       nohup xnviewmp $PWD &> /dev/null & 
