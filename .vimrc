@@ -18,6 +18,7 @@ Plugin 'keith/swift.vim'
 Plugin 'tikhomirov/vim-glsl'
 Plugin 'matze/vim-meson'
 Plugin 'peterhoeg/vim-qml'
+Plugin 'kopischke/vim-fetch'
 call vundle#end()            " required
 "filetype plugin indent on    " required
 " Nerdcommenter
