@@ -2,6 +2,7 @@
 echo ------------------------------- Linking config files
 DIR=$(pwd)
 ln -sfv $DIR/.xinitrc ~
+ln -sfv $DIR/.Xresources ~
 ln -sfv $DIR/.vimrc ~
 ln -sfv $DIR/.zshrc ~
 ln -sfv $DIR/.zprofile ~
