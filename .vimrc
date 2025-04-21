@@ -3,7 +3,7 @@ filetype off                  " required
 set shell=/bin/bash
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=/usr/share/vim/vimfiles/autoload/vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
