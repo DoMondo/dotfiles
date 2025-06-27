@@ -1,10 +1,12 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+set shell=/bin/bash
+
 " set the runtime path to include Vundle and initialize
 set rtp+=/usr/share/vim/vimfiles/autoload/vundle.vim
 call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
+"Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'rhysd/vim-clang-format'
 Plugin 'sheerun/vim-wombat-scheme'
