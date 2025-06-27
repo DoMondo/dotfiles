@@ -2,24 +2,17 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=/usr/share/vim/vimfiles/autoload/vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-unimpaired'
 Plugin 'rhysd/vim-clang-format'
-Plugin 'morhetz/gruvbox'
 Plugin 'sheerun/vim-wombat-scheme'
-Plugin 'nblock/vim-dokuwiki'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'petRUShka/vim-opencl'
-Plugin 'godlygeek/csapprox'
-Plugin 'airblade/vim-gitgutter'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tell-k/vim-autopep8' 
-Plugin 'kopischke/vim-fetch'
-Plugin 'vim-scripts/vimgdb'
 Plugin 'keith/swift.vim'
 Plugin 'tikhomirov/vim-glsl'
 Plugin 'matze/vim-meson'
@@ -27,6 +20,7 @@ Plugin 'peterhoeg/vim-qml'
 Plugin 'jasonccox/vim-wayland-clipboard'
 Plugin 'theRealCarneiro/hyprland-vim-syntax'
 "Plugin 'instant-markdown/vim-instant-markdown'
+Plugin 'kopischke/vim-fetch'
 call vundle#end()            " required
 "filetype plugin indent on    " required
 " Nerdcommenter
@@ -160,6 +154,7 @@ if &t_Co > 2 || has("gui_running")
   syntax on
   set background=dark
   " let g:solarized_termcolors=256
+  set termguicolors
   colorscheme wombat_oscar
   set hlsearch
 endif
@@ -309,4 +304,5 @@ map <Leader>1 :make <CR> :cw <CR>
 map <Leader>2 :cp<CR>
 map <Leader>3 :cn<CR>
 map <Leader>4 :cl<CR>
+
 
