@@ -8,7 +8,7 @@ configuration {
       directories-first: true;
       sorting-method:    "name";
   }
-  font: "mono 16";
+  font: "mono 13";
   show-icons: true;
 }
 @theme "DarkBlue"

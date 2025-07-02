@@ -31,7 +31,10 @@ ln -sfv $DIR/.config/dunst/dunstrc ~/.config/dunst/dunstrc
 mkdir -p ~/.local/share/fonts
 ln -sfv $DIR/.config/i3blocks ~/.config
 ln -sfv $DIR/.config/rofi ~/.config
-mkdir -p ~/.local/share/fonts
+
+ln -sfv $DIR/applications ~/.local/share/
+ln -sfv $DIR/.config/hypr ~/.config
+ln -sfv $DIR/.config/waybar ~/.config
 
 # vim stuff
 mkdir -p ~/.vim

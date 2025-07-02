@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=GitKraken
+Comment=Unleash your repo
+GenericName=Git Client
+Exec=gitkraken %f --ozone-platform=wayland --enable-features=WaylandWindowDecorations
+Icon=gitkraken
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=GNOME;GTK;Development;RevisionControl;
+MimeType=text/plain;
+StartupWMClass=gitkraken

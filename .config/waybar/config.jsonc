@@ -1,0 +1,106 @@
+// -*- mode: jsonc -*-
+{
+    // "layer": "top", // Waybar at top layer
+    // "position": "bottom", // Waybar position (top|bottom|left|right)
+    "height": 30, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    "spacing": 0, // Gaps between modules
+    // Choose the order of the modules
+    "modules-left": [
+        "hyprland/workspaces"
+    ],
+    "hyprland/workspaces": {
+       "format": "{icon}",
+       "on-click": "activate",
+       "sort-by-number": true
+   }, 
+   "modules-center": [
+        "hyprland/submap"
+   ],
+   "modules-right": [
+        "network",
+        "custom/volume",
+        "cpu",
+        "memory",
+        "custom/disk",
+        "battery",
+        "battery#bat2",
+        "clock",
+        "tray"
+    ],
+    // Modules configuration
+     "sway/workspaces": {
+         "disable-scroll": true,
+         "all-outputs": true,
+         "warp-on-scroll": false,
+         "format": "{name}: {icon}",
+         "format-icons": {
+             "1": "",
+             "2": "",
+             "3": "",
+             "4": "",
+             "5": "",
+             "urgent": "",
+             "focused": "",
+             "default": ""
+         }
+     },
+    "keyboard-state": {
+        "numlock": true,
+        "capslock": true,
+        "format": "{name} {icon}",
+        "format-icons": {
+            "locked": "",
+            "unlocked": ""
+        }
+    },
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    "sway/scratchpad": {
+        "format": "{icon} {count}",
+        "show-empty": false,
+        "format-icons": ["", ""],
+        "tooltip": true,
+        "tooltip-format": "{app}: {title}"
+    },
+    "network": {
+        "format-wifi": "{ipaddr} ({signalStrength}%) ",
+        "format-ethernet": "{ipaddr}"
+    },
+    "custom/volume": {
+        "format": "♪ {}",
+        "exec": "$HOME/.config/i3blocks/volume",
+        "interval": "once",
+        "signal": 10,
+        "tooltip":false
+    },
+    "cpu": {
+        "format": "cpu {usage}%",
+        "tooltip": false,
+        "states": {
+            "idle": 0,
+            "normal": 10,
+            "warning": 30,
+            "critical": 75
+        }
+    },
+    "memory": {
+        "format": "mem {}%"
+    },
+    "custom/disk": {
+        "exec": "$HOME/.config/i3blocks/disk",
+        "format": "disk {}"
+    },
+    "clock": {
+        // "timezone": "America/New_York",
+        "format": "{:%d/%m/%Y %H:%M}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+    "tray": {
+        "icon-size": 21,
+        "spacing": 4
+    }
+
+    }
+}

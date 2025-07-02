@@ -9,7 +9,7 @@ unzip
 unrar
 python
 pdftk
-pcmanfm
+pcmanfm-gtk3
 pavucontrol
 noto-fonts
 ls++
@@ -54,14 +54,14 @@ noto-fonts-emoji
 cameractrls
 playerctl
 rofi-wayland
-intersection-caps2esc
+interception-caps2esc
 clipman
-xf86-video-noveau
 slurp
 wf-recorder
 grim
 wl-clipboard
-sway-nvidia
 swaybg
 hyprland
-libva-nvidia-driver
+hypridle
+rocm-clang-ocl
+grimblast-git

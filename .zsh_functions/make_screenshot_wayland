@@ -1,16 +1,8 @@
 #!/bin/env zsh
 cd ~/Pictures/ 
 
-#
-rect=`slurp`
-
-echo $rect
-
 # Capture
-grim -g $rect
+grimblast copysave area
 
-# Get path of this image
-image_path=`ls -hrt -d $PWD/* | tail -n 1`
-
-# Put it in the clipboard
-wl-copy -t image/png < $image_path
+# Display
+feh $(ls -hrt | tail -n 1)

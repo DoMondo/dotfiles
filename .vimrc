@@ -176,7 +176,7 @@ if has("autocmd")
 
   " For all text files set 'textwidth' to 78 characters.
   autocmd FileType text setlocal textwidth=78
-  autocmd FileType tex setlocal textwidth=83 spell spelllang=es
+  autocmd FileType tex setlocal spell spelllang=es
   autocmd FileType dokuwiki setlocal textwidth=83
   autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 

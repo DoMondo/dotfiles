@@ -1,0 +1,66 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: Noto, sans-serif;
+    font-size: 16px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: #101015;
+    color: white;
+}
+
+#workspaces button{
+   padding: 0 .2em;
+   border: 2px solid rgba(76, 120, 153, 1);
+   border-color: rgba(51, 51, 51, 1);
+   background-color: rgba(34, 34, 34, 1);
+   margin: 0.5px;
+   color: gray;
+}
+
+#workspaces button.active {
+   background-color: rgba(40, 85, 119, 1);
+   border-color: rgba(76, 120, 153, 1);
+   color: white;
+}
+
+/*#workspaces button.empty {*/
+   /*background-color: transparent;*/
+   /*border: 1px solid rgba(100, 114, 125, 0.5);*/
+   /*border-color: white;*/
+   /*color: gray;*/
+/*}*/
+
+label#network {
+   color: #00FF00;
+}
+
+#network, #custom-volume, #cpu, #memory, #custom-disk, #clock {
+    padding-right: 11px;
+    padding-left: 11px;
+    border-right: 1px solid gray;
+    border-left: 0px solid gray;
+}
+
+#tray {
+   padding-left: 8px;
+   padding-right: 8px;
+}
+
+#cpu.idle {
+  color: #EBDBB2;
+}
+
+#cpu.normal {
+  color: #EBDBB2;
+}
+
+#cpu.warning {
+  color: yellow;
+}
+
+#cpu.critical {
+  color: red;
+}
