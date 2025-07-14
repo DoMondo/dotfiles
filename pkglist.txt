@@ -42,7 +42,6 @@ pkgstats
 ttf-font-awesome
 evince
 xournalpp
-pulseaudio
 pulseaudio-alsa
 fd
 acpi
@@ -65,3 +64,7 @@ hyprland
 hypridle
 rocm-clang-ocl
 grimblast-git
+pipewire
+wireplumber 
+xdg-desktop-portal-hyprland
+pipewire-pulse

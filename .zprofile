@@ -3,7 +3,7 @@ emulate sh -c '. ~/.profile'
 
 if [[ -z $DISPLAY && $TTY = /dev/tty1 ]]; then
   #export MOZ_ENABLE_WAYLAND=1
-  #exec sway --unsupported-gpu
- #exec dbus-run-session hyprland
-  startx
+  #exec sway
+  exec hyprland
+  #startx
 fi

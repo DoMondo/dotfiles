@@ -23,6 +23,7 @@ Plugin 'jasonccox/vim-wayland-clipboard'
 Plugin 'theRealCarneiro/hyprland-vim-syntax'
 "Plugin 'instant-markdown/vim-instant-markdown'
 Plugin 'kopischke/vim-fetch'
+Plugin 'fidian/hexmode'
 call vundle#end()            " required
 "filetype plugin indent on    " required
 " Nerdcommenter
