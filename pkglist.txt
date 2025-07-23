@@ -68,3 +68,4 @@ pipewire
 wireplumber 
 xdg-desktop-portal-hyprland
 pipewire-pulse
+mailcap
