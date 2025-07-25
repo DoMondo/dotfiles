@@ -78,6 +78,8 @@
     "cpu": {
         "format": "cpu {usage}%",
         "tooltip": false,
+        "interval": 3,
+        "min-length": 8,
         "states": {
             "idle": 0,
             "normal": 10,
@@ -86,11 +88,13 @@
         }
     },
     "memory": {
-        "format": "mem {}%"
+        "format": "mem {}%",
+        "interval": 3
     },
     "custom/disk": {
         "exec": "$HOME/.config/i3blocks/disk",
-        "format": "disk {}"
+        "format": "disk {}",
+        "interval": 30
     },
     "clock": {
         // "timezone": "America/New_York",

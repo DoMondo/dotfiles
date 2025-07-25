@@ -3,7 +3,7 @@ zsh-autosuggestions
 zsh-syntax-highlighting
 zsh-completions
 ripgrep
-xnviewmp
+xnviewmp-system-libs
 vim-runtime
 unzip
 unrar
