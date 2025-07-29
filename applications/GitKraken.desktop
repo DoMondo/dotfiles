@@ -8,5 +8,5 @@ Terminal=false
 Type=Application
 StartupNotify=true
 Categories=GNOME;GTK;Development;RevisionControl;
-MimeType=text/plain;
 StartupWMClass=gitkraken
+MimeType=x-scheme-handler/gitkraken;text/plain;

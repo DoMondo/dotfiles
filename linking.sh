@@ -61,3 +61,4 @@ git config --global core.excludesfile ~/.gitignore_global
 mkdir -p ~/.zfunctions
 ln -sfv $DIR/pure.zsh ~/.zfunctions/prompt_pure_setup
 ln -sfv $DIR/async.zsh ~/.zfunctions/async
+sudo cp udevmon.yaml /etc/interception/udevmon.yaml

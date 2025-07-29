@@ -67,5 +67,10 @@ grimblast-git
 pipewire
 wireplumber 
 xdg-desktop-portal-hyprland
+xdg-desktop-portal-gtk
 pipewire-pulse
 mailcap
+meson 
+gpio
+waybar
+
