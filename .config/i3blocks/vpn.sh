@@ -2,11 +2,11 @@
 
 if nmcli connection show | grep -q vpn; then
   if nmcli -f GENERAL.STATE con show 'VPN' | grep 'activated' &>/dev/null; then
-    status='{"text": "VPN On 🔒"}'
+    status='{"text": "VPN 🔒", "class":"enabled"}'
   elif nmcli -f GENERAL.STATE con show 'VPN' | grep 'activating' &>/dev/null; then
-    status='{"text": "VPN Connecting"}'
+    status='{"text": "VPN 🔓", "class":"loading"}'
   else
-    status='{"text": "VPN Off 🔓"}'
+    status='{"text": "VPN 🔓", "class":"disabled"}'
   fi
 else
   status='{"text": ""}'

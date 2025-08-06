@@ -44,6 +44,18 @@ label#network {
     border-left: 0px solid gray;
 }
 
+#custom-vpn.disabled {
+   color: gray;
+}
+
+#custom-vpn.enabled {
+   color: #00FF00;
+}
+
+#custom-vpn.loading {
+   color: yellow;
+}
+
 #tray {
    padding-left: 8px;
    padding-right: 8px;
