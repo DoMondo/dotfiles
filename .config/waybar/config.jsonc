@@ -19,6 +19,7 @@
    ],
    "modules-right": [
         "network",
+        "custom/vpn",
         "custom/volume",
         "cpu",
         "memory",
@@ -65,8 +66,18 @@
         "tooltip-format": "{app}: {title}"
     },
     "network": {
-        "format-wifi": "{ipaddr} ({signalStrength}%) ",
-        "format-ethernet": "{ipaddr}"
+       "format-wifi": "{ipaddr} ({signalStrength}%) ",
+       "format-ethernet": "{ipaddr}"
+    },
+    "custom/vpn": {
+       "interval": 1,
+       "format": "{}",
+       "hide-empty-text": true,
+       "exec": "~/.config/i3blocks/vpn.sh",
+       "return-type": "json",
+       "on-click": "nmcli connection up 'VPN'  &>/dev/null &",
+       "on-click-right": "nmcli connection down 'VPN' &>/dev/null &",
+       "tooltip": false
     },
     "custom/volume": {
         "format": "♪ {}",
