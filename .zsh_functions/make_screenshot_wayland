@@ -2,7 +2,7 @@
 cd ~/Pictures/ 
 
 # Capture
-grimblast copysave area
+XDG_SCREENSHOTS_DIR=~/Pictures grimblast copysave area
 
 # Display
 feh $(ls -hrt | tail -n 1)

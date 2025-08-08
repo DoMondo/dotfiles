@@ -16,7 +16,7 @@ fi
 
 echo ------------------------------- Installing Packages
 cd $DIR
-pikaur -S --needed - < pkglist.txt
+pikaur -S --needed --noconfirm `cat pkglist.txt`
 
 chsh -s $(which zsh)
 

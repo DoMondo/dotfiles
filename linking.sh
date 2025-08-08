@@ -36,6 +36,8 @@ ln -sfv $DIR/applications ~/.local/share/
 ln -sfv $DIR/.config/hypr ~/.config
 ln -sfv $DIR/.config/waybar ~/.config
 
+mkdir -p ~/Pictures
+
 # vim stuff
 mkdir -p ~/.vim
 mkdir -p ~/.vim/undo
@@ -62,3 +64,4 @@ mkdir -p ~/.zfunctions
 ln -sfv $DIR/pure.zsh ~/.zfunctions/prompt_pure_setup
 ln -sfv $DIR/async.zsh ~/.zfunctions/async
 sudo cp udevmon.yaml /etc/interception/udevmon.yaml
+sudo systemctl enable --now udevmon.service

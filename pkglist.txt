@@ -71,6 +71,7 @@ xdg-desktop-portal-gtk
 pipewire-pulse
 mailcap
 meson 
-gpio
 waybar
-
+cpio
+nvidia
+feh

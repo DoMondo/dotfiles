@@ -2,11 +2,12 @@
 Name=GitKraken
 Comment=Unleash your repo
 GenericName=Git Client
-Exec=gitkraken %f --ozone-platform=wayland --enable-features=WaylandWindowDecorations
+Exec=bash -c "gitkraken  --ozone-platform=wayland --enable-features=WaylandWindowDecorations"
 Icon=gitkraken
-Terminal=false
 Type=Application
 StartupNotify=true
 Categories=GNOME;GTK;Development;RevisionControl;
 StartupWMClass=gitkraken
 MimeType=x-scheme-handler/gitkraken;text/plain;
+Terminal=false
+TerminalOptions=\s--noclose
