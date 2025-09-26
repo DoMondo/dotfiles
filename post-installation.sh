@@ -34,5 +34,7 @@ echo ------------------------------- Configuring hyprland plugins
 hyprpm update
 hyprpm add https://github.com/outfoxxed/hy3
 hyprpm enable hy3
+hyprpm add https://github.com/hyprwm/hyprland-plugins
+hyprpm enable hyprbars
 
 sudo systemctl reboot
