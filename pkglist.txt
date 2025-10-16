@@ -76,3 +76,4 @@ waybar
 cpio
 nvidia
 feh
+wdisplays
