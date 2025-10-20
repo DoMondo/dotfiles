@@ -176,8 +176,10 @@ if has("autocmd")
   au!
 
   " For all text files set 'textwidth' to 78 characters.
+  "
+  let g:tex_flavor = "latex"
   autocmd FileType text setlocal textwidth=78
-  autocmd FileType tex setlocal spell spelllang=es
+  autocmd FileType tex setlocal textwidth=78 spell spelllang=es
   autocmd FileType dokuwiki setlocal textwidth=83
   autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
