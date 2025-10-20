@@ -1,16 +1,14 @@
 #!/bin/env zsh
 name="main"
 
-echo STARTING
 if [ "$#" -ne 0 ]; then
-   echo $1
    name=${1%.*}
-   echo $name
 fi
 
-latexmk  -pdf -f "$name.tex" --output-directory=/tmp -halt-on-error && cp /tmp/"$name.pdf" .
+latexmk -pdf -f "$name.tex" --output-directory=/tmp -halt-on-error && cp /tmp/"$name.pdf" .
 
-process_exists=`ps -A | grep "evince"`
+process_exists=`hyprctl clients | grep "$name.pdf"`
+
 if [ -z  $process_exists ]
 then
    evince "$name.pdf" 2> /dev/null &
