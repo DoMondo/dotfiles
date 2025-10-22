@@ -8,6 +8,7 @@ texlive-latexextra
 texlive-mathscience
 texlive-plaingeneric
 texlive-fontsextra
+texlive-xetex
 vim-spell-en
 vim-spell-es
 scrcpy
