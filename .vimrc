@@ -108,6 +108,9 @@ function CallFormatter()
        :execute "normal!".lineNumber."gg"
     elseif (&ft=='tex')
        ":0,$!latexindentvim
+       :let lineNumber=line('.')
+       :normal gg=G
+       :execute "normal!".lineNumber."gg"
     else
        :ClangFormat
    endif
@@ -310,4 +313,39 @@ map <Leader>2 :cp<CR>
 map <Leader>3 :cn<CR>
 map <Leader>4 :cl<CR>
 
+" --- Smart bold/italic toggle for LaTeX files ---
+autocmd FileType tex nnoremap <buffer> <leader>bb :call ToggleTexStyle('textbf')<CR>
+autocmd FileType tex xnoremap <buffer> <leader>bb :<C-u>call ToggleTexStyleVisual('textbf')<CR>
+autocmd FileType tex nnoremap <buffer> <leader>i :call ToggleTexStyle('textit')<CR>
+autocmd FileType tex xnoremap <buffer> <leader>i :<C-u>call ToggleTexStyleVisual('textit')<CR>
 
+function! ToggleTexStyle(style)
+  let l:word = expand('<cword>')
+  let l:line = getline('.')
+  " Build regex patterns for wrapping/unwrapping
+  let l:pattern = '\\' . a:style . '{' . l:word . '}'
+  if l:line =~ l:pattern
+    " Already styled → remove wrapper
+    execute 'silent! s/' . l:pattern . '/' . l:word . '/'
+  else
+    " Not styled → wrap
+    execute 'silent! normal! ciw\' . a:style . '{' . l:word . '}'
+  endif
+endfunction
+
+function! ToggleTexStyleVisual(style)
+  " Copy visual selection
+  normal! `<v`>y
+  let l:sel = getreg('"')
+  " Detect if selection is already wrapped
+  let l:regex = '^\\' . a:style . '{\(.*\)}$'
+  if l:sel =~ l:regex
+    " Remove wrapper
+    let l:unwrapped = substitute(l:sel, l:regex, '\1', '')
+    execute "normal! gvciw" . l:unwrapped
+  else
+    " Wrap selection
+     execute "normal! gvc\\" . a:style . "{" . l:sel . "}"
+    normal! a
+  endif
+endfunction
