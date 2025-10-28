@@ -1,0 +1,45 @@
+#!/bin/env zsh
+
+# Make a screenshot, moves it into a specific folder, and puts a LaTeX code 
+# snippet into the clipboard. In order to use it, first configure the following 
+# files:
+#  - ~/.cache/make_screenshot_latex/images_path. 
+#        This is the dir where the images are
+#  - ~/.cache/make_screenshot_latex/relative_path
+#        This is the relative where the images are to the project dir (the latex
+#        file)
+
+APP_DIR_CACHE=~/.cache/make_screenshot_latex
+CONFIG_IMAGES_PATH=$APP_DIR_CACHE/images_path
+CONFIG_RELATIVE_PATH=$APP_DIR_CACHE/relative_path
+ 
+mkdir -p $APP_DIR_CACHE
+cd $APP_DIR_CACHE
+
+if ! ([ -f $CONFIG_IMAGES_PATH ] && [ -f $CONFIG_RELATIVE_PATH ]) ; then
+   notify-send 'Make Screenshot for Latex' 'Please configure the images_path and relative_path config files'
+   exit 1
+fi
+
+REL_PATH=`cat $CONFIG_RELATIVE_PATH`
+IMG_PATH=`cat $CONFIG_IMAGES_PATH`
+
+# Capture
+XDG_SCREENSHOTS_DIR=$APP_DIR_CACHE grimblast copysave area
+
+# Ask the user the name of the picture
+figname=$(echo "" | rofi -dmenu -p "Figure name")
+
+if ! [ -n "$figname" ]; then
+   exit 1
+fi
+
+imagename=$(ls -hrt *png | tail -n 1)
+cp $imagename $IMG_PATH/$figname.png
+
+# Now generate the snippet (beamer version)
+echo "\\\\begin{adjustbox}{max totalsize={1.0\\\\textwidth}{!},center}" > $APP_DIR_CACHE/snippet
+echo "   \\\\includegraphics{$REL_PATH/$figname.png}" >> $APP_DIR_CACHE/snippet
+echo "\\\\end{adjustbox}" >> $APP_DIR_CACHE/snippet
+
+wl-copy < $APP_DIR_CACHE/snippet
