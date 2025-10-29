@@ -77,3 +77,4 @@ cpio
 nvidia
 feh
 wdisplays
+inotify-tools

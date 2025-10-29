@@ -1,0 +1,13 @@
+#!/bin/env zsh
+
+# Calls mklatex when the file has changed
+file=$1
+
+mklatex $file
+
+inotifywait -e close_write,moved_to,create -m . |
+while read -r directory events filename; do
+  if [[ "$filename" =~ ".tex" ]] ; then
+    mklatex $file
+  fi
+done
