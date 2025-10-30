@@ -5,7 +5,7 @@ if [ "$#" -ne 0 ]; then
    name=${1%.*}
 fi
 
-latexmk  -pdf -xelatex  -f "$name.tex" --output-directory=/tmp -halt-on-error && cp /tmp/"$name.pdf" .
+latexmk  -pdf -xelatex  -f "$name.tex" --output-directory=/tmp -halt-on-error | ~/repo/dotfiles/.zsh_functions/latexmk_filter.pl && cp /tmp/"$name.pdf" . 
  
 process_exists=`hyprctl clients | grep "$name.pdf"`
 

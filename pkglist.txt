@@ -78,3 +78,4 @@ nvidia
 feh
 wdisplays
 inotify-tools
+ttf-montserrat
