@@ -79,3 +79,4 @@ feh
 wdisplays
 inotify-tools
 ttf-montserrat
+ttf-inconsolata

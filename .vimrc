@@ -181,6 +181,7 @@ if has("autocmd")
   " For all text files set 'textwidth' to 78 characters.
   "
   let g:tex_flavor = "latex"
+  autocmd BufNewFile,BufRead *.tex syntax sync fromstart
   autocmd FileType text setlocal textwidth=78
   autocmd FileType tex setlocal textwidth=78 spell spelllang=es
   autocmd FileType dokuwiki setlocal textwidth=83
@@ -232,7 +233,7 @@ function s:HighlightWordUnderCursor()
     endif
 endfunction
 
-autocmd CursorMoved * call s:HighlightWordUnderCursor()
+"autocmd CursorMoved * call s:HighlightWordUnderCursor()
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_server_python_interpreter = '/usr/bin/python'
 " Don't show YCM errors

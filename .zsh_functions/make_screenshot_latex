@@ -38,8 +38,9 @@ imagename=$(ls -hrt *png | tail -n 1)
 cp $imagename $IMG_PATH/$figname.png
 
 # Now generate the snippet (beamer version)
-echo "\\\\begin{adjustbox}{max totalsize={1.0\\\\textwidth}{!},center}" > $APP_DIR_CACHE/snippet
-echo "   \\\\includegraphics{$REL_PATH/$figname.png}" >> $APP_DIR_CACHE/snippet
-echo "\\\\end{adjustbox}" >> $APP_DIR_CACHE/snippet
+echo "" > $APP_DIR_CACHE/snippet
+echo "   \\\\begin{adjustbox}{max totalsize={1.0\\\\textwidth}{!},center}" >> $APP_DIR_CACHE/snippet
+echo "      \\\\includegraphics{$REL_PATH/$figname.png}" >> $APP_DIR_CACHE/snippet
+echo "   \\\\end{adjustbox}" >> $APP_DIR_CACHE/snippet
 
-wl-copy < $APP_DIR_CACHE/snippet
+cat $APP_DIR_CACHE/snippet | wl-copy
