@@ -5,7 +5,15 @@ if [ "$#" -ne 0 ]; then
    name=${1%.*}
 fi
 
-latexmk  -pdf -xelatex  -f "$name.tex" --output-directory=/tmp -halt-on-error | ~/repo/dotfiles/.zsh_functions/latexmk_filter.pl && cp /tmp/"$name.pdf" . 
+SECONDS=0
+
+latexmk -shell-escape -pdf -xelatex  -f "$name.tex" --output-directory=/tmp -halt-on-error | ~/repo/dotfiles/.zsh_functions/latexmk_filter.pl && cp /tmp/"$name.pdf" . 
+
+duration=$SECONDS
+
+echo "$((duration / 60)) minutes and $((duration % 60)) seconds elapsed."
+
+#arara "$name.tex" && cp /tmp/"$name.pdf" . 
  
 process_exists=`hyprctl clients | grep "$name.pdf"`
 

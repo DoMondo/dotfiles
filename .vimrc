@@ -319,6 +319,9 @@ autocmd FileType tex nnoremap <buffer> <leader>bb :call ToggleTexStyle('textbf')
 autocmd FileType tex xnoremap <buffer> <leader>bb :<C-u>call ToggleTexStyleVisual('textbf')<CR>
 autocmd FileType tex nnoremap <buffer> <leader>i :call ToggleTexStyle('textit')<CR>
 autocmd FileType tex xnoremap <buffer> <leader>i :<C-u>call ToggleTexStyleVisual('textit')<CR>
+autocmd FileType tex nnoremap <buffer> <leader>t :call ToggleTexStyle('texttt')<CR>
+autocmd FileType tex xnoremap <buffer> <leader>t :<C-u>call ToggleTexStyleVisual('texttt')<CR>
+
 
 function! ToggleTexStyle(style)
   let l:word = expand('<cword>')
