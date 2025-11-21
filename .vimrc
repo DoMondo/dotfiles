@@ -97,7 +97,7 @@ nnoremap <Leader>X :x!<CR>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>W :w!<CR>
 nnoremap <Leader>n :nohl<CR>
-nnoremap <Leader>l :exec &rnu? "se nornu!" : "se rnu!"<CR>
+
 function CallFormatter()
     if (&ft=='python')
        " Save linenumber
@@ -314,6 +314,75 @@ map <Leader>2 :cp<CR>
 map <Leader>3 :cn<CR>
 map <Leader>4 :cl<CR>
 
+" --- Insert LaTeX list ---
+function! InsertLatexList()
+  let l:indent = matchstr(getline('.'), '^\s*')
+  call append(line('.'), [l:indent . '\begin{itemize}', l:indent . '   \item ', l:indent . '\end{itemize}'])
+  normal! 2j
+  startinsert!
+endfunction
+
+autocmd FileType tex nnoremap <buffer> <leader>l :call InsertLatexList()<CR>
+
+" --- Smart \item insertion when opening new lines ---
+function! SmartItemInsert(openBelow)
+  " First, check if we're currently inside an itemize/enumerate environment
+  let l:current_line = line('.')
+  let l:begin_count = 0
+  let l:end_count = 0
+  
+  " Count occurrences from line 1 to current line
+  for l:i in range(1, l:current_line)
+    let l:line_text = getline(l:i)
+    if l:line_text =~ '\\begin{\(itemize\|enumerate\)}'
+      let l:begin_count += 1
+    endif
+    if l:line_text =~ '\\end{\(itemize\|enumerate\)}'
+      let l:end_count += 1
+    endif
+  endfor
+  
+  " If more begins than ends, we're inside an environment
+  let l:in_list = l:begin_count > l:end_count
+  
+  " Determine indentation
+  if l:in_list
+    " Search backwards for the previous \item line
+    let l:item_line = search('^\s*\\item', 'bnW')
+    if l:item_line > 0
+      let l:indent = matchstr(getline(l:item_line), '^\s*')
+    else
+      " Fallback to current line's indent
+      let l:indent = matchstr(getline('.'), '^\s*')
+    endif
+  else
+    " Use current line's indentation
+    let l:indent = matchstr(getline('.'), '^\s*')
+  endif
+  
+  " Create the new line content
+  if l:in_list
+    let l:new_line = l:indent . '\item '
+  else
+    let l:new_line = l:indent
+  endif
+  
+  " Insert the line
+  if a:openBelow
+    call append(line('.'), l:new_line)
+    normal! j
+  else
+    call append(line('.') - 1, l:new_line)
+    normal! k
+  endif
+  
+  " Enter insert mode at the end of the line
+  startinsert!
+endfunction
+
+autocmd FileType tex nnoremap <buffer> o :call SmartItemInsert(1)<CR>
+autocmd FileType tex nnoremap <buffer> O :call SmartItemInsert(0)<CR>
+
 " --- Smart bold/italic toggle for LaTeX files ---
 autocmd FileType tex nnoremap <buffer> <leader>bb :call ToggleTexStyle('textbf')<CR>
 autocmd FileType tex xnoremap <buffer> <leader>bb :<C-u>call ToggleTexStyleVisual('textbf')<CR>
@@ -321,7 +390,6 @@ autocmd FileType tex nnoremap <buffer> <leader>i :call ToggleTexStyle('textit')<
 autocmd FileType tex xnoremap <buffer> <leader>i :<C-u>call ToggleTexStyleVisual('textit')<CR>
 autocmd FileType tex nnoremap <buffer> <leader>t :call ToggleTexStyle('texttt')<CR>
 autocmd FileType tex xnoremap <buffer> <leader>t :<C-u>call ToggleTexStyleVisual('texttt')<CR>
-
 
 function! ToggleTexStyle(style)
   let l:word = expand('<cword>')

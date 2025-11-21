@@ -1,0 +1,163 @@
+scriptencoding utf-8
+set encoding=utf-8
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+set shell=/bin/bash
+filetype plugin on
+if v:progname =~? "evim"
+  finish
+endif
+set nocompatible
+set t_Co=256
+set clipboard=unnamedplus
+set backspace=indent,eol,start
+if has("vms")
+  set nobackup        " do not keep a backup file, use versions instead
+else
+  set backup        " keep a backup file
+  set backupdir=~/.vim/backup,/tmp
+  set directory=~/.vim/swapfiles,/tmp
+endif
+set history=50
+set ruler
+set cursorline
+set number
+set expandtab
+set smarttab 
+set shiftwidth=3
+set tabstop=3
+set scrolloff=5
+set showcmd
+set incsearch
+set ignorecase
+set smartcase 
+set timeoutlen=1000 ttimeoutlen=0
+map Q gq
+nmap <Enter> i<ENTER><Esc>
+nmap OM o<Esc>
+let mapleader=' '
+nnoremap <Leader>q :q<CR>
+nnoremap <Leader>Q :q!<CR>
+nnoremap <Leader>x :x<CR>
+nnoremap <Leader>X :x!<CR>
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>W :w!<CR>
+nnoremap <Leader>n :nohl<CR>
+nnoremap <Leader>l :exec &rnu? "se nornu!" : "se rnu!"<CR>
+inoremap <C-U> <C-G>u<C-U>
+if has('mouse')
+  set mouse=a
+endif
+set laststatus=2
+if has("autocmd")
+  filetype plugin indent on
+  augroup vimrcEx
+  au!
+
+  " For all text files set 'textwidth' to 78 characters.
+  "
+  let g:tex_flavor = "latex"
+  autocmd BufNewFile,BufRead *.tex syntax sync fromstart
+  autocmd FileType text setlocal textwidth=78
+  autocmd FileType tex setlocal textwidth=78 spell spelllang=es
+  autocmd FileType dokuwiki setlocal textwidth=83
+  autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+  au FileType python          setlocal omnifunc=python3complete#Complete
+  autocmd BufReadPost *
+    \ if line("'\"") > 1 && line("'\"") <= line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
+  augroup END
+else
+  set autoindent
+endif 
+
+set completeopt-=preview
+set viminfo='100,f1
+
+if !isdirectory($HOME."/.vim")
+    call mkdir($HOME."/.vim", "", 0770)
+endif
+if !isdirectory($HOME."/.vim/undo")
+    call mkdir($HOME."/.vim/undo", "", 0700)
+endif
+
+" tell it to use an undo file
+set undofile
+" set a directory to store the undo history
+set undodir=~/.vim/undo/
+" Deactivate man search
+map <S-K> <Nop>
+"map <Leader>1 :make -C .. <CR> :cw <CR>
+map <Leader>1 :make <CR> :cw <CR>
+map <Leader>2 :cp<CR>
+map <Leader>3 :cn<CR>
+map <Leader>4 :cl<CR>
+
+" --- Smart bold/italic toggle for LaTeX files ---
+nnoremap <Leader>bb :call ToggleTexStyle('textbf')<CR>
+xnoremap <Leader>bb :<C-u>call ToggleTexStyleVisual('textbf')<CR>
+nnoremap <Leader>i :call ToggleTexStyle('textit')<CR>
+xnoremap <Leader>i :<C-u>call ToggleTexStyleVisual('textit')<CR>
+nnoremap <Leader>t :call ToggleTexStyle('texttt')<CR>
+xnoremap <Leader>t :<C-u>call ToggleTexStyleVisual('texttt')<CR>
+
+
+function! ToggleTexStyle(style)
+  let l:word = expand('<cword>')
+  let l:line = getline('.')
+  " Escape regex special characters in word
+  let l:esc_word = escape(l:word, '.~^$[]*')
+  let l:pattern_regex = '\\' . a:style . '{' . l:esc_word . '}'
+
+  if l:line =~ l:pattern_regex
+    " Already styled → remove wrapper
+    let l:new_line = substitute(l:line, l:pattern_regex, l:word, '')
+    call setline('.', l:new_line)
+  else
+    " Not styled → wrap
+    let l:new_text = '\' . a:style . '{' . l:word . '}'
+    
+    " Save register a
+    let l:save_reg = @a
+    
+    " Set register a
+    let @a = l:new_text
+    
+    " Replace inner word with register a
+    normal! viw"ap
+    
+    " Restore register a
+    let @a = l:save_reg
+  endif
+endfunction
+
+function! ToggleTexStyleVisual(style)
+  " Save register a
+  let l:save_reg = @a
+  
+  " Yank current selection to register a
+  normal! gv"ay
+  let l:sel = @a
+
+  " Detect if selection is already wrapped
+  let l:pattern = '^\\' . a:style . '{\(.*\)}$'
+  if l:sel =~ l:pattern
+    " Remove wrapper
+    let l:new_text = substitute(l:sel, l:pattern, '\1', '')
+  else
+    " Wrap selection
+    let l:new_text = '\' . a:style . '{' . l:sel . '}'
+  endif
+
+  " Set register a
+  let @a = l:new_text
+  
+  " Replace selection with register a
+  normal! gv"ap
+
+  " Restore register a
+  let @a = l:save_reg
+endfunction
