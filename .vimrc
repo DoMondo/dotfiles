@@ -324,6 +324,27 @@ endfunction
 
 autocmd FileType tex nnoremap <buffer> <leader>l :call InsertLatexList()<CR>
 
+" --- Insert LaTeX Frame ---
+function! InsertLatexFrame()
+  let l:indent = matchstr(getline('.'), '^\s*')
+  call append(line('.'), [l:indent . '\begin{frame}[s]', l:indent . '   \frametitle{}', l:indent . '\end{frame}'])
+  call cursor(line('.') + 2, 1)
+  normal! f}
+  startinsert
+endfunction
+
+autocmd FileType tex nnoremap <buffer> <leader>s :call InsertLatexFrame()<CR>
+
+" --- Insert LaTeX Columns ---
+function! InsertLatexColumns()
+  let l:indent = matchstr(getline('.'), '^\s*')
+  call append(line('.'), [l:indent . '\begin{columns}[t]', l:indent . '   \begin{column}{.5\textwidth}', l:indent . '   \end{column}', l:indent . '   \begin{column}{.5\textwidth}', l:indent . '   \end{column}', l:indent . '\end{columns}'])
+  normal! 2j
+  startinsert!
+endfunction
+
+autocmd FileType tex nnoremap <buffer> <leader>C :call InsertLatexColumns()<CR>
+
 " --- Smart \item insertion when opening new lines ---
 function! SmartItemInsert(openBelow)
   " First, check if we're currently inside an itemize/enumerate environment
