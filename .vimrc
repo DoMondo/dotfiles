@@ -183,7 +183,7 @@ if has("autocmd")
   let g:tex_flavor = "latex"
   autocmd BufNewFile,BufRead *.tex syntax sync fromstart
   autocmd FileType text setlocal textwidth=78
-  autocmd FileType tex setlocal textwidth=78 spell spelllang=es
+  autocmd FileType tex setlocal textwidth=78 spell spelllang=es | syntax spell toplevel
   autocmd FileType dokuwiki setlocal textwidth=83
   autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
