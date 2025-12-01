@@ -183,7 +183,7 @@ if has("autocmd")
   let g:tex_flavor = "latex"
   autocmd BufNewFile,BufRead *.tex syntax sync fromstart
   autocmd FileType text setlocal textwidth=78
-  autocmd FileType tex setlocal textwidth=78 spell spelllang=es | syntax spell toplevel
+  autocmd FileType tex if expand('%:e') !=# 'sty' | setlocal textwidth=78 spell spelllang=es | syntax spell toplevel | endif
   autocmd FileType dokuwiki setlocal textwidth=83
   autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
@@ -338,7 +338,7 @@ autocmd FileType tex nnoremap <buffer> <leader>s :call InsertLatexFrame()<CR>
 " --- Insert LaTeX Columns ---
 function! InsertLatexColumns()
   let l:indent = matchstr(getline('.'), '^\s*')
-  call append(line('.'), [l:indent . '\begin{columns}[t]', l:indent . '   \begin{column}{.5\textwidth}', l:indent . '   \end{column}', l:indent . '   \begin{column}{.5\textwidth}', l:indent . '   \end{column}', l:indent . '\end{columns}'])
+  call append(line('.'), [l:indent . '\stretchytwocols{', l:indent . '}{', l:indent . '}'])
   normal! 2j
   startinsert!
 endfunction
