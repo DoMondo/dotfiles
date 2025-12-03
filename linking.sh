@@ -54,6 +54,11 @@ ln -sfv $DIR/wombat_oscar.vim ~/.vim/colors/wombat_oscar.vim
 ln -sfv \
    $DIR/airline_theme/minimalist_domondo.vim \
    ~/.vim/bundle/vim-airline-themes/autoload/airline/themes/minimalist_domondo.vim
+
+# neovim stuff
+echo ------------------------------- Setting up Neovim
+$DIR/.config/nvim/install.sh
+
 mkdir -p  ~/.local/share/fonts
 cp $DIR/fonts/* ~/.local/share/fonts
 fc-cache -f ~/.local/share/fonts
