@@ -41,6 +41,7 @@ autocmd("FileType", {
       vim.opt_local.textwidth = 78
       vim.opt_local.spell = true
       vim.opt_local.spelllang = "es"
+      vim.cmd("TeXpresso main.tex")
     end
   end,
 })
