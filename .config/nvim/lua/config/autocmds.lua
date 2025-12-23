@@ -41,7 +41,22 @@ autocmd("FileType", {
       vim.opt_local.textwidth = 78
       vim.opt_local.spell = true
       vim.opt_local.spelllang = "es"
-      vim.cmd("TeXpresso main.tex")
+      
+      -- Try to start TeXpresso automatically if main.tex exists
+      vim.defer_fn(function()
+        -- Check if TeXpresso command exists
+        if vim.fn.exists(":TeXpresso") == 2 then
+          -- Get the directory of the current file
+          local current_dir = vim.fn.expand("%:p:h")
+          local main_tex = current_dir .. "/main.tex"
+          
+          -- Check if main.tex exists in the same directory
+          if vim.fn.filereadable(main_tex) == 1 then
+            -- Execute TeXpresso with error handling
+            pcall(vim.cmd, "TeXpresso main.tex")
+          end
+        end
+      end, 100) -- Delay 100ms to ensure plugin is loaded
     end
   end,
 })

@@ -81,3 +81,4 @@ inotify-tools
 ttf-montserrat
 ttf-inconsolata
 texpresso-git
+gpu-screen-recorder

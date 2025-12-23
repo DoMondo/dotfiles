@@ -46,13 +46,12 @@ function M.insert_latex_frame()
   local line = vim.fn.getline(".")
   local indent = line:match("^%s*") or ""
   local lines = {
-    indent .. "\\begin{frame}[s]",
-    indent .. "   \\frametitle{}",
+    indent .. "\\begin{frame}[s]{}",
     indent .. "\\end{frame}"
   }
   vim.fn.append(vim.fn.line("."), lines)
-  vim.cmd("call cursor(line('.') + 2, 1)")
-  vim.cmd("normal! f}")
+  vim.cmd("call cursor(line('.') + 1, 4)")
+  vim.cmd("normal! f}f}")
   vim.cmd("startinsert")
 end
 
