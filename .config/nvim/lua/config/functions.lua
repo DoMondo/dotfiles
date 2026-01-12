@@ -131,22 +131,25 @@ end
 
 -- Toggle LaTeX style (visual mode)
 function M.toggle_tex_style_visual(style)
-  -- Save selection
-  vim.cmd("normal! `<v`>y")
-  local sel = vim.fn.getreg('"')
+  -- Yank the visual selection
+  vim.cmd('noau normal! "vy')
+  local sel = vim.fn.getreg('v')
   
   -- Check if already wrapped
-  local regex = "^\\" .. style .. "{(.*)}$"
   local unwrapped = sel:match("^\\" .. style .. "{(.*)}$")
   
+  local replacement
   if unwrapped then
     -- Remove wrapper
-    vim.cmd("normal! gvciw" .. unwrapped)
+    replacement = unwrapped
   else
     -- Add wrapper
-    vim.cmd("normal! gvc\\" .. style .. "{" .. sel .. "}")
-    vim.cmd("normal! a")
+    replacement = "\\" .. style .. "{" .. sel .. "}"
   end
+  
+  -- Replace the selection
+  vim.fn.setreg('v', replacement)
+  vim.cmd('noau normal! gv"vp')
 end
 
 -- Highlight word under cursor (optional, commented out in original)
