@@ -168,3 +168,34 @@ autoload -U $fpath[1]/*(.:t)
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 eval "$(atuin init zsh --disable-up-arrow)"
 
+# Presentation mode toggle - hides sensitive content when presenting
+presentation-mode() {
+    if [[ -z "$PRESENTATION_MODE" || "$PRESENTATION_MODE" == "0" ]]; then
+        # Enable presentation mode
+        export PRESENTATION_MODE=1
+        
+        # Disable autosuggestions
+        unset ZSH_AUTOSUGGEST_STRATEGY
+        _zsh_autosuggest_disable
+        
+        # Disable atuin (by unsetting the keybindings)
+        bindkey -r '^r'  # Remove Ctrl+R binding for atuin
+        
+        # Clear current session history (optional - uncomment if desired)
+        # fc -p /dev/null
+        
+        echo "Presentation mode ENABLED"
+    else
+        # Disable presentation mode
+        export PRESENTATION_MODE=0
+        
+        # Re-enable autosuggestions
+        _zsh_autosuggest_start
+        
+        # Re-enable atuin
+        eval "$(atuin init zsh --disable-up-arrow)"
+        
+        echo "Presentation mode DISABLED"
+    fi
+}
+
