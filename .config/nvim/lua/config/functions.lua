@@ -29,8 +29,18 @@ _G.CallFormatter = CallFormatter
 
 -- Insert LaTeX list
 function M.insert_latex_list()
+  local current_line_num = vim.fn.line(".")
   local line = vim.fn.getline(".")
   local indent = line:match("^%s*") or ""
+  
+  -- Check if current line is a \begin line
+  local is_begin_line = line:match("\\begin{")
+  
+  -- If we're on a \begin line, add extra indentation for the content
+  if is_begin_line then
+    indent = indent .. "   "
+  end
+  
   local lines = {
     indent .. "\\begin{itemize}",
     indent .. "   \\item ",
