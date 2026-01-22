@@ -46,7 +46,7 @@ return {
         sections = {
           lualine_a = { "mode" },
           lualine_b = {},
-          lualine_c = { { "filename", path = 1 } },
+          lualine_c = { { "filename", path = 2 } },
           lualine_x = { "filetype" },
           lualine_y = { "progress" },
           lualine_z = { "location" },
@@ -78,7 +78,7 @@ return {
   { "tikhomirov/vim-glsl", ft = "glsl" },
   { "matze/vim-meson", ft = "meson" },
   { "peterhoeg/vim-qml", ft = "qml" },
-  { "theRealCarneiro/hyprland-vim-syntax", ft = "hyprland" },
+  { "theRealCarneiro/hyprland-vim-syntax", ft = "hypr" },
 
   -- Utilities
   { "kopischke/vim-fetch" },

@@ -119,3 +119,14 @@ vim.opt.guicursor = {
   "a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor",
   "sm:block-blinkwait175-blinkoff150-blinkon175",
 }
+
+-- Custom filetype detection
+vim.filetype.add {
+  extension = { rasi = 'rasi' },
+  pattern = {
+    ['.*/waybar/config'] = 'jsonc',
+    ['.*/mako/config'] = 'dosini',
+    ['.*/kitty/*.conf'] = 'bash',
+    ['.*/hypr/.*%.conf'] = 'hypr',
+  },
+}
