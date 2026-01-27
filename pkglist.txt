@@ -74,7 +74,7 @@ mailcap
 meson 
 waybar
 cpio
-nvidia
+nvidia-open
 feh
 wdisplays
 inotify-tools
@@ -82,3 +82,5 @@ ttf-montserrat
 ttf-inconsolata
 texpresso-git
 gpu-screen-recorder
+neovim
+otf-font-awesome
