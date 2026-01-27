@@ -37,7 +37,7 @@ label#network {
    color: #00FF00;
 }
 
-#network, #custom-volume, #cpu, #memory, #custom-disk, #clock, #custom-vpn {
+#network, #custom-volume, #cpu, #memory, #custom-disk, #clock, #custom-vpn, #battery, #backlight {
     padding-right: 11px;
     padding-left: 11px;
     border-right: 1px solid gray;

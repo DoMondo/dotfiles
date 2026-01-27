@@ -85,3 +85,4 @@ gpu-screen-recorder
 neovim
 otf-font-awesome
 brightnessctl
+ntp

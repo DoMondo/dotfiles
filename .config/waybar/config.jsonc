@@ -10,42 +10,42 @@
         "hyprland/workspaces"
     ],
     "hyprland/workspaces": {
-       "format": "{icon}",
-       "on-click": "activate",
-       "sort-by-number": true
-   }, 
-   "modules-center": [
+        "format": "{icon}",
+        "on-click": "activate",
+        "sort-by-number": true
+    },
+    "modules-center": [
         "hyprland/submap"
-   ],
-   "modules-right": [
+    ],
+    "modules-right": [
         "network",
         "custom/vpn",
         "custom/volume",
         "cpu",
         "memory",
         "custom/disk",
+        "backlight",
         "battery",
-        "battery#bat2",
         "clock",
         "tray"
     ],
     // Modules configuration
-     "sway/workspaces": {
-         "disable-scroll": true,
-         "all-outputs": true,
-         "warp-on-scroll": false,
-         "format": "{name}: {icon}",
-         "format-icons": {
-             "1": "",
-             "2": "",
-             "3": "",
-             "4": "",
-             "5": "",
-             "urgent": "",
-             "focused": "",
-             "default": ""
-         }
-     },
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "warp-on-scroll": false,
+        "format": "{name}: {icon}",
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": "",
+            "urgent": "",
+            "focused": "",
+            "default": ""
+        }
+    },
     "keyboard-state": {
         "numlock": true,
         "capslock": true,
@@ -61,31 +61,49 @@
     "sway/scratchpad": {
         "format": "{icon} {count}",
         "show-empty": false,
-        "format-icons": ["", ""],
+        "format-icons": [
+            "",
+            ""
+        ],
         "tooltip": true,
         "tooltip-format": "{app}: {title}"
     },
     "network": {
-       "format-wifi": "{ipaddr} ({signalStrength}%) ",
-       "format-ethernet": "{ipaddr}"
+        "format-wifi": "{ipaddr} ({signalStrength}%) ",
+        "format-ethernet": "{ipaddr}"
     },
     "custom/vpn": {
-       "interval": 1,
-       "format": "{}",
-       "hide-empty-text": true,
-       "exec": "~/.config/i3blocks/vpn.sh",
-       "return-type": "json",
-       "on-click": "nmcli connection up 'VPN'  &>/dev/null &",
-       "on-click-right": "nmcli connection down 'VPN' &>/dev/null &",
-       "tooltip": false
+        "interval": 1,
+        "format": "{}",
+        "hide-empty-text": true,
+        "exec": "~/.config/i3blocks/vpn.sh",
+        "return-type": "json",
+        "on-click": "nmcli connection up 'VPN'  &>/dev/null &",
+        "on-click-right": "nmcli connection down 'VPN' &>/dev/null &",
+        "tooltip": false
     },
     "custom/volume": {
         "format": "♪ {}",
         "exec": "$HOME/.config/i3blocks/volume",
         "interval": "once",
         "signal": 10,
-        "tooltip":false
+        "tooltip": false
     },
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{percent}% {icon}",
+        "format-icons": [
+            "",
+            ""
+        ]
+    },
+    // "custom/brightness": {
+    //     "format": "☀ {}",
+    //     "exec": "$HOME/.config/i3blocks/brightness",
+    //     "interval": "once",
+    //     "signal": 11,
+    //     "tooltip": false
+    // },
     "cpu": {
         "format": "cpu {usage}%",
         "tooltip": false,
@@ -115,7 +133,20 @@
     "tray": {
         "icon-size": 21,
         "spacing": 4
-    }
-
+    },
+    "battery": {
+        "interval": 60,
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
     }
 }

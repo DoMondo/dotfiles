@@ -37,4 +37,6 @@ hyprpm enable hy3
 hyprpm add https://github.com/hyprwm/hyprland-plugins
 hyprpm enable hyprbars
 
+timedatectl set-ntp true
+
 sudo systemctl reboot
