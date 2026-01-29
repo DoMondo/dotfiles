@@ -86,3 +86,4 @@ neovim
 otf-font-awesome
 brightnessctl
 ntp
+otf-firamath
