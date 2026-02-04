@@ -85,12 +85,7 @@ return {
   { "fidian/hexmode", cmd = "Hexmode" },
 
   -- Wayland clipboard support
-  {
-    "jasonccox/vim-wayland-clipboard",
-    cond = function()
-      return os.getenv("WAYLAND_DISPLAY") ~= nil
-    end,
-  },
+
   {
     "let-def/texpresso.vim"
   }

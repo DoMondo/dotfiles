@@ -25,7 +25,7 @@ REL_PATH=`cat $CONFIG_RELATIVE_PATH`
 IMG_PATH=`cat $CONFIG_IMAGES_PATH`
 
 # Capture
-XDG_SCREENSHOTS_DIR=$APP_DIR_CACHE grimblast copysave area
+XDG_SCREENSHOTS_DIR=$APP_DIR_CACHE grimblast save area
 
 # Ask the user the name of the picture
 figname=$(echo "" | rofi -dmenu -p "Figure name")
@@ -43,4 +43,4 @@ echo "   \\\\begin{adjustbox}{max totalsize={1.0\\\\textwidth}{!},center}" >> $A
 echo "      \\\\includegraphics{$REL_PATH/$figname.png}" >> $APP_DIR_CACHE/snippet
 echo "   \\\\end{adjustbox}" >> $APP_DIR_CACHE/snippet
 
-cat $APP_DIR_CACHE/snippet | wl-copy
+cat $APP_DIR_CACHE/snippet | wl-copy --type text/plain
