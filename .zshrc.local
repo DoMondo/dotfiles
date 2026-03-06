@@ -119,7 +119,7 @@ bashcompinit
 #source /etc/bash_completion.d/python-argcomplete.sh
 
 export LD_LIBRARY_PATH="/usr/local/lib/:$LD_LIBRARY_PATH"
-export $(dbus-launch)
+#export $(dbus-launch)
 
 alias diff="colordiff"
 # taken from http://owen.cymru/sf-a-quick-way-to-search-for-some-thing-in-bash-and-edit-it-with-vim-2/

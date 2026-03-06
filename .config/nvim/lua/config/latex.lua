@@ -64,5 +64,10 @@ vim.api.nvim_create_autocmd("FileType", {
     map("x", "<leader>t", function()
       functions.toggle_tex_style_visual("texttt")
     end, opts)
+    -- Disable TeXpresso automatic theming
+    local ok, texpresso = pcall(require, "texpresso")
+    if ok then
+      texpresso.theme = function() end
+    end
   end,
 })
