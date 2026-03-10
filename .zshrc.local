@@ -199,3 +199,4 @@ presentation-mode() {
     fi
 }
 
+alias antigravitysync='cd ~/repo/antigravity-sync && git add . && git commit -m "Auto-sync from $(hostname)" && git push'
