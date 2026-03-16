@@ -4,10 +4,10 @@
 # snippet into the clipboard. In order to use it, first configure the following 
 # files:
 #  - ~/.cache/make_screenshot_latex/images_path. 
-#        This is the dir where the images are
+#        This is the dir where the images are. E.g. /home/ogomez/repo/latex_project/figures
 #  - ~/.cache/make_screenshot_latex/relative_path
 #        This is the relative where the images are to the project dir (the latex
-#        file)
+#        file). E.g. figures.
 
 APP_DIR_CACHE=~/.cache/make_screenshot_latex
 CONFIG_IMAGES_PATH=$APP_DIR_CACHE/images_path
