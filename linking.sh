@@ -35,6 +35,7 @@ ln -sfv $DIR/.config/rofi ~/.config
 ln -sfv $DIR/applications ~/.local/share/
 ln -sfv $DIR/.config/hypr ~/.config
 ln -sfv $DIR/.config/waybar ~/.config
+ln -sfv $DIR/.config/pipewire ~/.config
 
 mkdir -p ~/Pictures
 
