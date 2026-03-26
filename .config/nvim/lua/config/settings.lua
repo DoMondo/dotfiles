@@ -14,8 +14,10 @@ opt.clipboard = "unnamedplus"
 
 -- Backup and swap files
 opt.backup = true
-opt.backupdir = vim.fn.expand("~/.vim/backup") .. ",/tmp"
+opt.backupcopy = "yes"
 opt.directory = vim.fn.expand("~/.vim/swapfiles") .. ",/tmp"
+opt.backupdir = vim.fn.expand("~/.vim/backup") .. ",/tmp"
+
 
 -- Undo
 opt.undofile = true
