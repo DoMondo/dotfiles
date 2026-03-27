@@ -43,5 +43,10 @@ map("n", "<leader>4", ":cl<CR>", opts)
 -- Deactivate man search
 map("n", "<S-K>", "<Nop>", opts)
 
+-- Navigate files in directory
+local functions = require("config.functions")
+map("n", "]f", function() functions.navigate_files("next") end, opts)
+map("n", "[f", function() functions.navigate_files("prev") end, opts)
+
 -- CTRL-U in insert mode with undo break
 map("i", "<C-U>", "<C-G>u<C-U>", opts)

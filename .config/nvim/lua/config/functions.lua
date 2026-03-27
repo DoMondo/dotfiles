@@ -185,4 +185,55 @@ function M.highlight_word_under_cursor()
   end
 end
 
+-- Navigate to the next/previous file in the current directory (natural sort)
+function M.navigate_files(direction)
+  local current_name = vim.fn.expand("%:t")
+  local dir = vim.fn.expand("%:p:h")
+  local ext = vim.fn.expand("%:e")
+  
+  if current_name == "" then return end
+
+  -- Try same extension first
+  local pattern = ext ~= "" and ("*." .. ext) or "*"
+  local cmd = string.format("cd %s && ls -1v -- %s 2>/dev/null", vim.fn.shellescape(dir), pattern)
+  local entries = vim.fn.systemlist(cmd)
+  
+  if #entries <= 1 then
+    -- Fallback to all files
+    cmd = string.format("cd %s && ls -1v -- * 2>/dev/null", vim.fn.shellescape(dir))
+    entries = vim.fn.systemlist(cmd)
+  end
+
+  -- Filter for real files only
+  local files = {}
+  for _, e in ipairs(entries) do
+    if vim.fn.getftype(dir .. "/" .. e) == "file" then
+      table.insert(files, e)
+    end
+  end
+
+  if #files <= 1 then return end
+
+  -- Find current file index
+  local idx = -1
+  for i, f in ipairs(files) do
+    if f == current_name then
+      idx = i
+      break
+    end
+  end
+
+  if idx == -1 then return end
+
+  -- Calculate target index
+  local target_idx
+  if direction == "next" then
+    target_idx = (idx % #files) + 1
+  else
+    target_idx = ((idx - 2 + #files) % #files) + 1
+  end
+
+  vim.cmd("edit " .. vim.fn.fnameescape(dir .. "/" .. files[target_idx]))
+end
+
 return M
