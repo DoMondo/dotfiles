@@ -10,9 +10,12 @@ local latex_group = vim.api.nvim_create_augroup("LaTeXMappings", { clear = true 
 -- LaTeX-specific keymaps (buffer-local)
 vim.api.nvim_create_autocmd("FileType", {
   group = latex_group,
-  pattern = "tex",
+  pattern = { "tex", "latex", "plaintex" },
   callback = function()
     local opts = { buffer = true, noremap = true, silent = true }
+    
+    -- Standard LaTeX commentstring for native commenter
+    vim.opt_local.commentstring = "% %s"
     
     -- Insert LaTeX list
     map("n", "<leader>l", function()
@@ -64,9 +67,9 @@ vim.api.nvim_create_autocmd("FileType", {
     map("x", "<leader>t", function()
       functions.toggle_tex_style_visual("texttt")
     end, opts)
-    -- Disable TeXpresso automatic theming
+    -- Disable TeXpresso automatic theming (if it has a Lua module)
     local ok, texpresso = pcall(require, "texpresso")
-    if ok then
+    if ok and type(texpresso) == "table" then
       texpresso.theme = function() end
     end
   end,

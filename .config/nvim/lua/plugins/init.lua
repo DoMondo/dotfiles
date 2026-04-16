@@ -14,22 +14,6 @@ return {
     ft = { "c", "cpp", "objc" },
   },
 
-  -- Commenting
-  {
-    "numToStr/Comment.nvim",
-    config = function()
-      require("Comment").setup({
-        toggler = {
-          line = "<leader>cc",
-          block = "<leader>bc",
-        },
-        opleader = {
-          line = "<leader>c",
-          block = "<leader>b",
-        },
-      })
-    end,
-  },
 
   -- Status line (replaces vim-airline)
   {

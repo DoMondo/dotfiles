@@ -22,6 +22,11 @@ map("n", "<leader>w", ":w<CR>", opts)
 map("n", "<leader>W", ":w!<CR>", opts)
 map("n", "<leader>n", ":nohl<CR>", opts)
 
+-- Commenting (Native Neovim 0.10+)
+map("n", "<leader>cc", "gcc", { remap = true, silent = true, desc = "Toggle comment line" })
+map("x", "<leader>cc", "gc", { remap = true, silent = true, desc = "Toggle comment selection" })
+map("n", "<leader>bc", "gbc", { remap = true, silent = true, desc = "Toggle block comment" })
+
 -- Formatter
 map("n", "<C-f>", ":lua CallFormatter()<CR>", opts)
 
@@ -29,7 +34,7 @@ map("n", "<C-f>", ":lua CallFormatter()<CR>", opts)
 map("n", "<leader>t", ":NvimTreeToggle<CR>", opts)
 
 -- Git blame
-map("n", "<leader>b", ":Git blame<CR>", opts)
+map("n", "<leader>gb", ":Git blame<CR>", opts)
 
 -- GitGutter toggle
 map("n", "<leader>g", ":GitGutterToggle<CR>", opts)

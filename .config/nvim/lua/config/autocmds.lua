@@ -35,7 +35,7 @@ autocmd("FileType", {
 -- LaTeX files
 autocmd("FileType", {
   group = filetype_settings,
-  pattern = "tex",
+  pattern = { "tex", "latex", "plaintex" },
   callback = function()
     if vim.fn.expand("%:e") ~= "sty" then
       vim.opt_local.textwidth = 78
