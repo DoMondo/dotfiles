@@ -21,3 +21,4 @@ gitkraken
 downgrade
 android-studio
 simplescreenrecorder-bin
+networkmanager-fortisslvpn
