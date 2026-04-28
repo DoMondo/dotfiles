@@ -1,12 +1,13 @@
 #!/bin/env zsh
 
-# Check that the ibus-daemon is running
+# Toggle between input methods
+fcitx5-remote -t
 
-program_name="ibus-daemon"
-if pgrep -x $program_name >/dev/null
-then
-   kill `pgrep $program_name`
-   setxkbmap -layout us -variant altgr-intl -option ctrl:nocaps && xset r rate 200 40 && killall xcape && xcape -t 200 -e 'Control_L=Escape'
+# Get current state and notify (optional but helpful)
+# 0: closed, 1: inactive, 2: active
+state=$(fcitx5-remote)
+if [[ $state == "2" ]]; then
+    hyprctl notify 2 2000 "rgb(00ff00)" "Hangeul Enabled"
 else
-   /usr/bin/ibus-daemon -drx
+    hyprctl notify 2 2000 "rgb(ff0000)" "Hangeul Disabled"
 fi
