@@ -1,3 +1,13 @@
 
 applications/
 .config/hypr/monitors.conf
+
+# CopyQ runtime files, logs, sockets, tabs database, geometry settings, locks
+.config/copyq/copyq.lock
+.config/copyq/copyq_geometry.ini*
+.config/copyq/copyq_tab_*.dat
+.config/copyq/copyq_tabs.ini
+.config/copyq/copyq-filter.ini
+.config/copyq/copyq-monitor.ini
+.config/copyq/copyq.pub
+.config/copyq/.copyq_s

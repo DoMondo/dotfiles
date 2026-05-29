@@ -36,6 +36,7 @@ ln -sfv $DIR/applications ~/.local/share/
 ln -sfv $DIR/.config/hypr ~/.config
 ln -sfv $DIR/.config/waybar ~/.config
 ln -sfv $DIR/.config/pipewire ~/.config
+ln -sfv $DIR/.config/copyq ~/.config
 
 mkdir -p ~/Pictures
 

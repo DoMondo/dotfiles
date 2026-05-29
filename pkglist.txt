@@ -54,7 +54,7 @@ cameractrls
 playerctl
 rofi-wayland
 interception-caps2esc
-clipman
+copyq
 slurp
 wf-recorder
 grim
