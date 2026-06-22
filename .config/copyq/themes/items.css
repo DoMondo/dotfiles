@@ -28,7 +28,6 @@
 }
 
 #item QLabel {
-    ;qproperty-alignment: AlignCenter
     ;max-height: 90px
     ;border-bottom: 11px solid #000033
 }
