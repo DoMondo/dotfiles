@@ -34,18 +34,25 @@ if [[ $number_of_screens == "2" ]]
 then
    case "$1" in
      "r")
+        xpos=`hyprctl activewindow | grep at\: | cut -d',' -f1 | cut -d' ' -f2`
+        width=`hyprctl activewindow | grep size\: | cut -d',' -f1 | cut -d' ' -f2`
+        right_border_pos=$((xpos + width))
         hyprctl dispatch hy3:movewindow r
-        new_window_pos=`hyprctl activewindow | grep at\:`
-        if [[ "$window_pos" == "$new_window_pos" ]] && \
+        xpos=`hyprctl activewindow | grep at\: | cut -d',' -f1 | cut -d' ' -f2`
+        width=`hyprctl activewindow | grep size\: | cut -d',' -f1 | cut -d' ' -f2`
+        new_right_border_pos=$((xpos + width))
+        if [[ "$right_border_pos" == "$new_right_border_pos" ]] && \
            [[ $(($current_workspace % 2)) -eq 1 ]]
         then
+           echo move to workspace $((($current_workspace + 1)))
            hyprctl dispatch movetoworkspace $((($current_workspace + 1)))
         fi
        ;;
      "l")
+        xpos=`hyprctl activewindow | grep at\: | cut -d',' -f1 | cut -d' ' -f2`
         hyprctl dispatch hy3:movewindow l
-        new_window_pos=`hyprctl activewindow | grep at\:`
-        if [[ "$window_pos" == "$new_window_pos" ]] && \
+        new_xpos=`hyprctl activewindow | grep at\: | cut -d',' -f1 | cut -d' ' -f2`
+        if [[ "$xpos" == "$new_xpos" ]] && \
            [[ $(($current_workspace % 2)) -eq 0 ]]
         then
            hyprctl dispatch movetoworkspace $((($current_workspace - 1)))
