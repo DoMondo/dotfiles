@@ -9,21 +9,21 @@ if [[ $number_of_screens == "1" ]]
 then
 case "$1" in
   "r")
-     hyprctl dispatch hy3:movewindow r
+     hyprctl dispatch 'hl.plugin.hy3.move_window("r")'
      exit 0
-    ;;
+     ;;
   "l")
-     hyprctl dispatch hy3:movewindow l
+     hyprctl dispatch 'hl.plugin.hy3.move_window("l")'
      exit 0
-    ;;
+     ;;
   "u")
-     hyprctl dispatch hy3:movewindow u
+     hyprctl dispatch 'hl.plugin.hy3.move_window("u")'
      exit 0
-    ;;
+     ;;
   "d")
-     hyprctl dispatch hy3:movewindow d
+     hyprctl dispatch 'hl.plugin.hy3.move_window("d")'
      exit 0
-    ;;
+     ;;
 esac
 fi
 
@@ -37,7 +37,7 @@ then
         xpos=`hyprctl activewindow | grep at\: | cut -d',' -f1 | cut -d' ' -f2`
         width=`hyprctl activewindow | grep size\: | cut -d',' -f1 | cut -d' ' -f2`
         right_border_pos=$((xpos + width))
-        hyprctl dispatch hy3:movewindow r
+        hyprctl dispatch 'hl.plugin.hy3.move_window("r")'
         xpos=`hyprctl activewindow | grep at\: | cut -d',' -f1 | cut -d' ' -f2`
         width=`hyprctl activewindow | grep size\: | cut -d',' -f1 | cut -d' ' -f2`
         new_right_border_pos=$((xpos + width))
@@ -45,24 +45,24 @@ then
            [[ $(($current_workspace % 2)) -eq 1 ]]
         then
            echo move to workspace $((($current_workspace + 1)))
-           hyprctl dispatch movetoworkspace $((($current_workspace + 1)))
+           hyprctl dispatch "hl.dsp.window.move({ workspace = $((($current_workspace + 1))) })"
         fi
        ;;
      "l")
         xpos=`hyprctl activewindow | grep at\: | cut -d',' -f1 | cut -d' ' -f2`
-        hyprctl dispatch hy3:movewindow l
+        hyprctl dispatch 'hl.plugin.hy3.move_window("l")'
         new_xpos=`hyprctl activewindow | grep at\: | cut -d',' -f1 | cut -d' ' -f2`
         if [[ "$xpos" == "$new_xpos" ]] && \
            [[ $(($current_workspace % 2)) -eq 0 ]]
         then
-           hyprctl dispatch movetoworkspace $((($current_workspace - 1)))
+           hyprctl dispatch "hl.dsp.window.move({ workspace = $((($current_workspace - 1))) })"
         fi
        ;;
      "u")
-        hyprctl dispatch hy3:movewindow u
+        hyprctl dispatch 'hl.plugin.hy3.move_window("u")'
        ;;
      "d")
-        hyprctl dispatch hy3:movewindow d
+        hyprctl dispatch 'hl.plugin.hy3.move_window("d")'
        ;;
    esac
 fi

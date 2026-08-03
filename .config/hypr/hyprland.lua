@@ -452,21 +452,21 @@ hl.bind("SUPER" .. " + " .. "mouse:273", hl.dsp.window.resize(), { mouse = true 
 
 -- Move windows with keyboard
 
-hl.bind("SUPER + CONTROL" .. " + " .. "H", hl.dsp.exec_cmd("~/repo/dotfiles/.hyprland_functions/move_window.sh l"))
+hl.bind("SUPER + CONTROL" .. " + " .. "H", hl.dsp.exec_cmd("~/repo/dotfiles/.hyprland_functions/move_window.sh l"), { repeating = true })
 
-hl.bind("SUPER + CONTROL" .. " + " .. "L", hl.dsp.exec_cmd("~/repo/dotfiles/.hyprland_functions/move_window.sh r"))
+hl.bind("SUPER + CONTROL" .. " + " .. "L", hl.dsp.exec_cmd("~/repo/dotfiles/.hyprland_functions/move_window.sh r"), { repeating = true })
 
-hl.bind("SUPER + CONTROL" .. " + " .. "K", hl.dsp.exec_cmd("~/repo/dotfiles/.hyprland_functions/move_window.sh u"))
+hl.bind("SUPER + CONTROL" .. " + " .. "K", hl.dsp.exec_cmd("~/repo/dotfiles/.hyprland_functions/move_window.sh u"), { repeating = true })
 
-hl.bind("SUPER + CONTROL" .. " + " .. "J", hl.dsp.exec_cmd("~/repo/dotfiles/.hyprland_functions/move_window.sh d"))
+hl.bind("SUPER + CONTROL" .. " + " .. "J", hl.dsp.exec_cmd("~/repo/dotfiles/.hyprland_functions/move_window.sh d"), { repeating = true })
 
-hl.bind("SUPER + CONTROL" .. " + " .. "left", hl.dsp.exec_cmd("~/repo/dotfiles/.hyprland_functions/move_window.sh l"))
+hl.bind("SUPER + CONTROL" .. " + " .. "left", hl.dsp.exec_cmd("~/repo/dotfiles/.hyprland_functions/move_window.sh l"), { repeating = true })
 
-hl.bind("SUPER + CONTROL" .. " + " .. "right", hl.dsp.exec_cmd("~/repo/dotfiles/.hyprland_functions/move_window.sh r"))
+hl.bind("SUPER + CONTROL" .. " + " .. "right", hl.dsp.exec_cmd("~/repo/dotfiles/.hyprland_functions/move_window.sh r"), { repeating = true })
 
-hl.bind("SUPER + CONTROL" .. " + " .. "up", hl.dsp.exec_cmd("~/repo/dotfiles/.hyprland_functions/move_window.sh u"))
+hl.bind("SUPER + CONTROL" .. " + " .. "up", hl.dsp.exec_cmd("~/repo/dotfiles/.hyprland_functions/move_window.sh u"), { repeating = true })
 
-hl.bind("SUPER + CONTROL" .. " + " .. "down", hl.dsp.exec_cmd("~/repo/dotfiles/.hyprland_functions/move_window.sh d"))
+hl.bind("SUPER + CONTROL" .. " + " .. "down", hl.dsp.exec_cmd("~/repo/dotfiles/.hyprland_functions/move_window.sh d"), { repeating = true })
 
 -- Split in horizontal orientation
 
