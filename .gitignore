@@ -1,6 +1,6 @@
 
 applications/
-.config/hypr/monitors.conf
+.config/hypr/monitors.lua
 
 # CopyQ runtime files, logs, sockets, tabs database, geometry settings, locks
 .config/copyq/copyq.lock
