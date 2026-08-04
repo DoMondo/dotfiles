@@ -268,14 +268,14 @@ hl.config({
     },
 })
 
-hl.config({
-    plugin = {
-        hyprbars = {
-            bar_height = 30,
-            enabled = false,
-        },
-    },
-})
+-- hl.config({
+--     plugin = {
+--         hyprbars = {
+--             bar_height = 30,
+--             enabled = false,
+--         },
+--     },
+-- })
 
 hl.bind("CTRL + SUPER" .. " + " .. "T", hl.dsp.exec_cmd("~/repo/dotfiles/.i3_functions/toggle_windowtitles.sh"))
 
