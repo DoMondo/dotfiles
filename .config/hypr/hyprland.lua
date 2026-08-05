@@ -337,7 +337,7 @@ hl.bind("SUPER + SHIFT" .. " + " .. "P", hl.dsp.exec_cmd("~/repo/dotfiles/.zsh_f
 
 hl.bind("SUPER + SHIFT" .. " + " .. "K", hl.dsp.exec_cmd("hyprctl kill"))
 
-hl.bind("SUPER + SHIFT" .. " + " .. "D", hl.dsp.exec_cmd("hyprctl dispatch dpms off && sleep 1 && hyprctl dispatch dpms on"))
+hl.bind("SUPER + SHIFT" .. " + " .. "D", hl.dsp.exec_cmd("hyprctl dispatch 'hl.dsp.dpms(\"off\")' && sleep 1 && hyprctl dispatch 'hl.dsp.dpms(\"on\")'"))
 
 -- Move focus with mainMod + arrow keys
 
@@ -589,7 +589,7 @@ end)
 hl.on("hyprland.start", function()
     hl.exec_cmd("hyprpm reload -n")
     hl.exec_cmd("sleep 10 && pamixer --set-volume 50 && sleep 15 && pkill -RTMIN+10 waybar")
-    hl.exec_cmd("sleep 1 && hyprctl dispatch dpms off && sleep 1 && hyprctl dispatch dpms on")
+    hl.exec_cmd("sleep 1 && hyprctl dispatch 'hl.dsp.dpms(\"off\")' && sleep 1 && hyprctl dispatch 'hl.dsp.dpms(\"on\")'")
     hl.exec_cmd("waybar")
     hl.exec_cmd("insync start")
     hl.exec_cmd("copyq --start-server")
