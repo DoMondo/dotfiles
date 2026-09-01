@@ -573,7 +573,7 @@ hl.bind("SUPER" .. " + " .. "delete", hl.dsp.submap(mode_system))
 hl.bind("SUPER" .. " + " .. "PRINT", hl.dsp.submap(mode_system))
 
 hl.define_submap(mode_system, function()
-    hl.bind("e", hl.dsp.exec_cmd("hyprctl dispatch exit"))
+    hl.bind("e", hl.dsp.exit())
     hl.bind("s", hl.dsp.exec_cmd("systemctl suspend"))
     hl.bind("SHIFT" .. " + " .. "s", hl.dsp.exec_cmd("systemctl poweroff -i"))
     hl.bind("h", hl.dsp.exec_cmd("systemctl hibernate"))
