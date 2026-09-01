@@ -35,6 +35,20 @@ hl.config({
 
 -- See https://wiki.hyprland.org/Configuring/Monitors/
 
+local num_screens = 0
+local p = io.popen("cat /sys/class/drm/card*-*/status 2>/dev/null | grep -c '^connected'")
+if p then
+    local count_str = p:read("*a")
+    p:close()
+    local parsed = tonumber(count_str)
+    if parsed and parsed > 0 then
+        num_screens = parsed
+    end
+end
+if num_screens == 0 then
+    num_screens = 1
+end
+
 local ok, monitors = pcall(require, "monitors")
 if not ok or type(monitors) ~= "table" then
     monitors = { mon1 = "", mon2 = "" }
@@ -47,6 +61,18 @@ if not ok or type(monitors) ~= "table" then
 end
 local mon1 = monitors.mon1
 local mon2 = monitors.mon2
+
+if mon2 and mon2 ~= "" and num_screens > 1 then
+    -- Dual monitors: bind odd workspaces to mon1 (left) and even workspaces to mon2 (right)
+    for i = 1, 10 do
+        local target_mon = (i % 2 == 1) and mon1 or mon2
+        hl.workspace({
+            name = tostring(i),
+            monitor = target_mon,
+            default = (i == 1 or i == 2),
+        })
+    end
+end
 
 -- Force display on at startup (helps with black screen issues)
 
@@ -75,55 +101,6 @@ hl.env("XCURSOR_SIZE", 32)
 
 hl.env("GDK_BACKEND", "wayland")
 
-hl.workspace_rule({
-    workspace = 1,
-    monitor = mon1,
-})
-
-hl.workspace_rule({
-    workspace = 2,
-    monitor = mon2,
-})
-
-hl.workspace_rule({
-    workspace = 3,
-    monitor = mon1,
-})
-
-hl.workspace_rule({
-    workspace = 4,
-    monitor = mon2,
-})
-
-hl.workspace_rule({
-    workspace = 5,
-    monitor = mon1,
-})
-
-hl.workspace_rule({
-    workspace = 6,
-    monitor = mon2,
-})
-
-hl.workspace_rule({
-    workspace = 7,
-    monitor = mon1,
-})
-
-hl.workspace_rule({
-    workspace = 8,
-    monitor = mon2,
-})
-
-hl.workspace_rule({
-    workspace = 9,
-    monitor = mon1,
-})
-
-hl.workspace_rule({
-    workspace = 10,
-    monitor = mon2,
-})
 
 --##################
 
@@ -359,99 +336,55 @@ hl.bind("SUPER + J", hy3_dispatch("movefocus", "d"), { repeating = true })
 hl.bind("SUPER + K", hy3_dispatch("movefocus", "u"), { repeating = true })
 hl.bind("SUPER + L", hy3_dispatch("movefocus", "r"), { repeating = true })
 
--- Switch workspaces with mainMod + [0-9]
+-- Switch workspaces with mainMod + [0-9] and Move active window to a workspace with mainMod + SHIFT + [0-9]
 
-hl.bind("SUPER" .. " + " .. 1, hl.dsp.focus({ workspace = 1 }))
+if num_screens > 1 and mon2 and mon2 ~= "" then
+    -- Dual monitors workspace pairing (inspired by i3):
+    -- Key 1 -> activates WS 2 on mon2, then WS 1 on mon1
+    -- Key 2 -> activates WS 4 on mon2, then WS 3 on mon1
+    -- Key 3 -> activates WS 6 on mon2, then WS 5 on mon1
+    -- Key 4 -> activates WS 8 on mon2, then WS 7 on mon1
+    -- Key 5 -> activates WS 10 on mon2, then WS 9 on mon1
+    -- Key 6 -> activates WS 9 on mon1, then WS 10 on mon2
+    local dual_pairs = {
+        [1] = { left = 1, right = 2 },
+        [2] = { left = 3, right = 4 },
+        [3] = { left = 5, right = 6 },
+        [4] = { left = 7, right = 8 },
+        [5] = { left = 9, right = 10 },
+        [6] = { left = 10, right = 9 },
+    }
 
-hl.bind("SUPER" .. " + " .. 1, hl.dsp.focus({ workspace = 2 }))
+    for key, pair in pairs(dual_pairs) do
+        -- Switch to workspace pair (focus right then left to leave focus on target)
+        hl.bind("SUPER + " .. key, hl.dsp.exec_cmd(string.format(
+            "hyprctl dispatch 'hl.dsp.focus({ workspace = %d })' && hyprctl dispatch 'hl.dsp.focus({ workspace = %d })'",
+            pair.right, pair.left
+        )))
 
-hl.bind("SUPER" .. " + " .. 1, hl.dsp.focus({ workspace = 1 }))
+        -- Move focused window to target workspace and switch workspace pair
+        hl.bind("SUPER + SHIFT + " .. key, hl.dsp.exec_cmd(string.format(
+            "hyprctl dispatch 'hl.dsp.window.move({ workspace = %d })' && hyprctl dispatch 'hl.dsp.focus({ workspace = %d })' && hyprctl dispatch 'hl.dsp.focus({ workspace = %d })'",
+            pair.left, pair.right, pair.left
+        )))
+    end
 
-hl.bind("SUPER" .. " + " .. 2, hl.dsp.focus({ workspace = 3 }))
-
-hl.bind("SUPER" .. " + " .. 2, hl.dsp.focus({ workspace = 4 }))
-
-hl.bind("SUPER" .. " + " .. 2, hl.dsp.focus({ workspace = 3 }))
-
-hl.bind("SUPER" .. " + " .. 3, hl.dsp.focus({ workspace = 5 }))
-
-hl.bind("SUPER" .. " + " .. 3, hl.dsp.focus({ workspace = 6 }))
-
-hl.bind("SUPER" .. " + " .. 3, hl.dsp.focus({ workspace = 5 }))
-
-hl.bind("SUPER" .. " + " .. 4, hl.dsp.focus({ workspace = 7 }))
-
-hl.bind("SUPER" .. " + " .. 4, hl.dsp.focus({ workspace = 8 }))
-
-hl.bind("SUPER" .. " + " .. 4, hl.dsp.focus({ workspace = 7 }))
-
-hl.bind("SUPER" .. " + " .. 5, hl.dsp.focus({ workspace = 9 }))
-
-hl.bind("SUPER" .. " + " .. 5, hl.dsp.focus({ workspace = 10 }))
-
-hl.bind("SUPER" .. " + " .. 5, hl.dsp.focus({ workspace = 9 }))
-
--- Move active window to a workspace with mainMod + SHIFT + [0-9]
-
-hl.bind("SUPER + SHIFT" .. " + " .. 1, hl.dsp.window.move({ workspace = 1 }))
-
-hl.bind("SUPER + SHIFT" .. " + " .. 1, hl.dsp.focus({ workspace = 2 }))
-
-hl.bind("SUPER + SHIFT" .. " + " .. 1, hl.dsp.focus({ workspace = 1 }))
-
-hl.bind("SUPER + SHIFT" .. " + " .. 2, hl.dsp.window.move({ workspace = 2 }))
-
-hl.bind("SUPER + SHIFT" .. " + " .. 2, hl.dsp.focus({ workspace = 1 }))
-
-hl.bind("SUPER + SHIFT" .. " + " .. 2, hl.dsp.focus({ workspace = 2 }))
-
-hl.bind("SUPER + SHIFT" .. " + " .. 3, hl.dsp.window.move({ workspace = 3 }))
-
-hl.bind("SUPER + SHIFT" .. " + " .. 3, hl.dsp.focus({ workspace = 4 }))
-
-hl.bind("SUPER + SHIFT" .. " + " .. 3, hl.dsp.focus({ workspace = 3 }))
-
-hl.bind("SUPER + SHIFT" .. " + " .. 4, hl.dsp.window.move({ workspace = 4 }))
-
-hl.bind("SUPER + SHIFT" .. " + " .. 4, hl.dsp.focus({ workspace = 3 }))
-
-hl.bind("SUPER + SHIFT" .. " + " .. 4, hl.dsp.focus({ workspace = 4 }))
-
-hl.bind("SUPER + SHIFT" .. " + " .. 5, hl.dsp.window.move({ workspace = 5 }))
-
-hl.bind("SUPER + SHIFT" .. " + " .. 5, hl.dsp.focus({ workspace = 6 }))
-
-hl.bind("SUPER + SHIFT" .. " + " .. 5, hl.dsp.focus({ workspace = 5 }))
-
-hl.bind("SUPER + SHIFT" .. " + " .. 6, hl.dsp.window.move({ workspace = 6 }))
-
-hl.bind("SUPER + SHIFT" .. " + " .. 6, hl.dsp.focus({ workspace = 6 }))
-
-hl.bind("SUPER + SHIFT" .. " + " .. 6, hl.dsp.focus({ workspace = 5 }))
-
-hl.bind("SUPER + SHIFT" .. " + " .. 7, hl.dsp.window.move({ workspace = 7 }))
-
-hl.bind("SUPER + SHIFT" .. " + " .. 7, hl.dsp.focus({ workspace = 8 }))
-
-hl.bind("SUPER + SHIFT" .. " + " .. 7, hl.dsp.focus({ workspace = 7 }))
-
-hl.bind("SUPER + SHIFT" .. " + " .. 8, hl.dsp.window.move({ workspace = 8 }))
-
-hl.bind("SUPER + SHIFT" .. " + " .. 8, hl.dsp.focus({ workspace = 7 }))
-
-hl.bind("SUPER + SHIFT" .. " + " .. 8, hl.dsp.focus({ workspace = 8 }))
-
-hl.bind("SUPER + SHIFT" .. " + " .. 9, hl.dsp.window.move({ workspace = 9 }))
-
-hl.bind("SUPER + SHIFT" .. " + " .. 9, hl.dsp.focus({ workspace = 10 }))
-
-hl.bind("SUPER + SHIFT" .. " + " .. 9, hl.dsp.focus({ workspace = 9 }))
-
-hl.bind("SUPER + SHIFT" .. " + " .. 0, hl.dsp.window.move({ workspace = 10 }))
-
-hl.bind("SUPER + SHIFT" .. " + " .. 0, hl.dsp.focus({ workspace = 9 }))
-
-hl.bind("SUPER + SHIFT" .. " + " .. 0, hl.dsp.focus({ workspace = 10 }))
+    -- Additional direct bindings for workspaces 7, 8, 9, 0
+    for i = 7, 10 do
+        local key = (i == 10) and 0 or i
+        hl.bind("SUPER + " .. key, hl.dsp.focus({ workspace = i }))
+        hl.bind("SUPER + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
+        hl.bind("SUPER + SHIFT + " .. key, hl.dsp.focus({ workspace = i }))
+    end
+else
+    -- Single monitor: 1-to-1 mapping
+    for i = 1, 10 do
+        local key = (i == 10) and 0 or i
+        hl.bind("SUPER + " .. key, hl.dsp.focus({ workspace = i }))
+        hl.bind("SUPER + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
+        hl.bind("SUPER + SHIFT + " .. key, hl.dsp.focus({ workspace = i }))
+    end
+end
 
 -- Move/resize windows with mainMod + LMB/RMB and dragging
 
@@ -598,7 +531,7 @@ end)
 hl.on("hyprland.start", function()
     hl.exec_cmd("hyprpm reload -n")
     hl.exec_cmd("sleep 10 && pamixer --set-volume 50 && sleep 15 && pkill -RTMIN+10 waybar")
-    hl.exec_cmd("sleep 1 && hyprctl dispatch 'hl.dsp.dpms(\"off\")' && sleep 1 && hyprctl dispatch 'hl.dsp.dpms(\"on\")'")
+    -- hl.exec_cmd("sleep 1 && hyprctl dispatch 'hl.dsp.dpms(\"off\")' && sleep 1 && hyprctl dispatch 'hl.dsp.dpms(\"on\")'")
     hl.exec_cmd("waybar")
     hl.exec_cmd("insync start")
     hl.exec_cmd("copyq --start-server")
