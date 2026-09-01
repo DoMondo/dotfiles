@@ -35,7 +35,16 @@ hl.config({
 
 -- See https://wiki.hyprland.org/Configuring/Monitors/
 
-local monitors = require("monitors")
+local ok, monitors = pcall(require, "monitors")
+if not ok or type(monitors) ~= "table" then
+    monitors = { mon1 = "", mon2 = "" }
+    hl.monitor({
+        output = "",
+        mode = "preferred",
+        position = "auto",
+        scale = "auto",
+    })
+end
 local mon1 = monitors.mon1
 local mon2 = monitors.mon2
 

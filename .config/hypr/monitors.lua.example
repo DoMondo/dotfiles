@@ -1,0 +1,28 @@
+---@module 'hl'
+
+-- Monitor configuration template for Hyprland (Lua)
+-- Run `hyprctl monitors all` to list connected displays and their supported modes.
+--
+-- Documentation: https://wiki.hypr.land/Configuring/Monitors/
+--
+-- Examples:
+--   Single monitor:
+--     hl.monitor({ output = "eDP-1", mode = "1920x1080@60", position = "0x0", scale = 1 })
+--   Dual monitors (e.g. 4K main on left with scale 1.5, 1080p vertical on right with transform 3):
+--     hl.monitor({ output = monitors.mon1, mode = "3840x2160@60", position = "0x172", scale = 1.5 })
+--     hl.monitor({ output = monitors.mon2, mode = "1920x1080@60", position = "2560x0", scale = 1, transform = 3 })
+
+local monitors = {
+    mon1 = "",
+    mon2 = "",
+}
+
+-- Default fallback: auto-configure all connected monitors
+hl.monitor({
+    output   = "",
+    mode     = "preferred",
+    position = "auto",
+    scale    = "auto",
+})
+
+return monitors

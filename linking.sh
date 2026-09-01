@@ -34,6 +34,9 @@ ln -sfv $DIR/.config/rofi ~/.config
 
 ln -sfv $DIR/applications ~/.local/share/
 ln -sfv $DIR/.config/hypr ~/.config
+if [ ! -f "$DIR/.config/hypr/monitors.lua" ]; then
+    cp -v "$DIR/.config/hypr/monitors.lua.example" "$DIR/.config/hypr/monitors.lua"
+fi
 ln -sfv $DIR/.config/waybar ~/.config
 ln -sfv $DIR/.config/pipewire ~/.config
 ln -sfv $DIR/.config/copyq ~/.config
