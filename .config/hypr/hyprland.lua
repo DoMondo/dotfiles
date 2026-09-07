@@ -66,8 +66,8 @@ if mon2 and mon2 ~= "" and num_screens > 1 then
     -- Dual monitors: bind odd workspaces to mon1 (left) and even workspaces to mon2 (right)
     for i = 1, 10 do
         local target_mon = (i % 2 == 1) and mon1 or mon2
-        hl.workspace({
-            name = tostring(i),
+        hl.workspace_rule({
+            workspace = tostring(i),
             monitor = target_mon,
             default = (i == 1 or i == 2),
         })
