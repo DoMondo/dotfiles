@@ -61,6 +61,7 @@ grim
 wl-clipboard
 swaybg
 hyprland
+hyprland-plugin-hy3
 hypridle
 hyprlock
 rocm-clang-ocl

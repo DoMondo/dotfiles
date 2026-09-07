@@ -529,7 +529,7 @@ end)
 
 -- Autostart
 hl.on("hyprland.start", function()
-    hl.exec_cmd("hyprpm reload -n")
+    hl.exec_cmd("hyprctl plugin load /usr/lib/libhy3.so")
     hl.exec_cmd("sleep 10 && pamixer --set-volume 50 && sleep 15 && pkill -RTMIN+10 waybar")
     -- hl.exec_cmd("sleep 1 && hyprctl dispatch 'hl.dsp.dpms(\"off\")' && sleep 1 && hyprctl dispatch 'hl.dsp.dpms(\"on\")'")
     hl.exec_cmd("waybar")
@@ -540,3 +540,4 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("~/repo/dotfiles/.hyprland_functions/auto_split_imshow.sh")
     hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP QT_IM_MODULE GTK_IM_MODULE XMODIFIERS SDL_IM_MODULE GLFW_IM_MODULE")
 end)
+
