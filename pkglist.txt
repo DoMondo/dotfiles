@@ -3,11 +3,13 @@ zsh-autosuggestions
 zsh-syntax-highlighting
 zsh-completions
 ripgrep
-xnviewmp-system-libs
+xnviewmp
 vim-runtime
 unzip
 unrar
 python
+inetutils
+interception-tools
 pdftk
 pcmanfm-gtk3
 pavucontrol
