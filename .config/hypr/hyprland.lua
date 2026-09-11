@@ -361,20 +361,23 @@ if num_screens > 1 and mon2 and mon2 ~= "" then
             "hyprctl dispatch 'hl.dsp.focus({ workspace = %d })' && hyprctl dispatch 'hl.dsp.focus({ workspace = %d })'",
             pair.right, pair.left
         )))
-
-        -- Move focused window to target workspace and switch workspace pair
-        hl.bind("SUPER + SHIFT + " .. key, hl.dsp.exec_cmd(string.format(
-            "hyprctl dispatch 'hl.dsp.window.move({ workspace = %d })' && hyprctl dispatch 'hl.dsp.focus({ workspace = %d })' && hyprctl dispatch 'hl.dsp.focus({ workspace = %d })'",
-            pair.left, pair.right, pair.left
-        )))
     end
 
-    -- Additional direct bindings for workspaces 7, 8, 9, 0
+    -- Additional direct bindings for switching to workspaces 7, 8, 9, 0
     for i = 7, 10 do
         local key = (i == 10) and 0 or i
         hl.bind("SUPER + " .. key, hl.dsp.focus({ workspace = i }))
-        hl.bind("SUPER + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
-        hl.bind("SUPER + SHIFT + " .. key, hl.dsp.focus({ workspace = i }))
+    end
+
+    -- Move focused window to target workspace (1-10) and switch workspace pair:
+    -- Odd workspaces are on mon1 (left), even workspaces are on mon2 (right)
+    for i = 1, 10 do
+        local key = (i == 10) and 0 or i
+        local partner = (i % 2 == 1) and (i + 1) or (i - 1)
+        hl.bind("SUPER + SHIFT + " .. key, hl.dsp.exec_cmd(string.format(
+            "hyprctl dispatch 'hl.dsp.window.move({ workspace = %d })' && hyprctl dispatch 'hl.dsp.focus({ workspace = %d })' && hyprctl dispatch 'hl.dsp.focus({ workspace = %d })'",
+            i, partner, i
+        )))
     end
 else
     -- Single monitor: 1-to-1 mapping
