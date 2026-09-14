@@ -5,11 +5,19 @@
 ---@module 'hl'
 
 local function hy3_dispatch(method, arg)
+    local method_map = {
+        makegroup = "make_group",
+        movefocus = "move_focus",
+        changegroup = "change_group",
+        changefocus = "change_focus",
+        movewindow = "move_window",
+    }
+    local actual_method = method_map[method] or method
     return function()
-        if hl.plugin and hl.plugin.hy3 and hl.plugin.hy3[method] then
-            hl.dispatch(hl.plugin.hy3[method](arg))
+        if hl.plugin and hl.plugin.hy3 and hl.plugin.hy3[actual_method] then
+            hl.dispatch(hl.plugin.hy3[actual_method](arg))
         else
-            if method == "movefocus" then
+            if method == "movefocus" or actual_method == "move_focus" then
                 local dir_map = { l = "left", r = "right", u = "up", d = "down" }
                 hl.dispatch(hl.dsp.focus({ direction = dir_map[arg] or arg }))
             end
