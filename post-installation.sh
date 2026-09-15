@@ -26,9 +26,7 @@ echo ------------------------------- Installing manual packages
 mkdir -p ~/repos_ajenos
 cd ~/repos_ajenos
 git clone https://github.com/rupa/z || true
-git clone https://github.com/rupa/v || true
-cd ~/repos_ajenos/v
-sudo cp v /usr/local/bin
+sudo cp $DIR/scripts/v /usr/local/bin/v
 
 timedatectl set-ntp true
 
