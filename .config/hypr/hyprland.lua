@@ -510,6 +510,33 @@ hl.window_rule({
     opacity = "0.87 override",
 })
 
+hl.window_rule({
+    name  = "bitwarden",
+    match = {
+        class = ".*[bB]itwarden.*",
+    },
+    float = true,
+    center = true,
+})
+
+hl.window_rule({
+    name  = "bitwarden-extension-class",
+    match = {
+        class = ".*nngceckbapebfimnlniiiahkandclblb.*",
+    },
+    float = true,
+    center = true,
+})
+
+hl.window_rule({
+    name  = "bitwarden-extension-title",
+    match = {
+        title = ".*Bitwarden.*",
+    },
+    float = true,
+    center = true,
+})
+
 local mode_system = "(l) Lock| (e) Exit| (s) Suspend| (r) Reboot| (Shift+s) Poweroff"
 
 hl.bind("SUPER" .. " + " .. "delete", hl.dsp.submap(mode_system))
