@@ -23,6 +23,9 @@ ln -sfv $DIR/.fzf.zsh ~/.fzf.zsh
 ln -sfv $DIR/.ls++.conf ~/.ls++.conf
 mkdir -p ~/.config/kitty
 ln -sfv $DIR/.config/kitty/kitty.conf ~/.config/kitty/kitty.conf
+mkdir -p ~/.config/glow
+ln -sfv $DIR/.config/glow/glow.yml ~/.config/glow/glow.yml
+ln -sfv $DIR/.config/glow/glow-style.json ~/.config/glow/glow-style.json
 mkdir -p ~/.config/ranger
 ln -sfv $DIR/.config/ranger/rc.conf ~/.config/ranger/rc.conf
 ln -sfv $DIR/.zsh_functions ~/
