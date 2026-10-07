@@ -90,3 +90,5 @@ otf-font-awesome
 brightnessctl
 ntp
 otf-firamath
+avahi
+nss-mdns

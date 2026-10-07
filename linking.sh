@@ -78,3 +78,7 @@ ln -sfv $DIR/pure.zsh ~/.zfunctions/prompt_pure_setup
 ln -sfv $DIR/async.zsh ~/.zfunctions/async
 sudo cp udevmon.yaml /etc/interception/udevmon.yaml
 sudo systemctl enable --now udevmon.service
+
+# mDNS resolution for .local names (avahi + nss-mdns)
+sudo cp $DIR/nsswitch.conf /etc/nsswitch.conf
+sudo systemctl enable --now avahi-daemon.service
