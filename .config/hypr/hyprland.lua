@@ -329,6 +329,13 @@ hl.bind("SUPER" .. " + " .. "P", hl.dsp.exec_cmd("~/repo/dotfiles/.zsh_functions
 
 hl.bind("SUPER + SHIFT" .. " + " .. "P", hl.dsp.exec_cmd("~/repo/dotfiles/.zsh_functions/make_screenshot_latex"))
 
+-- XnView MP: SUPER+I opens the last accessed directory (z frecency),
+-- SUPER+SHIFT+I picks a directory from the frecency list with rofi
+
+hl.bind("SUPER" .. " + " .. "I", hl.dsp.exec_cmd("~/repo/dotfiles/.hyprland_functions/xnview.sh"))
+
+hl.bind("SUPER + SHIFT" .. " + " .. "I", hl.dsp.exec_cmd("~/repo/dotfiles/.hyprland_functions/xnview.sh --pick"))
+
 hl.bind("SUPER + SHIFT" .. " + " .. "K", hl.dsp.exec_cmd("hyprctl kill"))
 
 hl.bind("SUPER + SHIFT" .. " + " .. "D", hl.dsp.exec_cmd("hyprctl dispatch 'hl.dsp.dpms(\"off\")' && sleep 1 && hyprctl dispatch 'hl.dsp.dpms(\"on\")'"))
